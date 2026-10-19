@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Aaron Koshy Parayil — Creative Developer & BCA Honours Student. Portfolio showcasing projects, internships, and technical skills." />
+  <meta name="author" content="Aaron Koshy Parayil" />
+  <meta property="og:title" content="Aaron Koshy Parayil — Creative Developer" />
+  <meta property="og:description" content="BCA Honours student with experience in 3D development, web apps, and emerging technologies." />
+  <meta property="og:type" content="website" />
+  <title>Aaron Koshy Parayil — Creative Developer</title>
+
+  <!-- ── Google Fonts ── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- ── Bootstrap 5.3 (CSS only for grid utilities) ── -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+
+  <!-- ── Custom Styles ── -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Favicon (crimson ⚔) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚔️</text></svg>" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════════
+       CUSTOM CURSOR
+  ══════════════════════════════════════════════════════════ -->
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-follower" aria-hidden="true"></div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════════════════════════ -->
+  <nav class="navbar-custom" role="navigation" aria-label="Main navigation">
+    <a href="#hero" class="nav-logo" aria-label="Aaron Koshy Parayil – home">
+      AKP<span>.</span>
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="nav-links" role="list">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <!-- Hamburger (mobile) -->
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile nav overlay -->
+  <div class="nav-mobile" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       HERO SECTION
+  ══════════════════════════════════════════════════════════ -->
+  <section id="hero" aria-label="Hero introduction">
+    <div class="hero-inner">
+
+      <!-- Left: Text content -->
+      <div class="hero-left">
+        <span class="hero-label">&lt; Creative Developer /&gt;</span>
+
+        <h1 class="hero-name" aria-label="Aaron Koshy Parayil">
+          <span class="name-line"><span>AARON</span></span>
+          <span class="name-line"><span>KOSHY</span></span>
+          <span class="name-line name-last"><span>PARAYIL</span></span>
+        </h1>
+
+        <p class="hero-tagline">
+          BCA Honours Student
+          <span class="dot">•</span>
+          Bengaluru, India
+          <span class="dot">•</span>
+          <span style="color: var(--clr-frost);">CHRIST University</span>
+        </p>
+
+        <div class="hero-ctas">
+          <a href="#projects" class="btn-crimson">
+            View My Work
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="assets/Aaron_Koshy_Parayil_Resume.pdf" class="btn-outline" download>
+            Download Resume
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Three.js Orb -->
+      <div class="hero-right" id="hero-canvas-wrapper">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+      </div>
+
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator" aria-hidden="true">
+      <div class="scroll-arrow"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       ABOUT SECTION
+  ══════════════════════════════════════════════════════════ -->
+  <section id="about" class="section-wrapper" aria-labelledby="about-heading">
+    <div class="container-custom">
+
+      <p class="section-label">The Realm</p>
+      <h2 class="section-title" id="about-heading">
+        About <span class="highlight">Aaron</span>
+      </h2>
+      <div class="divider"></div>
+
+      <div class="about-card">
+
+        <!-- Left: text -->
+        <div class="about-text">
+          <p>
+            I'm a <strong style="color:var(--clr-text)">BCA Honours student at CHRIST (Deemed to be University)</strong>, Bengaluru — where I forge skills at the intersection of creative development, 3D environments, and emerging technology.
+          </p>
+          <p>
+            With internship experience ranging from <strong style="color:var(--clr-crimson)">3D avatar development</strong> at Christ University to <strong style="color:var(--clr-crimson)">ERP analysis</strong> at SFO Technologies, I bring both technical depth and structured thinking to every challenge.
+          </p>
+          <p>
+            Driven by critical thinking and a growth mindset, I thrive in cross-functional environments — whether I'm building interactive 3D worlds, architecting web applications, or leading student communities. I believe great software is equal parts craft and strategy.
+          </p>
+          <div style="margin-top: 1.75rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <a href="mailto:aaron12parayil@gmail.com" class="btn-ghost" style="font-size:0.78rem;">
+              ✉ aaron12parayil@gmail.com
+            </a>
+            <a href="https://linkedin.com/in/aaronparayil" target="_blank" rel="noopener" class="btn-ghost" style="font-size:0.78rem;">
+              in linkedin.com/in/aaronparayil
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: stats grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-number">2</span>
+            <span class="stat-label">Internships</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">2</span>
+            <span class="stat-label">Major Projects</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">3</span>
+            <span class="stat-label">Certifications</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">7.22</span>
+            <span class="stat-label">CGPA / 10</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SKILLS SECTION
+  ══════════════════════════════════════════════════════════ -->
+  <section id="skills" class="section-wrapper" aria-labelledby="skills-heading">
+    <div class="container-custom">
+
+      <p class="section-label">Skills &amp; Arsenal</p>
+      <h2 class="section-title" id="skills-heading">
+        The <span class="highlight">Arsenal</span>
+      </h2>
+      <div class="divider"></div>
+
+      <!-- Three skill cards -->
+      <div class="skills-grid">
+
+        <!-- Technical -->
+        <div class="skill-card">
+          <span class="skill-card-icon">⚙️</span>
+          <h3 class="skill-card-title">Technical Skills</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Unity</span>
+            <span class="skill-tag">Blender</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">React.js</span>
+            <span class="skill-tag frost">HTML</span>
+            <span class="skill-tag frost">CSS</span>
+            <span class="skill-tag frost">Three.js</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">SQLAlchemy</span>
+            <span class="skill-tag">MS Excel</span>
+          </div>
+        </div>
+
+        <!-- Domain -->
+        <div class="skill-card">
+          <span class="skill-card-icon">🌐</span>
+          <h3 class="skill-card-title">Domain Knowledge</h3>
+          <div class="skill-tags">
+            <span class="skill-tag gold">Cloud Computing</span>
+            <span class="skill-tag gold">Cyber Security</span>
+            <span class="skill-tag gold">Documentation</span>
+            <span class="skill-tag gold">ERP Analysis</span>
+            <span class="skill-tag gold">Workflow Design</span>
+            <span class="skill-tag gold">System Admin</span>
+          </div>
+        </div>
+
+        <!-- Soft Skills -->
+        <div class="skill-card">
+          <span class="skill-card-icon">🧠</span>
+          <h3 class="skill-card-title">Soft Skills</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Leadership</span>
+            <span class="skill-tag">Problem Solving</span>
+            <span class="skill-tag">Collaboration</span>
+            <span class="skill-tag">Critical Thinking</span>
+            <span class="skill-tag">Growth Mindset</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Language proficiency bars -->
+      <div class="languages-section">
+        <p class="languages-title">Language Proficiency</p>
+
+        <div class="lang-item">
+          <span class="lang-name">English</span>
+          <div class="lang-bar-track">
+            <div class="lang-bar-fill" data-width="90%"></div>
+          </div>
+          <span class="lang-level">C1 Proficient</span>
+        </div>
+
+        <div class="lang-item">
+          <span class="lang-name">Malayalam</span>
+          <div class="lang-bar-track">
+            <div class="lang-bar-fill" data-width="100%"></div>
+          </div>
+          <span class="lang-level">Native</span>
+        </div>
+
+        <div class="lang-item">
+          <span class="lang-name">Hindi</span>
+          <div class="lang-bar-track">
+            <div class="lang-bar-fill" data-width="55%"></div>
+          </div>
+          <span class="lang-level">Conversational</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       PROJECTS SECTION
+  ══════════════════════════════════════════════════════════ -->
+  <section id="projects" class="section-wrapper" aria-labelledby="projects-heading">
+    <div class="container-custom">
+
+      <p class="section-label">Forged in Code</p>
+      <h2 class="section-title" id="projects-heading">
+        Forged <span class="highlight">Projects</span>
+      </h2>
+      <div class="divider"></div>
+
+      <div class="projects-grid">
+
+        <!-- Project 1: Bramble -->
+        <article class="project-card" aria-labelledby="project-bramble">
+          <div>
+            <p class="project-year">Aug 2024 — Nov 2024</p>
+            <h3 class="project-title" id="project-bramble">Bramble</h3>
+          </div>
+
+          <p class="project-description">
+            A centralized web application for visualizing, analyzing, and predicting climate trends on a global scale. Built with a full-stack architecture, Bramble transforms raw climate data into actionable insight through interactive maps and predictive ML models.
+          </p>
+
+          <ul class="project-features">
+            <li>Interactive global climate map with real-time data overlays</li>
+            <li>Historical data dashboard for multi-year trend analysis</li>
+            <li>ML prediction model interface for future climate projections</li>
+            <li>Onboarding chatbot for guided user experience</li>
+          </ul>
+
+          <div class="project-tags">
+            <span class="project-tag">Python</span>
+            <span class="project-tag">SQLAlchemy</span>
+            <span class="project-tag">React JS</span>
+            <span class="project-tag">Machine Learning</span>
+            <span class="project-tag">Data Viz</span>
+          </div>
+
+          <div class="project-footer">
+            <span class="project-role">// Full-Stack Developer &amp; ML Integration</span>
+            <a href="#" class="btn-ghost" aria-label="View Bramble project">
+              View Project
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 2: PC Builder -->
+        <article class="project-card" aria-labelledby="project-pcbuilder">
+          <div>
+            <p class="project-year">Jun 2025 — Oct 2025</p>
+            <h3 class="project-title" id="project-pcbuilder">PC Builder</h3>
+          </div>
+
+          <p class="project-description">
+            A fully interactive 3D environment designed to teach users how to build a PC — from component selection to physical assembly. Players navigate the world with a movable character and interact with life-size 3D models of computer hardware.
+          </p>
+
+          <ul class="project-features">
+            <li>Movable 3D character in a custom-designed environment</li>
+            <li>High-fidelity 3D models of CPU, GPU, RAM, motherboard, and more</li>
+            <li>Guided teaching element with step-by-step build instructions</li>
+            <li>Real-time rendering with Three.js for web compatibility</li>
+          </ul>
+
+          <div class="project-tags">
+            <span class="project-tag">Unity</span>
+            <span class="project-tag">Blender</span>
+            <span class="project-tag">Three.js</span>
+            <span class="project-tag">3D Modelling</span>
+            <span class="project-tag">Game Design</span>
+          </div>
+
+          <div class="project-footer">
+            <span class="project-role">// 3D Developer &amp; Environment Designer</span>
+            <a href="#" class="btn-ghost" aria-label="View PC Builder project">
+              View Project
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       EXPERIENCE SECTION
+  ══════════════════════════════════════════════════════════ -->
+  <section id="experience" class="section-wrapper" aria-labelledby="experience-heading">
+    <div class="container-custom">
+
+      <p class="section-label">Battles Fought</p>
+      <h2 class="section-title" id="experience-heading">
+        Work <span class="highlight">Experience</span>
+      </h2>
+      <div class="divider"></div>
+
+      <div class="timeline">
+
+        <!-- Entry 1: Christ University Intern (Left) -->
+        <div class="timeline-item left">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <p class="timeline-date">Nov 2025 — Apr 2026</p>
+            <h3 class="timeline-company">Christ University</h3>
+            <p class="timeline-role">In-house Intern — 3D Development</p>
+            <ul class="timeline-bullets">
+              <li>Developed a 3D avatar system that mimics real-time player movements using motion capture principles.</li>
+              <li>Engineered a virtual court environment replicating spatial dimensions and interactive elements for training simulations.</li>
+              <li>Collaborated with faculty and researchers to refine avatar fidelity and environment realism.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Entry 2: SFO Technologies (Right) -->
+        <div class="timeline-item right">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <p class="timeline-date">Apr 2024 — Jun 2024</p>
+            <h3 class="timeline-company">SFO Technologies</h3>
+            <p class="timeline-role">ERP Analyst Intern</p>
+            <ul class="timeline-bullets">
+              <li>Analyzed end-to-end process workflows within the enterprise resource planning system.</li>
+              <li>Documented detailed system behavior and user interaction flows for internal reference.</li>
+              <li>Delivered structured feedback that directly contributed to improving workflow efficiency and system usability.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       CERTIFICATIONS + ACHIEVEMENTS + LEADERSHIP
+  ══════════════════════════════════════════════════════════ -->
+  <section id="certifications" class="section-wrapper" aria-labelledby="cert-heading">
+    <div class="container-custom">
+
+      <p class="section-label">Trophies of War</p>
+      <h2 class="section-title" id="cert-heading">
+        Certifications &amp; <span class="highlight">Achievements</span>
+      </h2>
+      <div class="divider"></div>
+
+      <!-- Cert cards -->
+      <div class="cert-grid">
+
+        <div class="cert-card">
+          <span class="cert-icon">☁️</span>
+          <p class="cert-name">AWS Academy Graduate — Cloud Foundations</p>
+          <p class="cert-issuer">Amazon Web Services</p>
+          <p class="cert-date">September 2025</p>
+        </div>
+
+        <div class="cert-card">
+          <span class="cert-icon">🧠</span>
+          <p class="cert-name">Organizational Behavior</p>
+          <p class="cert-issuer">NPTEL — IIT Kharagpur</p>
+          <p class="cert-date">March 2025</p>
+        </div>
+
+        <div class="cert-card">
+          <span class="cert-icon">🔒</span>
+          <p class="cert-name">Ethical Hacking</p>
+          <p class="cert-issuer">L&amp;T Edutech</p>
+          <p class="cert-date">November 2024</p>
+        </div>
+
+      </div>
+
+      <!-- Achievement callout -->
+      <div class="achievement-callout">
+        <span class="achievement-icon">🏆</span>
+        <div class="achievement-text">
+          <h3>Merit Scholarship</h3>
+          <p>Awarded by CHRIST (Deemed to be University) for consistent academic excellence, recognising placement in the <strong style="color:var(--clr-gold)">Top 5% of the batch</strong> — a testament to discipline, hard work, and a relentless pursuit of mastery.</p>
+        </div>
+        <div class="achievement-badge">
+          <span>Top 5%</span>
+          <small>of batch</small>
+        </div>
+      </div>
+
+      <!-- Leadership -->
+      <div style="margin-top: 3.5rem;">
+        <p class="section-label" style="margin-bottom: 1.25rem;">Leadership & Community</p>
+        <div class="leadership-row">
+
+          <div class="leadership-card">
+            <span class="leadership-icon">🌍</span>
+            <div>
+              <p class="leadership-title">Student Representative</p>
+              <p class="leadership-org">SDGs Club — CHRIST University</p>
+              <p class="leadership-period">Jun 2023 – May 2024</p>
+            </div>
+          </div>
+
+          <div class="leadership-card">
+            <span class="leadership-icon">⚡</span>
+            <div>
+              <p class="leadership-title">Student Member</p>
+              <p class="leadership-org">IEEE Club — CHRIST University</p>
+              <p class="leadership-period">Mar 2025 – Dec 2025</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       EDUCATION SECTION
+  ══════════════════════════════════════════════════════════ -->
+  <section id="education" class="section-wrapper" aria-labelledby="edu-heading">
+    <div class="container-custom">
+
+      <p class="section-label">The Origin Story</p>
+      <h2 class="section-title" id="edu-heading">
+        <span class="highlight">Education</span>
+      </h2>
+      <div class="divider"></div>
+
+      <div class="edu-grid">
+
+        <div class="edu-card">
+          <p class="edu-degree">BCA Honours</p>
+          <p class="edu-school">CHRIST (Deemed to be University), Bengaluru</p>
+          <div class="edu-meta">
+            <span class="edu-score">CGPA: 7.22 / 10.0</span>
+            <span class="edu-year">Jun 2023 – May 2027 (Expected)</span>
+          </div>
+        </div>
+
+        <div class="edu-card">
+          <p class="edu-degree">Class XII — Commerce</p>
+          <p class="edu-school">Mar Thoma Higher Secondary School, Kerala</p>
+          <div class="edu-meta">
+            <span class="edu-score">94.6%</span>
+            <span class="edu-year">April 2023</span>
+          </div>
+        </div>
+
+        <div class="edu-card">
+          <p class="edu-degree">Class X — CBSE</p>
+          <p class="edu-school">Nirmala Public School, Kerala</p>
+          <div class="edu-meta">
+            <span class="edu-score">72%</span>
+            <span class="edu-year">April 2021</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       CONTACT SECTION
+  ══════════════════════════════════════════════════════════ -->
+  <section id="contact" class="section-wrapper" aria-labelledby="contact-heading">
+    <div class="container-custom">
+
+      <p class="section-label">Open a Channel</p>
+      <h2 class="contact-heading" id="contact-heading">
+        Let's Build<br /><span class="contact-em">Something</span>
+      </h2>
+      <p class="contact-sub">
+        Whether it's a collaboration, opportunity, or just a conversation — I'm always ready to forge something extraordinary.
+      </p>
+
+      <div class="contact-layout">
+
+        <!-- Contact info -->
+        <div class="contact-info-list">
+
+          <div class="contact-info-item">
+            <span class="contact-info-label">Email</span>
+            <span class="contact-info-value">
+              <a href="mailto:aaron12parayil@gmail.com">aaron12parayil@gmail.com</a>
+            </span>
+          </div>
+
+          <div class="contact-info-item">
+            <span class="contact-info-label">Phone</span>
+            <span class="contact-info-value">
+              <a href="tel:+919747692000">+91 97476 92000</a>
+            </span>
+          </div>
+
+          <div class="contact-info-item">
+            <span class="contact-info-label">LinkedIn</span>
+            <span class="contact-info-value">
+              <a href="https://linkedin.com/in/aaronparayil" target="_blank" rel="noopener">linkedin.com/in/aaronparayil</a>
+            </span>
+          </div>
+
+          <div class="contact-info-item">
+            <span class="contact-info-label">Location</span>
+            <span class="contact-info-value">Bengaluru, Karnataka, India</span>
+          </div>
+
+        </div>
+
+        <!-- Contact form -->
+        <form class="contact-form" id="contact-form" novalidate>
+
+          <div class="form-group">
+            <label class="form-label" for="form-name">Name</label>
+            <input
+              class="form-control-custom"
+              type="text"
+              id="form-name"
+              name="name"
+              placeholder="Your full name"
+              required
+              autocomplete="name"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="form-email">Email</label>
+            <input
+              class="form-control-custom"
+              type="email"
+              id="form-email"
+              name="email"
+              placeholder="your@email.com"
+              required
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="form-message">Message</label>
+            <textarea
+              class="form-control-custom"
+              id="form-message"
+              name="message"
+              placeholder="What shall we build together?"
+              rows="5"
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn-crimson" style="align-self: flex-start; margin-top: 0.5rem;">
+            Send Message
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <span class="footer-logo">AKP<span style="color:var(--clr-text);opacity:0.2">.</span></span>
+
+    <p class="footer-copy">
+      AKP &copy; 2026 &nbsp;·&nbsp; Bengaluru, India
+      &nbsp;·&nbsp; Built with passion &amp; <span>God of War energy ⚔️</span>
+    </p>
+
+    <div class="footer-socials">
+      <a href="https://linkedin.com/in/aaronparayil" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:aaron12parayil@gmail.com">Email</a>
+      <a href="tel:+919747692000">Phone</a>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SCRIPTS
+  ══════════════════════════════════════════════════════════ -->
+
+  <!-- Bootstrap JS (for any utilities) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
+  <!-- GSAP core + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Hero Orb (Three.js) -->
+  <script src="js/hero-orb.js"></script>
+
+  <!-- Main animations + interactions -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>
