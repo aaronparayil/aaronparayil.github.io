@@ -9,13 +9,27 @@
 (function () {
   'use strict';
 
-  /* ── Wait for GSAP to be available ── */
-  function waitForGSAP(cb) {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── Wait for GSAP to be available (give up after ~5s) ── */
+  function waitForGSAP(cb, onFail, tries = 0) {
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
       cb();
+    } else if (tries > 60) {
+      onFail();
     } else {
-      setTimeout(() => waitForGSAP(cb), 80);
+      setTimeout(() => waitForGSAP(cb, onFail, tries + 1), 80);
     }
+  }
+
+  /* ── Show everything without animation (no GSAP / reduced motion) ── */
+  function revealStatic() {
+    document.documentElement.classList.remove('js');
+    fillLangBars();
+  }
+
+  function fillLangBars() {
+    document.querySelectorAll('.lang-bar-fill').forEach((bar) => bar.classList.add('is-filled'));
   }
 
   /* ═══════════════════════════════════════════════════════════════
@@ -26,47 +40,55 @@
     const cursorFollower = document.querySelector('.cursor-follower');
     if (!cursor || !cursorFollower) return;
 
-    // Only on non-touch devices
-    if (window.matchMedia('(hover: none)').matches) {
-      cursor.style.display         = 'none';
-      cursorFollower.style.display = 'none';
-      document.body.style.cursor   = 'auto';
-      return;
-    }
+    // Only on devices with a precise pointer
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+    document.documentElement.classList.add('has-custom-cursor');
 
     let mouseX = 0, mouseY = 0;
+    let hasMoved = false;
+
+    // Stay hidden until the first mouse move (avoids a dot stuck at 0,0).
+    // Position with transforms (x/y), not left/top, so moving never triggers layout.
+    gsap.set([cursor, cursorFollower], { opacity: 0, xPercent: -50, yPercent: -50 });
 
     // quickTo for butter-smooth tracking
-    const moveCursor = gsap.quickTo(cursor, 'left', { duration: 0.08, ease: 'none' });
-    const moveCursorY = gsap.quickTo(cursor, 'top', { duration: 0.08, ease: 'none' });
-
-    const moveFollower  = gsap.quickTo(cursorFollower, 'left', { duration: 0.35, ease: 'power3.out' });
-    const moveFollowerY = gsap.quickTo(cursorFollower, 'top',  { duration: 0.35, ease: 'power3.out' });
+    const moveCursor    = gsap.quickTo(cursor, 'x', { duration: 0.08, ease: 'none' });
+    const moveCursorY   = gsap.quickTo(cursor, 'y', { duration: 0.08, ease: 'none' });
+    const moveFollower  = gsap.quickTo(cursorFollower, 'x', { duration: 0.35, ease: 'power3.out' });
+    const moveFollowerY = gsap.quickTo(cursorFollower, 'y', { duration: 0.35, ease: 'power3.out' });
 
     document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
+      if (!hasMoved) {
+        hasMoved = true;
+        gsap.set([cursor, cursorFollower], { x: mouseX, y: mouseY });
+        gsap.to([cursor, cursorFollower], { opacity: 1, duration: 0.2 });
+      }
       moveCursor(mouseX);
       moveCursorY(mouseY);
       moveFollower(mouseX);
       moveFollowerY(mouseY);
-    });
+    }, { passive: true });
 
-    // Hover enlarge on interactive elements
-    const hoverTargets = document.querySelectorAll(
-      'a, button, .btn-crimson, .btn-outline, .btn-ghost, .skill-card, .project-card, .cert-card, .stat-card, .hamburger'
-    );
+    // Hover enlarge on interactive elements (one delegated listener)
+    const HOVER_SELECTOR =
+      'a, button, .skill-card, .project-card, .cert-card, .stat-card';
+    let hovered = false;
 
-    hoverTargets.forEach((el) => {
-      el.addEventListener('mouseenter', () => {
-        cursor.classList.add('is-hovered');
-        cursorFollower.classList.add('is-hovered');
-      });
-      el.addEventListener('mouseleave', () => {
-        cursor.classList.remove('is-hovered');
-        cursorFollower.classList.remove('is-hovered');
-      });
-    });
+    const setHover = (on) => {
+      if (on === hovered) return;
+      hovered = on;
+      cursor.classList.toggle('is-hovered', on);
+      cursorFollower.classList.toggle('is-hovered', on);
+      gsap.to(cursor,         { scale: on ? 2.2 : 1,  duration: 0.15, overwrite: 'auto' });
+      gsap.to(cursorFollower, { scale: on ? 1.55 : 1, duration: 0.3,  overwrite: 'auto' });
+    };
+
+    document.addEventListener('mouseover', (e) => {
+      setHover(!!e.target.closest(HOVER_SELECTOR));
+    }, { passive: true });
 
     // Hide cursor when leaving window
     document.addEventListener('mouseleave', () => {
@@ -101,19 +123,29 @@
 
     // Hamburger toggle
     if (hamburger && mobileNav) {
-      hamburger.addEventListener('click', () => {
-        const isOpen = hamburger.classList.toggle('open');
+      const setMenu = (isOpen) => {
+        hamburger.classList.toggle('open', isOpen);
+        hamburger.setAttribute('aria-expanded', String(isOpen));
         mobileNav.classList.toggle('open', isOpen);
+        mobileNav.inert = !isOpen;
         document.body.style.overflow = isOpen ? 'hidden' : '';
+      };
+
+      hamburger.addEventListener('click', () => {
+        setMenu(!hamburger.classList.contains('open'));
       });
 
       // Close when a mobile link is clicked
       mobileLinks.forEach((link) => {
-        link.addEventListener('click', () => {
-          hamburger.classList.remove('open');
-          mobileNav.classList.remove('open');
-          document.body.style.overflow = '';
-        });
+        link.addEventListener('click', () => setMenu(false));
+      });
+
+      // Close on Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && hamburger.classList.contains('open')) {
+          setMenu(false);
+          hamburger.focus();
+        }
       });
     }
   }
@@ -223,12 +255,7 @@
     ScrollTrigger.create({
       trigger: '.languages-section',
       start: 'top 85%',
-      onEnter: () => {
-        document.querySelectorAll('.lang-bar-fill').forEach((bar) => {
-          const target = bar.dataset.width || '80%';
-          bar.style.width = target;
-        });
-      },
+      onEnter: fillLangBars,
       once: true,
     });
 
@@ -315,14 +342,6 @@
           delay: 0.6,
           ease: 'power3.out',
         });
-        gsap.to('.edu-card', {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          stagger: 0.12,
-          delay: 0.2,
-          ease: 'power3.out',
-        });
       },
       once: true,
     });
@@ -330,9 +349,10 @@
     gsap.set('.cert-card', { opacity: 0, scale: 0.85 });
     gsap.set('.achievement-callout', { opacity: 0, y: 40 });
     gsap.set('.leadership-card', { opacity: 0, x: -30 });
-    gsap.set('.edu-card', { opacity: 0, y: 40 });
 
     /* ── Education section ── */
+    gsap.set('.edu-card', { opacity: 0, y: 40 });
+
     ScrollTrigger.create({
       trigger: '#education',
       start: 'top 80%',
@@ -426,28 +446,35 @@
   }
 
   /* ═══════════════════════════════════════════════════════════════
-     5. CONTACT FORM — basic UX
+     5. CONTACT FORM — opens the visitor's email app, pre-filled
   ═══════════════════════════════════════════════════════════════ */
   function initContactForm() {
     const form = document.getElementById('contact-form');
     if (!form) return;
 
+    const TO = 'aaron12parayil@gmail.com';
+
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const btn = form.querySelector('button[type="submit"]');
-      const original = btn.textContent;
+      if (!form.reportValidity()) return;
 
-      btn.textContent = 'Message sent ✓';
-      btn.style.background = '#16a34a';
-      btn.style.borderColor = '#16a34a';
+      const name    = form.elements.name.value.trim();
+      const email   = form.elements.email.value.trim();
+      const message = form.elements.message.value.trim();
+
+      const subject = `Portfolio enquiry from ${name}`;
+      const body    = `${message}\n\n— ${name}\n${email}`;
+      window.location.href =
+        `mailto:${TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      const btn = form.querySelector('button[type="submit"]');
+      const original = btn.innerHTML;
+      btn.textContent = 'Opening your email app…';
       btn.disabled = true;
 
       setTimeout(() => {
-        btn.textContent = original;
-        btn.style.background = '';
-        btn.style.borderColor = '';
+        btn.innerHTML = original;
         btn.disabled = false;
-        form.reset();
       }, 3500);
     });
   }
@@ -482,21 +509,27 @@
      BOOT
   ═══════════════════════════════════════════════════════════════ */
   function boot() {
+    // These don't depend on GSAP
+    initNavbar();
+    initContactForm();
+    initActiveNav();
+
+    if (reducedMotion) revealStatic();
+
     waitForGSAP(() => {
       gsap.registerPlugin(ScrollTrigger);
 
       initCursor();
-      initNavbar();
+      if (reducedMotion) return;
+
       initHeroAnimation();
       initScrollAnimations();
-      initContactForm();
-      initActiveNav();
 
       // Refresh ScrollTrigger after fonts/images load
       window.addEventListener('load', () => {
         ScrollTrigger.refresh();
       });
-    });
+    }, revealStatic);
   }
 
   if (document.readyState === 'loading') {
