@@ -3,8 +3,7 @@
    Theme: God of War × Dark Premium
    ============================================================ */
 
-/* ── 0. GOOGLE FONTS ────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap');
+/* Fonts are loaded via <link> in index.html */
 
 /* ── 1. DESIGN TOKENS ───────────────────────────────────────── */
 :root {
@@ -44,6 +43,22 @@
   padding: 0;
 }
 
+/* Base spacing for text elements */
+p, ul, ol {
+  margin-bottom: 1rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+input, button, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
 html {
   scroll-behavior: smooth;
   font-size: 16px;
@@ -56,19 +71,13 @@ body {
   color: var(--clr-text);
   line-height: 1.6;
   overflow-x: hidden;
-  cursor: none; /* custom cursor takes over */
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Subtle noise texture overlay on body */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  background-size: 256px 256px;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.4;
+/* Custom cursor takes over (class added by JS on mouse devices) */
+.has-custom-cursor body,
+.has-custom-cursor button {
+  cursor: none;
 }
 
 img, video {
@@ -86,46 +95,63 @@ ul, ol {
 }
 
 button {
-  cursor: none;
+  cursor: pointer;
   font-family: inherit;
   border: none;
   background: none;
 }
 
+/* Keyboard focus ring */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--clr-gold);
+  outline-offset: 3px;
+}
+
 /* ── 3. CUSTOM CURSOR ───────────────────────────────────────── */
+.cursor,
+.cursor-follower {
+  display: none;
+}
+
+.has-custom-cursor .cursor,
+.has-custom-cursor .cursor-follower {
+  display: block;
+}
+
 .cursor {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 10px;
   height: 10px;
   background: var(--clr-crimson);
   border-radius: 50%;
   pointer-events: none;
   z-index: 100000;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.2s ease, transform 0.1s ease;
-  mix-blend-mode: normal;
+  transition: background 0.2s ease;
+  will-change: transform;
 }
 
 .cursor-follower {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 36px;
   height: 36px;
   border: 1.5px solid rgba(196, 30, 58, 0.5);
   border-radius: 50%;
   pointer-events: none;
   z-index: 99999;
-  transform: translate(-50%, -50%);
-  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+  transition: border-color 0.3s ease;
+  will-change: transform;
 }
 
 .cursor.is-hovered {
-  transform: translate(-50%, -50%) scale(2.2);
   background: var(--clr-gold);
 }
 
 .cursor-follower.is-hovered {
-  width: 56px;
-  height: 56px;
   border-color: var(--clr-gold);
 }
 
@@ -272,13 +298,11 @@ button {
   padding: 0 5%;
   justify-content: space-between;
   background: transparent;
-  transition: background 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
 }
 
 .navbar-custom.scrolled {
-  background: rgba(10, 10, 11, 0.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(10, 10, 11, 0.96);
   box-shadow: 0 1px 0 var(--clr-border);
 }
 
@@ -303,6 +327,7 @@ button {
   display: flex;
   align-items: center;
   gap: 2.5rem;
+  margin: 0;
 }
 
 .nav-links a {
@@ -342,7 +367,6 @@ button {
   gap: 5px;
   padding: 4px;
   z-index: 1001;
-  cursor: none;
 }
 
 .hamburger span {
@@ -491,7 +515,6 @@ button {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
-  opacity: 0; /* GSAP will animate */
 }
 
 /* Hero name */
@@ -504,7 +527,6 @@ button {
   color: var(--clr-text);
   text-transform: uppercase;
   margin-bottom: 1.5rem;
-  /* Note: opacity managed by GSAP at runtime */
 }
 
 .hero-name .name-line {
@@ -529,7 +551,6 @@ button {
   color: var(--clr-muted);
   margin-bottom: 3rem;
   letter-spacing: 0.05em;
-  opacity: 0; /* GSAP will animate */
 }
 
 .hero-tagline .dot {
@@ -542,19 +563,27 @@ button {
   display: flex;
   gap: 1.25rem;
   flex-wrap: wrap;
-  opacity: 0; /* GSAP will animate */
 }
 
 /* Scroll indicator */
 .scroll-indicator {
   position: absolute;
   bottom: 2.5rem;
-  left: 5%;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  opacity: 0; /* GSAP */
+}
+
+/* Hidden until the GSAP entrance animation runs (only when JS is on) */
+.js .hero-label,
+.js .hero-name,
+.js .hero-tagline,
+.js .hero-ctas,
+.js .scroll-indicator {
+  opacity: 0;
 }
 
 .scroll-indicator span {
@@ -619,10 +648,6 @@ button {
   }
   .hero-name .name-last {
     -webkit-text-stroke: 1.5px rgba(196,30,58, 0.4);
-  }
-  .scroll-indicator {
-    left: 50%;
-    transform: translateX(-50%);
   }
 }
 
@@ -865,8 +890,12 @@ button {
   height: 100%;
   border-radius: 4px;
   background: linear-gradient(90deg, var(--clr-crimson), var(--clr-gold));
-  width: 0; /* animated by JS */
+  width: var(--w, 80%);
   transition: width 1.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.js .lang-bar-fill:not(.is-filled) {
+  width: 0; /* filled by JS when scrolled into view */
 }
 
 .lang-level {
@@ -1671,6 +1700,7 @@ footer {
   letter-spacing: 0.1em;
   color: var(--clr-muted);
   text-align: center;
+  margin: 0;
 }
 
 .footer-copy span {
@@ -1706,53 +1736,7 @@ footer {
   }
 }
 
-/* ── 16. SCROLL-DRIVEN REVEAL HELPERS ───────────────────────── */
-/* GSAP will control opacity/transform; these are initial states */
-.gsap-reveal {
-  opacity: 0;
-  transform: translateY(40px);
-}
-
-.gsap-reveal-left {
-  opacity: 0;
-  transform: translateX(-60px);
-}
-
-.gsap-reveal-right {
-  opacity: 0;
-  transform: translateX(60px);
-}
-
-.gsap-scale {
-  opacity: 0;
-  transform: scale(0.85);
-}
-
-/* Timeline line animation */
-.timeline-line-fill {
-  transform-origin: top;
-  transform: scaleY(0);
-}
-
-/* ── 17. SECTION DIVIDER DECORATION ─────────────────────────── */
-.section-divider {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 4rem;
-}
-
-.section-divider-line {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, var(--clr-crimson), transparent);
-}
-
-.section-divider-line.right {
-  background: linear-gradient(270deg, var(--clr-crimson), transparent);
-}
-
-/* ── 18. MISC ───────────────────────────────────────────────── */
+/* ── 16. MISC ───────────────────────────────────────────────── */
 ::selection {
   background: rgba(196, 30, 58, 0.35);
   color: var(--clr-text);
@@ -1773,4 +1757,16 @@ footer {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--clr-crimson);
+}
+
+/* ── 17. REDUCED MOTION ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
