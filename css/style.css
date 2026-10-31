@@ -109,7 +109,6 @@ button:focus-visible {
 .label-no,
 .stat-number,
 .hero-name .name-last span,
-.edu-score,
 .logo-caret {
   background: var(--grad);
   -webkit-background-clip: text;
@@ -119,7 +118,6 @@ button:focus-visible {
 
 /* Block-level gradient text should span only its own text, not the full width */
 .stat-number,
-.edu-score,
 .hero-name .name-last span {
   width: fit-content;
 }
@@ -209,9 +207,6 @@ button:focus-visible {
 /* Shared panel look */
 .skill-card,
 .project-card,
-.cert-card,
-.edu-card,
-.leadership-card,
 .stat-card,
 .timeline-content,
 .player-card {
@@ -1261,189 +1256,7 @@ button:focus-visible {
   }
 }
 
-/* ── 11. ACHIEVEMENTS ───────────────────────────────────────── */
-.achievement-callout {
-  display: flex;
-  align-items: center;
-  gap: clamp(1.25rem, 3vw, 2rem);
-  padding: clamp(1.5rem, 3vw, 2rem);
-  margin-bottom: 1rem;
-  background: linear-gradient(120deg, rgba(255, 210, 63, 0.12), rgba(255, 210, 63, 0.02) 60%), var(--panel);
-  border: 1px solid rgba(255, 210, 63, 0.4);
-  border-radius: var(--radius);
-}
-
-.achievement-badge {
-  flex-shrink: 0;
-  display: grid;
-  place-items: center;
-  width: 76px;
-  height: 76px;
-  border-radius: 12px;
-  background: var(--grad);
-  color: #160D20;
-  font-size: 1.6rem;
-  box-shadow: 0 4px 0 #B8641F;
-}
-
-.achievement-label {
-  font-family: var(--font-head);
-  font-weight: 600;
-  font-size: 0.78rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent-2);
-  margin-bottom: 0.35rem;
-}
-
-.achievement-text h3 {
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
-  line-height: 1.15;
-  text-transform: uppercase;
-  margin-bottom: 0.4rem;
-}
-
-.achievement-text p:last-child {
-  color: var(--muted);
-}
-
-.cert-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-bottom: 4rem;
-}
-
-.cert-card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  padding: 1.5rem;
-  transition: border-color var(--transition), transform var(--transition);
-}
-
-.cert-card:hover {
-  border-color: rgba(255, 210, 63, 0.45);
-  transform: translateY(-3px);
-}
-
-.cert-name {
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: 1.15rem;
-  line-height: 1.25;
-}
-
-.cert-issuer {
-  color: var(--accent);
-  font-weight: 500;
-  font-size: 0.92rem;
-}
-
-.cert-date {
-  margin-top: auto;
-  padding-top: 0.75rem;
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-
-/* Leadership */
-.leadership-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-.leadership-card {
-  padding: 1.5rem;
-}
-
-.leadership-title {
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-}
-
-.leadership-org {
-  color: var(--accent);
-  font-weight: 500;
-  font-size: 0.92rem;
-}
-
-.leadership-period {
-  margin-top: 0.4rem;
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-
-@media (max-width: 900px) {
-  .cert-grid,
-  .leadership-row {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 600px) {
-  .achievement-callout {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-/* ── 12. EDUCATION ──────────────────────────────────────────── */
-.edu-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-}
-
-.edu-card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  padding: 1.5rem;
-}
-
-.edu-year {
-  font-family: var(--font-head);
-  font-weight: 600;
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 0.4rem;
-}
-
-.edu-degree {
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: 1.3rem;
-  line-height: 1.15;
-  text-transform: uppercase;
-}
-
-.edu-school {
-  color: var(--muted);
-  font-size: 0.92rem;
-}
-
-.edu-score {
-  margin-top: auto;
-  padding-top: 0.9rem;
-  font-family: var(--font-head);
-  font-weight: 700;
-}
-
-@media (max-width: 900px) {
-  .edu-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ── 13. CONTACT ────────────────────────────────────────────── */
+/* ── 11. CONTACT ────────────────────────────────────────────── */
 .contact-heading {
   max-width: 16ch;
   margin-bottom: 1.25rem;
@@ -1557,7 +1370,7 @@ textarea.form-control-custom {
   }
 }
 
-/* ── 14. FOOTER ─────────────────────────────────────────────── */
+/* ── 12. FOOTER ─────────────────────────────────────────────── */
 footer {
   padding: 2rem var(--gutter);
   border-top: 1px solid var(--line);
@@ -1605,7 +1418,7 @@ footer {
   }
 }
 
-/* ── 15. REDUCED MOTION ─────────────────────────────────────── */
+/* ── 13. REDUCED MOTION ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
