@@ -108,7 +108,7 @@ button:focus-visible {
 .grad-text,
 .label-no,
 .stat-number,
-.hero-name .name-last,
+.hero-name .name-last span,
 .edu-score,
 .logo-caret {
   background: var(--grad);
@@ -120,7 +120,7 @@ button:focus-visible {
 /* Block-level gradient text should span only its own text, not the full width */
 .stat-number,
 .edu-score,
-.hero-name .name-last {
+.hero-name .name-last span {
   width: fit-content;
 }
 
@@ -233,8 +233,8 @@ button:focus-visible {
   place-items: center;
   background: var(--bg);
   transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
-  /* failsafe: if main.js never runs, get out of the way after 7s */
-  animation: loader-failsafe 0.4s ease 7s forwards;
+  /* failsafe: if main.js never runs, get out of the way after 8s */
+  animation: loader-failsafe 0.4s ease 8s forwards;
 }
 
 .js .loader.is-done {
@@ -283,11 +283,62 @@ button:focus-visible {
   letter-spacing: 0.18em;
 }
 
-.loader-akp {
+.loader-word {
+  position: relative;
+}
+
+/* Each letter carries its own gradient so it can be eaten on its own */
+.loader-letter {
+  display: inline-block;
   background: var(--grad);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  transition: opacity 0.08s linear, transform 0.12s ease-in;
+}
+
+.loader-letter.is-eaten {
+  opacity: 0;
+  transform: scale(0.6);
+}
+
+/* Chomper: a gradient circle whose mouth opens and closes */
+@property --mouth {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 35deg;
+}
+
+.chomper {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0.72em;
+  height: 0.72em;
+  border-radius: 50%;
+  background: var(--grad);
+  -webkit-mask: conic-gradient(from calc(90deg - var(--mouth)), transparent 0 calc(var(--mouth) * 2), #000 0);
+  mask: conic-gradient(from calc(90deg - var(--mouth)), transparent 0 calc(var(--mouth) * 2), #000 0);
+  transform: translate(-200%, -50%);
+  visibility: hidden;
+  animation: chomp 0.22s ease-in-out infinite alternate;
+}
+
+/* eye */
+.chomper::after {
+  content: '';
+  position: absolute;
+  top: 18%;
+  left: 46%;
+  width: 11%;
+  height: 11%;
+  border-radius: 50%;
+  background: var(--bg);
+}
+
+@keyframes chomp {
+  from { --mouth: 40deg; }
+  to   { --mouth: 3deg; }
 }
 
 .loader-cursor {
