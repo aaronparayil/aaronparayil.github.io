@@ -44,7 +44,6 @@
       return Promise.resolve();
     }
 
-    const bar = loader.querySelector('.loader-bar span');
     const pct = loader.querySelector('.loader-pct');
     const MIN_MS = 1200;   // never just flash
     const MAX_MS = 4000;   // never hold people up
@@ -72,7 +71,7 @@
         progress += (target - progress) * 0.12;
         if (done && progress > 99.4) progress = 100;
 
-        bar.style.transform = `scaleX(${progress / 100})`;
+        loader.style.setProperty('--p', `${progress}%`);
         pct.textContent = `${Math.round(progress)}%`;
 
         if (progress >= 100) {
