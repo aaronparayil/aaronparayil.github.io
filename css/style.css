@@ -25,7 +25,6 @@
   /* Typography */
   --font-head:  'Chakra Petch', 'Segoe UI', sans-serif;
   --font-body:  'Inter', 'Segoe UI', sans-serif;
-  --font-pixel: 'Press Start 2P', monospace;
 
   /* Sizing */
   --nav-h:  76px;
@@ -709,7 +708,7 @@ button:focus-visible {
   flex-wrap: wrap;
 }
 
-/* Right column: character roster + portrait card */
+/* Right column: skill tiles + portrait card */
 .hero-right {
   position: relative;
   align-self: stretch;
@@ -753,16 +752,19 @@ button:focus-visible {
   pointer-events: none;
 }
 
-.roster-sprite {
+/* Skill logo: an SVG used as a mask, filled with the tile's tint,
+   oversized and offset so it's cropped by the tile edge */
+.roster-logo {
   position: absolute;
   left: 50%;
   bottom: calc(var(--crop-y, 10%) * -1);
-  width: 108%;
-  height: auto;
-  max-width: none;
-  transform: translateX(-50%);
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
+  width: 92%;
+  aspect-ratio: 1;
+  transform: translateX(calc(-50% + var(--crop-x, 0%)));
+  background: var(--tint);
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+  opacity: 0.9;
 }
 
 .roster-name {
@@ -770,9 +772,10 @@ button:focus-visible {
   left: 10px;
   top: 10px;
   z-index: 1;
-  font-family: var(--font-pixel);
-  font-size: 0.5rem;
-  letter-spacing: 0.05em;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
 }

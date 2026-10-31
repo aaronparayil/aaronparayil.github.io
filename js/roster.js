@@ -1,91 +1,27 @@
 /**
  * roster.js
- * "Character select" roster behind the hero player card.
- * Six original pixel-art characters, drawn once to tiny canvases and
- * scaled up with crisp pixels. Every few seconds the tiles shuffle slots.
+ * Skill tiles that sit behind the hero portrait card.
+ * Each tile shows a tool's logo (from Simple Icons, stored in assets/icons)
+ * tinted in a colour that reads on the dark background, cropped at the
+ * tile edge. Every few seconds the tiles shuffle slots.
  * Only transforms animate, and the loop pauses when the hero is off screen.
  */
 
 (function () {
   'use strict';
 
-  const PALETTE = {
-    k: '#10121A', // outline
-    s: '#C3CCDB', // steel
-    r: '#FF5A5F', // red
-    b: '#4C6FFF', // blue
-    Y: '#FFD23F', // gold
-    p: '#8B5CF6', // purple
-    f: '#F1C6A0', // skin
-    W: '#EEF1F7', // white
-    G: '#8E98AC', // grey
-    C: '#5EE6FF', // cyan
-    e: '#57D27A', // green
-    E: '#2F9E58', // dark green
-    O: '#FF8A3D', // orange
-    n: '#2B3350', // navy
-  };
-
-  // Each sprite is 16×16, written as its left half (8 px) and mirrored.
-  const CHARACTERS = [
-    {
-      name: 'Knight', tint: '#4C6FFF',
-      rows: [
-        '......rr', '.....rrr', '....kkkk', '...kssss',
-        '..ksssss', '..kskkkk', '..kskWkk', '..ksssss',
-        '...kkkkk', '.kssbbbb', 'ksssbbbY', 'ksssbbYY',
-        'kssbbbbY', '.kkbbbbb', '..kssk..', '..kkkk..',
-      ],
-    },
-    {
-      name: 'Wizard', tint: '#8B5CF6',
-      rows: [
-        '.......k', '......kp', '......kp', '.....kpp',
-        '....kppY', '...kpppp', '.kkkkkkk', '..kfffkf',
-        '..kfffff', '..kWWWWW', '.kpkWWWW', 'kppkWWWW',
-        'kpppkWWW', '.kpppkWW', '.kppppkW', '..kkkkkk',
-      ],
-    },
-    {
-      name: 'Robot', tint: '#5EE6FF',
-      rows: [
-        '......YY', '.......k', '..kkkkkk', '.kGGGGGG',
-        '.kGkkkkk', '.kGkCCkk', '.kGkkkkk', '.kGGGGGG',
-        '..kkkkkk', '.kkbbbbb', 'kGkbbbbb', 'kGkbbYYb',
-        'kGkbbbbb', '.kkkkkkk', '...kGk..', '..kkkk..',
-      ],
-    },
-    {
-      name: 'Slime', tint: '#57D27A',
-      rows: [
-        '........', '........', '........', '........',
-        '........', '......kk', '....kkee', '...keeee',
-        '..keWeee', '..keeeke', '.keeeeke', '.keeeeee',
-        'keeeeeee', 'keeeeeee', 'kEEEEEEE', '.kkkkkkk',
-      ],
-    },
-    {
-      name: 'Astronaut', tint: '#FF8A3D',
-      rows: [
-        '....kkkk', '...kWWWW', '..kWWWWW', '.kWWkkkk',
-        '.kWkCCCC', '.kWkCCCC', '.kWWkkkk', '..kWWWWW',
-        '...kkkkk', '..kWWWWW', '.kWWWWOO', 'kWkWWWOO',
-        'kWkWWWWW', '.kkkWWWW', '...kWWk.', '...kkkk.',
-      ],
-    },
-    {
-      name: 'Ninja', tint: '#FF5A5F',
-      rows: [
-        '........', '....kkkk', '...knnnn', '..knnnnn',
-        '..krrrrr', '..knfkff', '..knnnnn', '...knnnn',
-        '..kkkkkk', '.knnnnnn', 'knnnnnnn', 'knnrrrrr',
-        '.knnnnnn', '..knnnnn', '..knnk..', '..kkkk..',
-      ],
-    },
+  // To change the line-up, edit this list (and drop the SVG into assets/icons/)
+  const SKILLS = [
+    { name: 'Python',   icon: 'python',            tint: '#FFD43B' },
+    { name: 'AWS',      icon: 'amazonwebservices', tint: '#FF9900' },
+    { name: 'GCP',      icon: 'googlecloud',       tint: '#4285F4' },
+    { name: 'Unity',    icon: 'unity',             tint: '#E8ECF5' },
+    { name: 'Blender',  icon: 'blender',           tint: '#F5792A' },
+    { name: 'React',    icon: 'react',             tint: '#61DAFB' },
   ];
 
   // Slot positions as fractions of the roster box (x, y), plus scale and stacking.
-  // Some deliberately run off the edges so characters are only partly seen.
+  // Some deliberately run off the edges so logos are only partly seen.
   const SLOTS = [
     { x: 0.58, y: -0.08, s: 0.95, z: 2, selected: true },
     { x: 0.84, y: 0.30,  s: 1.15, z: 3 },
@@ -98,44 +34,30 @@
   const SHUFFLE_EVERY = 3200; // ms
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function spriteToDataURL(rows) {
-    const canvas = document.createElement('canvas');
-    canvas.width = 16;
-    canvas.height = 16;
-    const ctx = canvas.getContext('2d');
-    rows.forEach((half, y) => {
-      const row = half + half.split('').reverse().join('');
-      for (let x = 0; x < row.length; x++) {
-        const colour = PALETTE[row[x]];
-        if (!colour) continue;
-        ctx.fillStyle = colour;
-        ctx.fillRect(x, y, 1, 1);
-      }
-    });
-    return canvas.toDataURL();
-  }
-
   function init() {
     const roster = document.querySelector('.roster');
     if (!roster) return;
 
-    const tiles = CHARACTERS.map((ch, i) => {
+    const tiles = SKILLS.map((skill, i) => {
       const tile = document.createElement('div');
       tile.className = 'roster-tile';
-      tile.style.setProperty('--tint', ch.tint);
-      // Vary the crop so each character shows a different part of itself
-      tile.style.setProperty('--crop-y', `${[18, 4, 26, 10, 30, 14][i]}%`);
+      tile.style.setProperty('--tint', skill.tint);
+      // Vary the crop so each logo shows a different part of itself
+      tile.style.setProperty('--crop-x', `${[18, -14, 22, -20, 12, -8][i]}%`);
+      tile.style.setProperty('--crop-y', `${[16, 4, 24, 10, 28, 12][i]}%`);
 
-      const img = new Image(16, 16);
-      img.src = spriteToDataURL(ch.rows);
-      img.alt = '';
-      img.className = 'roster-sprite';
+      const logo = document.createElement('span');
+      logo.className = 'roster-logo';
+      // Absolute URL: a relative url() inside a custom property would resolve
+      // against the stylesheet's folder in some browsers, not the page's
+      const iconUrl = new URL(`assets/icons/${skill.icon}.svg`, document.baseURI).href;
+      logo.style.setProperty('--icon', `url("${iconUrl}")`);
 
       const tag = document.createElement('span');
       tag.className = 'roster-name';
-      tag.textContent = ch.name;
+      tag.textContent = skill.name;
 
-      tile.append(img, tag);
+      tile.append(logo, tag);
       roster.append(tile);
       return tile;
     });
