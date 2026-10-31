@@ -33,16 +33,17 @@
   }
 
   /* ═══════════════════════════════════════════════════════════════
-     0. LOADER — types a short Python script, then "A K P", which a
+     0. LOADER — pings aaronkp.tech, types "AARONKP", which a
      chomper eats; slides away once that's done and the page has
      loaded. Resolves when the page is revealed. (A CSS failsafe
      hides it if this never runs.)
   ═══════════════════════════════════════════════════════════════ */
+  // `typed` lines are typed out; the rest appear at once, like command output
   const LOADER_SCRIPT = [
-    [['tok-prompt', '>>> '], ['tok-kw', 'from'], ['', ' aaron '], ['tok-kw', 'import'], ['', ' portfolio']],
-    [['tok-prompt', '>>> '], ['', 'portfolio.'], ['tok-fn', 'load'], ['', '('], ['tok-str', '"AKP"'], ['', ')']],
+    { typed: true,  parts: [['tok-prompt', '$ '], ['tok-fn', 'ping'], ['', ' aaronkp.tech']] },
+    { typed: false, parts: [['tok-out', 'reply from aaronkp.tech: '], ['tok-ok', 'online ✓']] },
   ];
-  const LOADER_WORD = ['A', 'K', 'P'];
+  const LOADER_WORD = ['A', 'A', 'R', 'O', 'N', 'K', 'P'];
 
   function initLoader() {
     const loader = document.querySelector('.loader');
@@ -71,17 +72,22 @@
 
     async function typeScript() {
       for (const line of LOADER_SCRIPT) {
-        for (const [cls, text] of line) {
+        if (!line.typed) await wait(380); // the "network" round trip
+        for (const [cls, text] of line.parts) {
           const span = document.createElement('span');
           if (cls) span.className = cls;
           codeEl.append(span, codeCursor);
+          if (!line.typed) {
+            span.textContent = text;
+            continue;
+          }
           for (const ch of text) {
             span.textContent += ch;
-            await wait(cls === 'tok-prompt' ? 0 : 18 + Math.random() * 22);
+            await wait(cls === 'tok-prompt' ? 0 : 30 + Math.random() * 30);
           }
         }
         codeEl.insertBefore(document.createTextNode('\n'), codeCursor);
-        await wait(220);
+        await wait(260);
       }
       codeCursor.remove();
       const bigCursor = wordLine.querySelector('.loader-cursor');
@@ -95,7 +101,7 @@
         span.textContent = letter;
         wordEl.append(span);
         letters.push(span);
-        await wait(240);
+        await wait(130);
       }
       await wait(300);
       bigCursor.style.visibility = 'hidden';
@@ -112,7 +118,7 @@
 
       const run = chomper.animate(
         [{ transform: `translate(${from}px, -50%)` }, { transform: `translate(${to}px, -50%)` }],
-        { duration: 1300, easing: 'linear', fill: 'forwards' }
+        { duration: 1700, easing: 'linear', fill: 'forwards' }
       );
 
       const lineLeft = wordLine.getBoundingClientRect().left;
