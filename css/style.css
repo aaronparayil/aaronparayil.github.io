@@ -246,7 +246,7 @@ button:focus-visible {
   to { opacity: 0; visibility: hidden; }
 }
 
-/* Terminal types a short Python script, then "A K P" in the gradient */
+/* Terminal pings aaronkp.tech, then "AARONKP" in the gradient */
 .js .loader {
   background:
     radial-gradient(50% 60% at 50% 55%, rgba(210, 87, 201, 0.16), transparent 70%),
@@ -268,9 +268,9 @@ button:focus-visible {
 }
 
 .loader-code .tok-prompt { color: #5D667A; }
-.loader-code .tok-kw     { color: #FF6F91; }
-.loader-code .tok-str    { color: #FFB347; }
 .loader-code .tok-fn     { color: #C9A2FF; }
+.loader-code .tok-out    { color: #6F7890; }
+.loader-code .tok-ok     { color: var(--ok); }
 
 .loader-word {
   display: flex;
@@ -278,9 +278,9 @@ button:focus-visible {
   min-height: 1em;
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: clamp(4rem, 14vw, 8rem);
+  font-size: clamp(2.6rem, 11vw, 5.75rem);
   line-height: 1;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.04em;
 }
 
 .loader-word {
