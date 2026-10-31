@@ -33,7 +33,7 @@
   }
 
   /* ═══════════════════════════════════════════════════════════════
-     0. LOADER — tracks real page load, then slides away.
+     0. LOADER — waits for the real page load, then slides away.
      Resolves once the page is revealed. (A CSS failsafe hides the
      loader on its own if this script never runs.)
   ═══════════════════════════════════════════════════════════════ */
@@ -44,7 +44,6 @@
       return Promise.resolve();
     }
 
-    const pct = loader.querySelector('.loader-pct');
     const MIN_MS = 1200;   // never just flash
     const MAX_MS = 4000;   // never hold people up
     const start = performance.now();
@@ -71,8 +70,6 @@
         progress += (target - progress) * 0.12;
         if (done && progress > 99.4) progress = 100;
 
-        loader.style.setProperty('--p', `${progress}%`);
-        pct.textContent = `${Math.round(progress)}%`;
 
         if (progress >= 100) {
           setTimeout(finish, 150);
