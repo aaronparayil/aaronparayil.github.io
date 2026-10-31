@@ -3,15 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Aaron Koshy Parayil — Creative Developer & BCA Honours Student. Portfolio showcasing projects, internships, and technical skills." />
+  <meta name="description" content="Aaron Koshy Parayil — aspiring Cloud Engineer & Game Developer. BCA Honours student at CHRIST University, Bengaluru." />
   <meta name="author" content="Aaron Koshy Parayil" />
-  <meta property="og:title" content="Aaron Koshy Parayil — Creative Developer" />
-  <meta property="og:description" content="BCA Honours student with experience in 3D development, web apps, and emerging technologies." />
+  <meta name="theme-color" content="#0C0F15" />
+  <meta property="og:title" content="Aaron Koshy Parayil — Cloud Engineer & Game Developer" />
+  <meta property="og:description" content="BCA Honours student working toward cloud engineering and game development." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://aaronkp.tech/" />
+  <meta property="og:image" content="https://aaronkp.tech/assets/images/aaron-portrait.webp" />
   <meta name="twitter:card" content="summary" />
   <link rel="canonical" href="https://aaronkp.tech/" />
-  <title>Aaron Koshy Parayil — Creative Developer</title>
+  <title>Aaron Koshy Parayil — Cloud Engineer &amp; Game Developer</title>
 
   <!-- Lets CSS hide elements that JS will animate in (they stay visible if JS is off) -->
   <script>document.documentElement.classList.add('js');</script>
@@ -19,156 +21,160 @@
   <!-- ── Google Fonts ── -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
 
   <!-- ── Custom Styles ── -->
   <link rel="stylesheet" href="css/style.css" />
 
-  <!-- Favicon (crimson ⚔) -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚔️</text></svg>" />
+  <!-- Hero portrait loads early -->
+  <link rel="preload" as="image" href="assets/images/aaron-portrait.webp" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'><rect width='8' height='8' fill='%230C0F15'/><path fill='%235B8CFF' d='M1 1h2v6H1zM3 1h3v1H3zM6 2h1v2H6zM3 4h3v1H3z'/></svg>" />
 </head>
 <body>
 
   <!-- ══════════════════════════════════════════════════════════
-       CUSTOM CURSOR
+       HEADER
   ══════════════════════════════════════════════════════════ -->
-  <div class="cursor" aria-hidden="true"></div>
-  <div class="cursor-follower" aria-hidden="true"></div>
-
-  <!-- ══════════════════════════════════════════════════════════
-       NAVBAR
-  ══════════════════════════════════════════════════════════ -->
-  <nav class="navbar-custom" role="navigation" aria-label="Main navigation">
+  <header class="navbar-custom">
     <a href="#hero" class="nav-logo" aria-label="Aaron Koshy Parayil – home">
-      AKP<span>.</span>
+      AKP<span class="logo-caret" aria-hidden="true">_</span>
     </a>
 
     <!-- Desktop links -->
-    <ul class="nav-links" role="list">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <nav aria-label="Main navigation">
+      <ul class="nav-links" role="list">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
 
-    <!-- Hamburger (mobile) -->
-    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </nav>
+    <div class="header-actions">
+      <a href="assets/Aaron_Koshy_Parayil_Resume.pdf" class="btn-primary btn-sm" download>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Resume
+      </a>
+
+      <!-- Hamburger (mobile) -->
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
 
   <!-- Mobile nav overlay -->
   <nav class="nav-mobile" id="mobile-nav" aria-label="Mobile navigation" inert>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#experience">Experience</a>
-    <a href="#contact">Contact</a>
+    <a href="#about"><span class="label-no">01</span> About</a>
+    <a href="#skills"><span class="label-no">02</span> Skills</a>
+    <a href="#projects"><span class="label-no">03</span> Projects</a>
+    <a href="#experience"><span class="label-no">04</span> Experience</a>
+    <a href="#contact"><span class="label-no">05</span> Contact</a>
   </nav>
 
+  <main>
+
   <!-- ══════════════════════════════════════════════════════════
-       HERO SECTION
+       HERO
   ══════════════════════════════════════════════════════════ -->
-  <section id="hero" aria-label="Hero introduction">
+  <section id="hero" aria-label="Introduction">
     <div class="hero-inner">
 
       <!-- Left: Text content -->
       <div class="hero-left">
-        <span class="hero-label">&lt; Creative Developer /&gt;</span>
+        <p class="eyebrow hero-label">Cloud Engineer · Game Developer</p>
 
         <h1 class="hero-name" aria-label="Aaron Koshy Parayil">
-          <span class="name-line"><span>AARON</span></span>
-          <span class="name-line"><span>KOSHY</span></span>
-          <span class="name-line name-last"><span>PARAYIL</span></span>
+          <span class="name-line"><span>Aaron</span></span>
+          <span class="name-line"><span>Koshy</span></span>
+          <span class="name-line name-last"><span>Parayil</span></span>
         </h1>
 
         <p class="hero-tagline">
-          BCA Honours Student
-          <span class="dot">•</span>
-          Bengaluru, India
-          <span class="dot">•</span>
-          <span style="color: var(--clr-frost);">CHRIST University</span>
+          Aspiring <strong>Cloud Engineer</strong> &amp; <strong>Game Developer</strong>. Final-year BCA Honours student at CHRIST University, Bengaluru — building games, 3D worlds and the systems behind them.
         </p>
 
         <div class="hero-ctas">
-          <a href="#projects" class="btn-crimson">
-            View My Work
+          <a href="#projects" class="btn-primary">
+            View my work
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
-          <a href="assets/Aaron_Koshy_Parayil_Resume.pdf" class="btn-outline" download>
-            Download Resume
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          </a>
+          <a href="#contact" class="btn-outline">Get in touch</a>
         </div>
       </div>
 
-      <!-- Right: Three.js Orb -->
-      <div class="hero-right" id="hero-canvas-wrapper">
-        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+      <!-- Right: portrait card + character roster -->
+      <div class="hero-right">
+        <!-- Shuffling roster of original pixel-art characters (built by JS) -->
+        <div class="roster" aria-hidden="true"></div>
+
+        <article class="player-card" aria-label="Profile card">
+          <div class="player-photo">
+            <img src="assets/images/aaron-portrait.webp" alt="Portrait of Aaron Koshy Parayil" width="436" height="545" />
+          </div>
+          <div class="player-meta">
+            <p class="player-name">Aaron K. Parayil</p>
+            <dl class="player-stats">
+              <div><dt>Focus</dt><dd>Cloud &amp; game development</dd></div>
+              <div><dt>Studying</dt><dd>BCA (Hons), final year</dd></div>
+              <div><dt>Based in</dt><dd>Bengaluru, India</dd></div>
+              <div><dt>Toolkit</dt><dd>Unity · Blender · Python · AWS</dd></div>
+            </dl>
+          </div>
+        </article>
       </div>
 
-    </div>
-
-    <!-- Scroll indicator -->
-    <div class="scroll-indicator" aria-hidden="true">
-      <div class="scroll-arrow"></div>
-      <span>Scroll</span>
     </div>
   </section>
 
   <!-- ══════════════════════════════════════════════════════════
-       ABOUT SECTION
+       ABOUT
   ══════════════════════════════════════════════════════════ -->
   <section id="about" class="section-wrapper" aria-labelledby="about-heading">
     <div class="container-custom">
 
-      <p class="section-label">The Realm</p>
-      <h2 class="section-title" id="about-heading">
-        About <span class="highlight">Aaron</span>
-      </h2>
-      <div class="divider"></div>
+      <p class="section-label"><span class="label-no">01</span> Who I am</p>
+      <h2 class="section-title" id="about-heading">About</h2>
 
       <div class="about-card">
 
         <!-- Left: text -->
-        <div class="about-text">
+        <div class="about-text reveal">
           <p>
-            I'm a <strong style="color:var(--clr-text)">BCA Honours student at CHRIST (Deemed to be University)</strong>, Bengaluru — where I forge skills at the intersection of creative development, 3D environments, and emerging technology.
+            I'm a <strong>BCA Honours student at CHRIST (Deemed to be University)</strong>, Bengaluru, working toward a career in <strong>cloud engineering</strong> and <strong>game development</strong>.
           </p>
           <p>
-            With internship experience ranging from <strong style="color:var(--clr-crimson)">3D avatar development</strong> at Christ University to <strong style="color:var(--clr-crimson)">ERP analysis</strong> at SFO Technologies, I bring both technical depth and structured thinking to every challenge.
+            With internship experience ranging from <strong>3D avatar development</strong> at Christ University to <strong>ERP analysis</strong> at SFO Technologies, I bring both technical depth and structured thinking to every challenge.
           </p>
           <p>
             Driven by critical thinking and a growth mindset, I thrive in cross-functional environments — whether I'm building interactive 3D worlds, architecting web applications, or leading student communities. I believe great software is equal parts craft and strategy.
           </p>
-          <div style="margin-top: 1.75rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
-            <a href="mailto:aaron12parayil@gmail.com" class="btn-ghost" style="font-size:0.78rem;">
-              ✉ aaron12parayil@gmail.com
-            </a>
-            <a href="https://linkedin.com/in/aaronparayil" target="_blank" rel="noopener" class="btn-ghost" style="font-size:0.78rem;">
-              in linkedin.com/in/aaronparayil
-            </a>
+          <div class="about-links">
+            <a href="mailto:aaron12parayil@gmail.com" class="btn-ghost">aaron12parayil@gmail.com</a>
+            <a href="https://linkedin.com/in/aaronparayil" target="_blank" rel="noopener" class="btn-ghost">LinkedIn ↗</a>
           </div>
         </div>
 
         <!-- Right: stats grid -->
         <div class="stats-grid">
-          <div class="stat-card">
+          <div class="stat-card reveal">
             <span class="stat-number">2</span>
             <span class="stat-label">Internships</span>
           </div>
-          <div class="stat-card">
+          <div class="stat-card reveal">
             <span class="stat-number">2</span>
-            <span class="stat-label">Major Projects</span>
+            <span class="stat-label">Major projects</span>
           </div>
-          <div class="stat-card">
+          <div class="stat-card reveal">
             <span class="stat-number">3</span>
             <span class="stat-label">Certifications</span>
           </div>
-          <div class="stat-card">
+          <div class="stat-card reveal">
             <span class="stat-number">7.22</span>
             <span class="stat-label">CGPA / 10</span>
           </div>
@@ -179,56 +185,46 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════════════
-       SKILLS SECTION
+       SKILLS
   ══════════════════════════════════════════════════════════ -->
-  <section id="skills" class="section-wrapper" aria-labelledby="skills-heading">
+  <section id="skills" class="section-wrapper section-alt" aria-labelledby="skills-heading">
     <div class="container-custom">
 
-      <p class="section-label">Skills &amp; Arsenal</p>
-      <h2 class="section-title" id="skills-heading">
-        The <span class="highlight">Arsenal</span>
-      </h2>
-      <div class="divider"></div>
+      <p class="section-label"><span class="label-no">02</span> What I work with</p>
+      <h2 class="section-title" id="skills-heading">Skills</h2>
 
-      <!-- Three skill cards -->
       <div class="skills-grid">
 
-        <!-- Technical -->
-        <div class="skill-card">
-          <span class="skill-card-icon">⚙️</span>
-          <h3 class="skill-card-title">Technical Skills</h3>
+        <div class="skill-card reveal">
+          <h3 class="skill-card-title">Technical</h3>
           <div class="skill-tags">
             <span class="skill-tag">Unity</span>
             <span class="skill-tag">Blender</span>
             <span class="skill-tag">Python</span>
             <span class="skill-tag">React.js</span>
-            <span class="skill-tag frost">HTML</span>
-            <span class="skill-tag frost">CSS</span>
-            <span class="skill-tag frost">Three.js</span>
+            <span class="skill-tag">HTML</span>
+            <span class="skill-tag">CSS</span>
+            <span class="skill-tag">Three.js</span>
             <span class="skill-tag">SQL</span>
             <span class="skill-tag">SQLAlchemy</span>
             <span class="skill-tag">MS Excel</span>
           </div>
         </div>
 
-        <!-- Domain -->
-        <div class="skill-card">
-          <span class="skill-card-icon">🌐</span>
-          <h3 class="skill-card-title">Domain Knowledge</h3>
+        <div class="skill-card reveal">
+          <h3 class="skill-card-title">Domain</h3>
           <div class="skill-tags">
-            <span class="skill-tag gold">Cloud Computing</span>
-            <span class="skill-tag gold">Cyber Security</span>
-            <span class="skill-tag gold">Documentation</span>
-            <span class="skill-tag gold">ERP Analysis</span>
-            <span class="skill-tag gold">Workflow Design</span>
-            <span class="skill-tag gold">System Admin</span>
+            <span class="skill-tag">Cloud Computing</span>
+            <span class="skill-tag">Cyber Security</span>
+            <span class="skill-tag">Documentation</span>
+            <span class="skill-tag">ERP Analysis</span>
+            <span class="skill-tag">Workflow Design</span>
+            <span class="skill-tag">System Admin</span>
           </div>
         </div>
 
-        <!-- Soft Skills -->
-        <div class="skill-card">
-          <span class="skill-card-icon">🧠</span>
-          <h3 class="skill-card-title">Soft Skills</h3>
+        <div class="skill-card reveal">
+          <h3 class="skill-card-title">Soft skills</h3>
           <div class="skill-tags">
             <span class="skill-tag">Leadership</span>
             <span class="skill-tag">Problem Solving</span>
@@ -241,8 +237,8 @@
       </div>
 
       <!-- Language proficiency bars -->
-      <div class="languages-section">
-        <p class="languages-title">Language Proficiency</p>
+      <div class="languages-section reveal">
+        <p class="sub-label">Languages</p>
 
         <div class="lang-item">
           <span class="lang-name">English</span>
@@ -273,23 +269,20 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════════════
-       PROJECTS SECTION
+       PROJECTS
   ══════════════════════════════════════════════════════════ -->
   <section id="projects" class="section-wrapper" aria-labelledby="projects-heading">
     <div class="container-custom">
 
-      <p class="section-label">Forged in Code</p>
-      <h2 class="section-title" id="projects-heading">
-        Forged <span class="highlight">Projects</span>
-      </h2>
-      <div class="divider"></div>
+      <p class="section-label"><span class="label-no">03</span> Selected work</p>
+      <h2 class="section-title" id="projects-heading">Projects</h2>
 
       <div class="projects-grid">
 
         <!-- Project 1: Bramble -->
-        <article class="project-card" aria-labelledby="project-bramble">
+        <article class="project-card reveal" aria-labelledby="project-bramble">
           <div>
-            <p class="project-year">Aug 2024 — Nov 2024</p>
+            <p class="project-year">Web app · ML &nbsp;/&nbsp; Aug 2024 — Nov 2024</p>
             <h3 class="project-title" id="project-bramble">Bramble</h3>
           </div>
 
@@ -313,16 +306,16 @@
           </div>
 
           <div class="project-footer">
-            <span class="project-role">// Full-Stack Developer &amp; ML Integration</span>
+            <span class="project-role">Full-Stack Developer &amp; ML Integration</span>
             <!-- TODO: add a link to the Bramble repo / demo, e.g.
             <a href="https://github.com/..." class="btn-ghost" target="_blank" rel="noopener">View Project</a> -->
           </div>
         </article>
 
         <!-- Project 2: PC Builder -->
-        <article class="project-card" aria-labelledby="project-pcbuilder">
+        <article class="project-card reveal" aria-labelledby="project-pcbuilder">
           <div>
-            <p class="project-year">Jun 2025 — Oct 2025</p>
+            <p class="project-year">3D · Game &nbsp;/&nbsp; Jun 2025 — Oct 2025</p>
             <h3 class="project-title" id="project-pcbuilder">PC Builder</h3>
           </div>
 
@@ -346,7 +339,7 @@
           </div>
 
           <div class="project-footer">
-            <span class="project-role">// 3D Developer &amp; Environment Designer</span>
+            <span class="project-role">3D Developer &amp; Environment Designer</span>
             <!-- TODO: add a link to the PC Builder repo / demo, e.g.
             <a href="https://github.com/..." class="btn-ghost" target="_blank" rel="noopener">View Project</a> -->
           </div>
@@ -357,24 +350,21 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════════════
-       EXPERIENCE SECTION
+       EXPERIENCE
   ══════════════════════════════════════════════════════════ -->
-  <section id="experience" class="section-wrapper" aria-labelledby="experience-heading">
+  <section id="experience" class="section-wrapper section-alt" aria-labelledby="experience-heading">
     <div class="container-custom">
 
-      <p class="section-label">Battles Fought</p>
-      <h2 class="section-title" id="experience-heading">
-        Work <span class="highlight">Experience</span>
-      </h2>
-      <div class="divider"></div>
+      <p class="section-label"><span class="label-no">04</span> Where I've worked</p>
+      <h2 class="section-title" id="experience-heading">Experience</h2>
 
       <div class="timeline">
 
-        <!-- Entry 1: Christ University Intern (Left) -->
-        <div class="timeline-item left">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
+        <div class="timeline-item reveal">
+          <div class="timeline-side">
             <p class="timeline-date">Nov 2025 — Apr 2026</p>
+          </div>
+          <div class="timeline-content">
             <h3 class="timeline-company">Christ University</h3>
             <p class="timeline-role">In-house Intern — 3D Development</p>
             <ul class="timeline-bullets">
@@ -385,11 +375,11 @@
           </div>
         </div>
 
-        <!-- Entry 2: SFO Technologies (Right) -->
-        <div class="timeline-item right">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
+        <div class="timeline-item reveal">
+          <div class="timeline-side">
             <p class="timeline-date">Apr 2024 — Jun 2024</p>
+          </div>
+          <div class="timeline-content">
             <h3 class="timeline-company">SFO Technologies</h3>
             <p class="timeline-role">ERP Analyst Intern</p>
             <ul class="timeline-bullets">
@@ -410,31 +400,37 @@
   <section id="certifications" class="section-wrapper" aria-labelledby="cert-heading">
     <div class="container-custom">
 
-      <p class="section-label">Trophies of War</p>
-      <h2 class="section-title" id="cert-heading">
-        Certifications &amp; <span class="highlight">Achievements</span>
-      </h2>
-      <div class="divider"></div>
+      <p class="section-label"><span class="label-no">05</span> Recognition</p>
+      <h2 class="section-title" id="cert-heading">Certifications &amp; achievements</h2>
+
+      <!-- Achievement callout -->
+      <div class="achievement-callout reveal">
+        <div class="achievement-badge" aria-hidden="true">
+          <span>★</span>
+        </div>
+        <div class="achievement-text">
+          <p class="achievement-label">Merit scholarship</p>
+          <h3>Merit Scholarship — Top 5% of batch</h3>
+          <p>Awarded by CHRIST (Deemed to be University) for consistent academic excellence — a testament to discipline, hard work, and a relentless pursuit of mastery.</p>
+        </div>
+      </div>
 
       <!-- Cert cards -->
       <div class="cert-grid">
 
-        <div class="cert-card">
-          <span class="cert-icon">☁️</span>
+        <div class="cert-card reveal">
           <p class="cert-name">AWS Academy Graduate — Cloud Foundations</p>
           <p class="cert-issuer">Amazon Web Services</p>
           <p class="cert-date">September 2025</p>
         </div>
 
-        <div class="cert-card">
-          <span class="cert-icon">🧠</span>
+        <div class="cert-card reveal">
           <p class="cert-name">Organizational Behavior</p>
           <p class="cert-issuer">NPTEL — IIT Kharagpur</p>
           <p class="cert-date">March 2025</p>
         </div>
 
-        <div class="cert-card">
-          <span class="cert-icon">🔒</span>
+        <div class="cert-card reveal">
           <p class="cert-name">Ethical Hacking</p>
           <p class="cert-issuer">L&amp;T Edutech</p>
           <p class="cert-date">November 2024</p>
@@ -442,87 +438,57 @@
 
       </div>
 
-      <!-- Achievement callout -->
-      <div class="achievement-callout">
-        <span class="achievement-icon">🏆</span>
-        <div class="achievement-text">
-          <h3>Merit Scholarship</h3>
-          <p>Awarded by CHRIST (Deemed to be University) for consistent academic excellence, recognising placement in the <strong style="color:var(--clr-gold)">Top 5% of the batch</strong> — a testament to discipline, hard work, and a relentless pursuit of mastery.</p>
-        </div>
-        <div class="achievement-badge">
-          <span>Top 5%</span>
-          <small>of batch</small>
-        </div>
-      </div>
-
       <!-- Leadership -->
-      <div style="margin-top: 3.5rem;">
-        <p class="section-label" style="margin-bottom: 1.25rem;">Leadership & Community</p>
-        <div class="leadership-row">
+      <p class="sub-label">Leadership &amp; community</p>
+      <div class="leadership-row">
 
-          <div class="leadership-card">
-            <span class="leadership-icon">🌍</span>
-            <div>
-              <p class="leadership-title">Student Representative</p>
-              <p class="leadership-org">SDGs Club — CHRIST University</p>
-              <p class="leadership-period">Jun 2023 – May 2024</p>
-            </div>
-          </div>
-
-          <div class="leadership-card">
-            <span class="leadership-icon">⚡</span>
-            <div>
-              <p class="leadership-title">Student Member</p>
-              <p class="leadership-org">IEEE Club — CHRIST University</p>
-              <p class="leadership-period">Mar 2025 – Dec 2025</p>
-            </div>
-          </div>
-
+        <div class="leadership-card reveal">
+          <p class="leadership-title">Student Representative</p>
+          <p class="leadership-org">SDGs Club — CHRIST University</p>
+          <p class="leadership-period">Jun 2023 – May 2024</p>
         </div>
+
+        <div class="leadership-card reveal">
+          <p class="leadership-title">Student Member</p>
+          <p class="leadership-org">IEEE Club — CHRIST University</p>
+          <p class="leadership-period">Mar 2025 – Dec 2025</p>
+        </div>
+
       </div>
 
     </div>
   </section>
 
   <!-- ══════════════════════════════════════════════════════════
-       EDUCATION SECTION
+       EDUCATION
   ══════════════════════════════════════════════════════════ -->
-  <section id="education" class="section-wrapper" aria-labelledby="edu-heading">
+  <section id="education" class="section-wrapper section-alt" aria-labelledby="edu-heading">
     <div class="container-custom">
 
-      <p class="section-label">The Origin Story</p>
-      <h2 class="section-title" id="edu-heading">
-        <span class="highlight">Education</span>
-      </h2>
-      <div class="divider"></div>
+      <p class="section-label"><span class="label-no">06</span> Background</p>
+      <h2 class="section-title" id="edu-heading">Education</h2>
 
       <div class="edu-grid">
 
-        <div class="edu-card">
+        <div class="edu-card reveal">
+          <p class="edu-year">Jun 2023 – May 2027 (Expected)</p>
           <p class="edu-degree">BCA Honours</p>
           <p class="edu-school">CHRIST (Deemed to be University), Bengaluru</p>
-          <div class="edu-meta">
-            <span class="edu-score">CGPA: 7.22 / 10.0</span>
-            <span class="edu-year">Jun 2023 – May 2027 (Expected)</span>
-          </div>
+          <p class="edu-score">CGPA 7.22 / 10.0</p>
         </div>
 
-        <div class="edu-card">
+        <div class="edu-card reveal">
+          <p class="edu-year">April 2023</p>
           <p class="edu-degree">Class XII — Commerce</p>
           <p class="edu-school">Mar Thoma Higher Secondary School, Kerala</p>
-          <div class="edu-meta">
-            <span class="edu-score">94.6%</span>
-            <span class="edu-year">April 2023</span>
-          </div>
+          <p class="edu-score">94.6%</p>
         </div>
 
-        <div class="edu-card">
+        <div class="edu-card reveal">
+          <p class="edu-year">April 2021</p>
           <p class="edu-degree">Class X — CBSE</p>
           <p class="edu-school">Nirmala Public School, Kerala</p>
-          <div class="edu-meta">
-            <span class="edu-score">72%</span>
-            <span class="edu-year">April 2021</span>
-          </div>
+          <p class="edu-score">72%</p>
         </div>
 
       </div>
@@ -530,17 +496,15 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════════════
-       CONTACT SECTION
+       CONTACT
   ══════════════════════════════════════════════════════════ -->
   <section id="contact" class="section-wrapper" aria-labelledby="contact-heading">
     <div class="container-custom">
 
-      <p class="section-label">Open a Channel</p>
-      <h2 class="contact-heading" id="contact-heading">
-        Let's Build<br /><span class="contact-em">Something</span>
-      </h2>
+      <p class="section-label"><span class="label-no">07</span> Get in touch</p>
+      <h2 class="section-title contact-heading" id="contact-heading">Let's build something together</h2>
       <p class="contact-sub">
-        Whether it's a collaboration, opportunity, or just a conversation — I'm always ready to forge something extraordinary.
+        Whether it's a collaboration, opportunity, or just a conversation — I'm always up for building something extraordinary.
       </p>
 
       <div class="contact-layout">
@@ -548,28 +512,28 @@
         <!-- Contact info -->
         <div class="contact-info-list">
 
-          <div class="contact-info-item">
+          <div class="contact-info-item reveal">
             <span class="contact-info-label">Email</span>
             <span class="contact-info-value">
               <a href="mailto:aaron12parayil@gmail.com">aaron12parayil@gmail.com</a>
             </span>
           </div>
 
-          <div class="contact-info-item">
+          <div class="contact-info-item reveal">
             <span class="contact-info-label">Phone</span>
             <span class="contact-info-value">
               <a href="tel:+919747692000">+91 97476 92000</a>
             </span>
           </div>
 
-          <div class="contact-info-item">
+          <div class="contact-info-item reveal">
             <span class="contact-info-label">LinkedIn</span>
             <span class="contact-info-value">
               <a href="https://linkedin.com/in/aaronparayil" target="_blank" rel="noopener">linkedin.com/in/aaronparayil</a>
             </span>
           </div>
 
-          <div class="contact-info-item">
+          <div class="contact-info-item reveal">
             <span class="contact-info-label">Location</span>
             <span class="contact-info-value">Bengaluru, Karnataka, India</span>
           </div>
@@ -577,7 +541,7 @@
         </div>
 
         <!-- Contact form -->
-        <form class="contact-form" id="contact-form" novalidate>
+        <form class="contact-form reveal" id="contact-form" novalidate>
 
           <div class="form-group">
             <label class="form-label" for="form-name">Name</label>
@@ -617,8 +581,8 @@
             ></textarea>
           </div>
 
-          <button type="submit" class="btn-crimson" style="align-self: flex-start; margin-top: 0.5rem;">
-            Send Message
+          <button type="submit" class="btn-primary">
+            Send message
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
           </button>
 
@@ -628,21 +592,21 @@
     </div>
   </section>
 
+  </main>
+
   <!-- ══════════════════════════════════════════════════════════
        FOOTER
   ══════════════════════════════════════════════════════════ -->
-  <footer role="contentinfo">
-    <span class="footer-logo">AKP<span style="color:var(--clr-text);opacity:0.2">.</span></span>
+  <footer>
+    <div class="footer-bar">
+      <p class="footer-copy">© 2026 Aaron Koshy Parayil · Bengaluru, India</p>
 
-    <p class="footer-copy">
-      AKP &copy; 2026 &nbsp;·&nbsp; Bengaluru, India
-      &nbsp;·&nbsp; Built with passion &amp; <span>God of War energy ⚔️</span>
-    </p>
-
-    <div class="footer-socials">
-      <a href="https://linkedin.com/in/aaronparayil" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="mailto:aaron12parayil@gmail.com">Email</a>
-      <a href="tel:+919747692000">Phone</a>
+      <div class="footer-socials">
+        <a href="https://linkedin.com/in/aaronparayil" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:aaron12parayil@gmail.com">Email</a>
+        <a href="tel:+919747692000">Phone</a>
+        <a href="#hero">Back to top ↑</a>
+      </div>
     </div>
   </footer>
 
@@ -650,15 +614,12 @@
        SCRIPTS
   ══════════════════════════════════════════════════════════ -->
 
-  <!-- Three.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-
   <!-- GSAP core + ScrollTrigger -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-  <!-- Hero Orb (Three.js) -->
-  <script src="js/hero-orb.js"></script>
+  <!-- Character roster (original pixel art) -->
+  <script src="js/roster.js"></script>
 
   <!-- Main animations + interactions -->
   <script src="js/main.js"></script>
