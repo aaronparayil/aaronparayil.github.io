@@ -233,6 +233,17 @@
       .to('.player-card', { opacity: 1, y: 0, duration: 1, ease: 'expo.out' }, 0.5);
   }
 
+  /* Easter egg: park the "A-A-ron?" bubble just past the word AARON */
+  function initNameEgg() {
+    const egg  = document.querySelector('.name-egg');
+    const name = document.querySelector('.hero-name');
+    if (!egg || !name) return;
+    const place = () => name.style.setProperty('--egg-x', `${egg.offsetWidth + 14}px`);
+    place();
+    window.addEventListener('resize', place);
+    if (document.fonts) document.fonts.ready.then(place);
+  }
+
   /* ═══════════════════════════════════════════════════════════════
      2b. PORTRAIT CARD — "weighted" 3D tilt
      The part of the card under the cursor sinks away, as if the
@@ -360,8 +371,16 @@
   function boot() {
     const pageRevealed = initLoader();
 
+    // A little something for whoever opens the console
+    console.log(
+      '%cA-A-ron!%c  You found the console. Try hovering my first name on the page.',
+      'font: 700 20px sans-serif; color: #FF6F91;',
+      'font: 13px sans-serif; color: #8C95A8;'
+    );
+
     // These don't depend on GSAP
     initNavbar();
+    initNameEgg();
     initContactForm();
     initActiveNav();
 
