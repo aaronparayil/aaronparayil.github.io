@@ -24,20 +24,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
 
   <!-- ── Custom Styles ── -->
-  <link rel="stylesheet" href="css/style.css?v=6" />
+  <link rel="stylesheet" href="css/style.css?v=7" />
 
   <!-- Hero portrait loads early -->
   <link rel="preload" as="image" href="assets/images/aaron-portrait.webp" />
 
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'><rect width='8' height='8' fill='%230C0F15'/><path fill='%235B8CFF' d='M1 1h2v6H1zM3 1h3v1H3zM6 2h1v2H6zM3 4h3v1H3z'/></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23FFB347'/><stop offset='.5' stop-color='%23FF6F91'/><stop offset='1' stop-color='%238F5BFF'/></linearGradient></defs><rect width='8' height='8' fill='%230C0F15'/><path fill='url(%23g)' d='M1 1h2v6H1zM3 1h3v1H3zM6 2h1v2H6zM3 4h3v1H3z'/></svg>" />
 </head>
 <body>
 
-  <!-- Loader (shown only when JS runs; main.js drives it, CSS hides it on its own as a failsafe) -->
+  <!-- Loader: types a short Python script, then "A K P" (main.js drives it; CSS hides it as a failsafe) -->
   <div class="loader" aria-hidden="true">
-    <span class="loader-mark"></span>
-    <p class="loader-caption">Loading Aaron</p>
+    <div class="loader-term">
+      <pre class="loader-code"></pre>
+      <p class="loader-word"><span class="loader-akp"></span><span class="loader-cursor"></span></p>
+    </div>
   </div>
 
   <!-- ══════════════════════════════════════════════════════════
@@ -625,10 +627,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <!-- Character roster (original pixel art) -->
-  <script src="js/roster.js?v=6"></script>
+  <script src="js/roster.js?v=7"></script>
 
   <!-- Main animations + interactions -->
-  <script src="js/main.js?v=6"></script>
+  <script src="js/main.js?v=7"></script>
 
 </body>
 </html>

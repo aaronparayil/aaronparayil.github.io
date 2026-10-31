@@ -33,10 +33,16 @@
   }
 
   /* ═══════════════════════════════════════════════════════════════
-     0. LOADER — waits for the real page load, then slides away.
-     Resolves once the page is revealed. (A CSS failsafe hides the
-     loader on its own if this script never runs.)
+     0. LOADER — types a short Python script, then "A K P", and slides
+     away once that's done and the page has loaded. Resolves when the
+     page is revealed. (A CSS failsafe hides it if this never runs.)
   ═══════════════════════════════════════════════════════════════ */
+  const LOADER_SCRIPT = [
+    [['tok-prompt', '>>> '], ['tok-kw', 'from'], ['', ' aaron '], ['tok-kw', 'import'], ['', ' portfolio']],
+    [['tok-prompt', '>>> '], ['', 'portfolio.'], ['tok-fn', 'load'], ['', '('], ['tok-str', '"AKP"'], ['', ')']],
+  ];
+  const LOADER_WORD = ['A', 'K', 'P'];
+
   function initLoader() {
     const loader = document.querySelector('.loader');
     if (!loader || reducedMotion || getComputedStyle(loader).display === 'none') {
@@ -44,40 +50,55 @@
       return Promise.resolve();
     }
 
-    const MIN_MS = 1200;   // never just flash
-    const MAX_MS = 4000;   // never hold people up
-    const start = performance.now();
-    let loaded = document.readyState === 'complete';
-    let progress = 0;
+    const codeEl   = loader.querySelector('.loader-code');
+    const wordEl   = loader.querySelector('.loader-akp');
+    const wordLine = loader.querySelector('.loader-word');
+    const MAX_MS   = 5500; // never hold people up longer than this
+    const start    = performance.now();
+    const wait     = (ms) => new Promise((r) => setTimeout(r, ms));
 
-    window.addEventListener('load', () => { loaded = true; }, { once: true });
+    const pageLoaded = document.readyState === 'complete'
+      ? Promise.resolve()
+      : new Promise((r) => window.addEventListener('load', r, { once: true }));
+
     document.documentElement.style.overflow = 'hidden';
 
-    return new Promise((resolve) => {
-      function finish() {
-        loader.classList.add('is-done');
-        document.documentElement.style.overflow = '';
-        resolve();
-        loader.addEventListener('transitionend', () => loader.remove(), { once: true });
-        setTimeout(() => loader.remove(), 1500); // in case transitionend never fires
-      }
+    // Code cursor follows the typing; the big cursor waits for "AKP"
+    const codeCursor = document.createElement('span');
+    codeCursor.className = 'loader-cursor';
+    wordLine.querySelector('.loader-cursor').style.visibility = 'hidden';
 
-      function tick(now) {
-        const elapsed = now - start;
-        const done = (loaded && elapsed >= MIN_MS) || elapsed >= MAX_MS;
-        // Creep toward 90% while loading, then run to 100%
-        const target = done ? 100 : Math.min(90, (elapsed / MIN_MS) * 70 + (loaded ? 20 : 0));
-        progress += (target - progress) * 0.12;
-        if (done && progress > 99.4) progress = 100;
-
-
-        if (progress >= 100) {
-          setTimeout(finish, 150);
-        } else {
-          requestAnimationFrame(tick);
+    async function typeScript() {
+      for (const line of LOADER_SCRIPT) {
+        for (const [cls, text] of line) {
+          const span = document.createElement('span');
+          if (cls) span.className = cls;
+          codeEl.append(span, codeCursor);
+          for (const ch of text) {
+            span.textContent += ch;
+            await wait(cls === 'tok-prompt' ? 0 : 26 + Math.random() * 30);
+          }
         }
+        codeEl.insertBefore(document.createTextNode('\n'), codeCursor);
+        await wait(220);
       }
-      requestAnimationFrame(tick);
+      codeCursor.remove();
+      wordLine.querySelector('.loader-cursor').style.visibility = '';
+      await wait(250);
+      for (const letter of LOADER_WORD) {
+        wordEl.textContent += letter;
+        await wait(320);
+      }
+      await wait(350);
+    }
+
+    const timeout = wait(MAX_MS - (performance.now() - start));
+
+    return Promise.race([Promise.all([typeScript(), pageLoaded]), timeout]).then(() => {
+      loader.classList.add('is-done');
+      document.documentElement.style.overflow = '';
+      loader.addEventListener('transitionend', () => loader.remove(), { once: true });
+      setTimeout(() => loader.remove(), 1500); // in case transitionend never fires
     });
   }
 
