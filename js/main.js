@@ -234,6 +234,43 @@
   }
 
   /* ═══════════════════════════════════════════════════════════════
+     2b. PORTRAIT CARD — "weighted" 3D tilt
+     The part of the card under the cursor sinks away, as if the
+     cursor were pressing on it, with a sheen that follows the cursor.
+  ═══════════════════════════════════════════════════════════════ */
+  function initCardTilt() {
+    const card = document.querySelector('.player-card');
+    if (!card || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+    const MAX_TILT = 12; // degrees at the very edge
+    gsap.set(card, { transformPerspective: 900 });
+
+    const tiltX = gsap.quickTo(card, 'rotationX', { duration: 0.5, ease: 'power3.out' });
+    const tiltY = gsap.quickTo(card, 'rotationY', { duration: 0.5, ease: 'power3.out' });
+    const press = gsap.quickTo(card, 'scale',     { duration: 0.4, ease: 'power3.out' });
+
+    card.addEventListener('pointermove', (e) => {
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width;   // 0 → 1
+      const py = (e.clientY - r.top) / r.height;   // 0 → 1
+      // Side under the cursor goes back into the screen
+      tiltY((px - 0.5) * 2 * MAX_TILT);
+      tiltX(-(py - 0.5) * 2 * MAX_TILT);
+      press(0.985);
+      card.style.setProperty('--gx', `${px * 100}%`);
+      card.style.setProperty('--gy', `${py * 100}%`);
+    });
+
+    card.addEventListener('pointerenter', () => card.classList.add('is-tilting'));
+    card.addEventListener('pointerleave', () => {
+      card.classList.remove('is-tilting');
+      tiltX(0);
+      tiltY(0);
+      press(1);
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
      3. SCROLL-TRIGGERED REVEALS
   ═══════════════════════════════════════════════════════════════ */
   function initScrollAnimations() {
@@ -337,6 +374,7 @@
       gsap.registerPlugin(ScrollTrigger);
 
       initHeroAnimation(pageRevealed);
+      initCardTilt();
       initScrollAnimations();
 
       // Refresh ScrollTrigger after fonts/images load

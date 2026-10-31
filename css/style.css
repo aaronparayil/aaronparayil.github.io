@@ -787,6 +787,24 @@ button:focus-visible {
   box-shadow:
     0 0 60px rgba(210, 87, 201, 0.25),
     0 30px 80px rgba(0, 0, 0, 0.6);
+  will-change: transform;
+}
+
+/* Sheen that follows the cursor while the card tilts (see initCardTilt) */
+.player-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, 0.16), rgba(255, 179, 71, 0.05) 30%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.player-card.is-tilting::after {
+  opacity: 1;
 }
 
 .player-photo {
