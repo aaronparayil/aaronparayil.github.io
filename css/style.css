@@ -232,14 +232,30 @@ button:focus-visible {
   display: grid;
   place-items: center;
   background: var(--bg);
-  transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
   /* failsafe: if main.js never runs, get out of the way after 8s */
   animation: loader-failsafe 0.4s ease 8s forwards;
 }
 
+/* Exit: the whole screen turns into a mouth centred on the chomper and
+   opens until it has eaten itself, revealing the page underneath */
+@property --bite {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
 .js .loader.is-done {
-  transform: translateY(-100%);
   pointer-events: none;
+  -webkit-mask: conic-gradient(from calc(90deg - var(--bite)) at var(--bx, 50%) var(--by, 50%), transparent 0 calc(var(--bite) * 2), #000 0);
+  mask: conic-gradient(from calc(90deg - var(--bite)) at var(--bx, 50%) var(--by, 50%), transparent 0 calc(var(--bite) * 2), #000 0);
+  animation: loader-bite 0.95s cubic-bezier(0.7, 0, 0.25, 1) forwards;
+}
+
+@keyframes loader-bite {
+  0%   { --bite: 0deg; }
+  18%  { --bite: 28deg; }  /* a quick snap open... */
+  32%  { --bite: 6deg; }   /* ...chomp... */
+  100% { --bite: 180deg; } /* ...then swallow the whole screen */
 }
 
 @keyframes loader-failsafe {

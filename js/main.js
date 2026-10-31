@@ -34,8 +34,8 @@
 
   /* ═══════════════════════════════════════════════════════════════
      0. LOADER — pings aaronkp.tech, types "AARONKP", which a
-     chomper eats; slides away once that's done and the page has
-     loaded. Resolves when the page is revealed. (A CSS failsafe
+     chomper eats; then the screen itself gets "bitten" open once
+     that's done and the page has loaded. Resolves when the page is revealed. (A CSS failsafe
      hides it if this never runs.)
   ═══════════════════════════════════════════════════════════════ */
   // `typed` lines are typed out; the rest appear at once, like command output
@@ -143,10 +143,21 @@
     const timeout = wait(MAX_MS - (performance.now() - start));
 
     return Promise.race([Promise.all([typeScript(), pageLoaded]), timeout]).then(() => {
+      // Centre the closing "bite" on the chomper (or the screen centre if it never appeared)
+      const chomper = loader.querySelector('.chomper');
+      const box = chomper && getComputedStyle(chomper).visibility === 'visible'
+        ? chomper.getBoundingClientRect()
+        : null;
+      if (box) {
+        loader.style.setProperty('--bx', `${box.left + box.width / 2}px`);
+        loader.style.setProperty('--by', `${box.top + box.height / 2}px`);
+      }
       loader.classList.add('is-done');
       document.documentElement.style.overflow = '';
-      loader.addEventListener('transitionend', () => loader.remove(), { once: true });
-      setTimeout(() => loader.remove(), 1500); // in case transitionend never fires
+      loader.addEventListener('animationend', (e) => {
+        if (e.animationName === 'loader-bite') loader.remove();
+      });
+      setTimeout(() => loader.remove(), 1600); // in case animationend never fires
     });
   }
 
