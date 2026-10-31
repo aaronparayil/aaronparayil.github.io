@@ -33,9 +33,10 @@
   }
 
   /* ═══════════════════════════════════════════════════════════════
-     0. LOADER — types a short Python script, then "A K P", and slides
-     away once that's done and the page has loaded. Resolves when the
-     page is revealed. (A CSS failsafe hides it if this never runs.)
+     0. LOADER — types a short Python script, then "A K P", which a
+     chomper eats; slides away once that's done and the page has
+     loaded. Resolves when the page is revealed. (A CSS failsafe
+     hides it if this never runs.)
   ═══════════════════════════════════════════════════════════════ */
   const LOADER_SCRIPT = [
     [['tok-prompt', '>>> '], ['tok-kw', 'from'], ['', ' aaron '], ['tok-kw', 'import'], ['', ' portfolio']],
@@ -53,7 +54,7 @@
     const codeEl   = loader.querySelector('.loader-code');
     const wordEl   = loader.querySelector('.loader-akp');
     const wordLine = loader.querySelector('.loader-word');
-    const MAX_MS   = 5500; // never hold people up longer than this
+    const MAX_MS   = 6500; // never hold people up longer than this
     const start    = performance.now();
     const wait     = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -76,20 +77,61 @@
           codeEl.append(span, codeCursor);
           for (const ch of text) {
             span.textContent += ch;
-            await wait(cls === 'tok-prompt' ? 0 : 26 + Math.random() * 30);
+            await wait(cls === 'tok-prompt' ? 0 : 18 + Math.random() * 22);
           }
         }
         codeEl.insertBefore(document.createTextNode('\n'), codeCursor);
         await wait(220);
       }
       codeCursor.remove();
-      wordLine.querySelector('.loader-cursor').style.visibility = '';
-      await wait(250);
+      const bigCursor = wordLine.querySelector('.loader-cursor');
+      bigCursor.style.visibility = '';
+      await wait(200);
+
+      const letters = [];
       for (const letter of LOADER_WORD) {
-        wordEl.textContent += letter;
-        await wait(320);
+        const span = document.createElement('span');
+        span.className = 'loader-letter';
+        span.textContent = letter;
+        wordEl.append(span);
+        letters.push(span);
+        await wait(240);
       }
-      await wait(350);
+      await wait(300);
+      bigCursor.style.visibility = 'hidden';
+      await chomp(letters);
+    }
+
+    // The chomper crosses the word and eats each letter as it passes
+    async function chomp(letters) {
+      const chomper = wordLine.querySelector('.chomper');
+      const size = chomper.offsetWidth;
+      const from = -size * 1.3;
+      const to = wordLine.offsetWidth + size * 0.5;
+      chomper.style.visibility = 'visible';
+
+      const run = chomper.animate(
+        [{ transform: `translate(${from}px, -50%)` }, { transform: `translate(${to}px, -50%)` }],
+        { duration: 1300, easing: 'linear', fill: 'forwards' }
+      );
+
+      const lineLeft = wordLine.getBoundingClientRect().left;
+      const centres = letters.map((l) => {
+        const r = l.getBoundingClientRect();
+        return r.left - lineLeft + r.width * 0.45;
+      });
+
+      await new Promise((resolve) => {
+        (function frame() {
+          const mouth = chomper.getBoundingClientRect().right - lineLeft - size * 0.2;
+          centres.forEach((c, i) => {
+            if (mouth >= c) letters[i].classList.add('is-eaten');
+          });
+          if (run.playState === 'finished') resolve();
+          else requestAnimationFrame(frame);
+        })();
+      });
+      await wait(150);
     }
 
     const timeout = wait(MAX_MS - (performance.now() - start));
