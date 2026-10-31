@@ -5,3 +5,6 @@
 
 > Original iPhone photos (`.HEIC`) are git-ignored — browsers can't show them.
 > Convert to `.webp` before using a new photo on the site.
+
+When you change `css/style.css` or anything in `js/`, bump the `?v=` number on its
+`<link>` / `<script>` tag in `index.html` so browsers fetch the new file instead of a cached one.
