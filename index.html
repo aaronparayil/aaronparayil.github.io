@@ -24,7 +24,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
 
   <!-- ── Custom Styles ── -->
-  <link rel="stylesheet" href="css/style.css?v=5" />
+  <link rel="stylesheet" href="css/style.css?v=6" />
 
   <!-- Hero portrait loads early -->
   <link rel="preload" as="image" href="assets/images/aaron-portrait.webp" />
@@ -36,15 +36,8 @@
 
   <!-- Loader (shown only when JS runs; main.js drives it, CSS hides it on its own as a failsafe) -->
   <div class="loader" aria-hidden="true">
-    <!-- Monogram: outline underneath, portrait-filled copy on top that rises with progress -->
-    <div class="loader-mark">
-      <span class="loader-word loader-word--outline">AKP</span>
-      <span class="loader-word loader-word--fill">AKP</span>
-    </div>
-    <p class="loader-caption">
-      <span>Loading Aaron</span>
-      <span class="loader-pct">0%</span>
-    </p>
+    <span class="loader-mark"></span>
+    <p class="loader-caption">Loading Aaron</p>
   </div>
 
   <!-- ══════════════════════════════════════════════════════════
@@ -632,10 +625,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <!-- Character roster (original pixel art) -->
-  <script src="js/roster.js?v=5"></script>
+  <script src="js/roster.js?v=6"></script>
 
   <!-- Main animations + interactions -->
-  <script src="js/main.js?v=5"></script>
+  <script src="js/main.js?v=6"></script>
 
 </body>
 </html>
