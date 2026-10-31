@@ -671,43 +671,20 @@ button:focus-visible {
   margin-bottom: 1.75rem;
 }
 
-/* Easter egg on "AARON": looks like plain text, a bubble appears on hover */
+/* Easter egg on "AARON": on hover the two A's drift apart → "A A RON" */
 .name-egg {
   color: inherit;
-  cursor: pointer;
 }
 
-.hero-name {
-  position: relative;
+.egg-a {
+  font-style: normal;
+  display: inline-block;
+  transition: margin 0.35s var(--ease-out);
 }
 
-.hero-name::after {
-  content: 'A-A-ron? \25B6';
-  position: absolute;
-  top: -0.2rem;
-  left: var(--egg-x, 60%);  /* set by initNameEgg() to just past "AARON" */
-  padding: 0.45rem 0.7rem;
-  border-radius: 8px 8px 8px 2px;
-  background: var(--grad);
-  color: #160D20;
-  font-family: var(--font-head);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  line-height: 1;
-  text-transform: none;
-  white-space: nowrap;
-  opacity: 0;
-  transform: translateY(6px) scale(0.9);
-  transform-origin: bottom left;
-  transition: opacity 0.2s ease, transform 0.25s var(--ease-out);
-  pointer-events: none;
-}
-
-.hero-name:has(.name-egg:hover)::after,
-.hero-name:has(.name-egg:focus-visible)::after {
-  opacity: 1;
-  transform: translateY(0) scale(1);
+.name-egg:hover .egg-a,
+.name-egg:focus-visible .egg-a {
+  margin-right: 0.12em;
 }
 
 .hero-name .name-line {
