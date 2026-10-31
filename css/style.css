@@ -193,6 +193,87 @@ button:focus-visible {
   border-radius: var(--radius);
 }
 
+/* ── LOADER ─────────────────────────────────────────────────── */
+.loader {
+  display: none;
+}
+
+.js .loader {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+  /* failsafe: if main.js never runs, get out of the way after 6s */
+  animation: loader-failsafe 0.4s ease 6s forwards;
+}
+
+.js .loader.is-done {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+@keyframes loader-failsafe {
+  to { opacity: 0; visibility: hidden; }
+}
+
+.loader-inner {
+  width: min(320px, 80vw);
+}
+
+.loader-logo {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.4rem;
+}
+
+.loader-sub {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.75rem;
+}
+
+.loader-bar {
+  height: 3px;
+  background: var(--panel-2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.loader-bar span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.loader-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.loader-pct {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
 /* ── 4. BUTTONS ─────────────────────────────────────────────── */
 .btn-primary,
 .btn-outline {

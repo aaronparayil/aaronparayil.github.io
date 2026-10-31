@@ -24,7 +24,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
 
   <!-- ── Custom Styles ── -->
-  <link rel="stylesheet" href="css/style.css?v=3" />
+  <link rel="stylesheet" href="css/style.css?v=4" />
 
   <!-- Hero portrait loads early -->
   <link rel="preload" as="image" href="assets/images/aaron-portrait.webp" />
@@ -33,6 +33,19 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'><rect width='8' height='8' fill='%230C0F15'/><path fill='%235B8CFF' d='M1 1h2v6H1zM3 1h3v1H3zM6 2h1v2H6zM3 4h3v1H3z'/></svg>" />
 </head>
 <body>
+
+  <!-- Loader (shown only when JS runs; main.js drives it, CSS hides it on its own as a failsafe) -->
+  <div class="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <p class="loader-logo">AKP<span class="logo-caret">_</span></p>
+      <p class="loader-sub">Cloud Engineer · Game Developer</p>
+      <div class="loader-bar"><span></span></div>
+      <div class="loader-meta">
+        <span>Loading portfolio</span>
+        <span class="loader-pct">0%</span>
+      </div>
+    </div>
+  </div>
 
   <!-- ══════════════════════════════════════════════════════════
        HEADER
@@ -619,10 +632,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <!-- Character roster (original pixel art) -->
-  <script src="js/roster.js?v=3"></script>
+  <script src="js/roster.js?v=4"></script>
 
   <!-- Main animations + interactions -->
-  <script src="js/main.js?v=3"></script>
+  <script src="js/main.js?v=4"></script>
 
 </body>
 </html>
