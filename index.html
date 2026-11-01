@@ -24,13 +24,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- ── Custom Styles ── -->
-  <link rel="stylesheet" href="css/style.css?v=15" />
+  <link rel="stylesheet" href="css/style.css?v=16" />
 
   <!-- Hero portrait loads early -->
   <link rel="preload" as="image" href="assets/images/aaron-portrait.webp?v=2" />
 
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23FFB347'/><stop offset='.5' stop-color='%23FF6F91'/><stop offset='1' stop-color='%238F5BFF'/></linearGradient></defs><rect width='8' height='8' fill='%230C0F15'/><path fill='url(%23g)' d='M1 1h2v6H1zM3 1h3v1H3zM6 2h1v2H6zM3 4h3v1H3z'/></svg>" />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="assets/icons/favicon-32.png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 </head>
 <body>
 
@@ -182,10 +184,6 @@
           <div class="stat-card reveal">
             <span class="stat-number">3</span>
             <span class="stat-label">Certifications</span>
-          </div>
-          <div class="stat-card reveal">
-            <span class="stat-number">7.22</span>
-            <span class="stat-label">CGPA / 10</span>
           </div>
         </div>
 
@@ -504,6 +502,12 @@
     <div class="footer-bar">
       <p class="footer-copy">© 2026 Aaron Koshy Parayil · Bengaluru, India</p>
 
+      <!-- Live local time in Bengaluru (filled in by main.js; hidden without JS) -->
+      <p class="footer-time" hidden>
+        <span class="status-dot" aria-hidden="true"></span>
+        Bengaluru <time class="local-time" datetime="">--:--</time> IST
+      </p>
+
       <div class="footer-socials">
         <a href="https://linkedin.com/in/aaronparayil" target="_blank" rel="noopener">LinkedIn</a>
         <a href="mailto:aaron12parayil@gmail.com">Email</a>
@@ -527,10 +531,10 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <!-- Skill tiles behind the portrait card -->
-  <script src="js/roster.js?v=15"></script>
+  <script src="js/roster.js?v=16"></script>
 
   <!-- Main animations + interactions -->
-  <script src="js/main.js?v=15"></script>
+  <script src="js/main.js?v=16"></script>
 
 </body>
 </html>

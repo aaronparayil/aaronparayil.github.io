@@ -355,6 +355,32 @@
   }
 
   /* ═══════════════════════════════════════════════════════════════
+     6. FOOTER CLOCK — live local time in Bengaluru
+  ═══════════════════════════════════════════════════════════════ */
+  function initLocalTime() {
+    const wrap = document.querySelector('.footer-time');
+    const el   = wrap && wrap.querySelector('.local-time');
+    if (!el || !window.Intl) return;
+
+    const fmt = new Intl.DateTimeFormat('en-IN', {
+      timeZone: 'Asia/Kolkata',
+      hour: 'numeric',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true,
+    });
+
+    const tick = () => {
+      const now = new Date();
+      el.textContent = fmt.format(now).toUpperCase();
+      el.dateTime = now.toISOString();
+    };
+    tick();
+    wrap.hidden = false;
+    setInterval(tick, 1000);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
      BOOT
   ═══════════════════════════════════════════════════════════════ */
   function boot() {
@@ -371,6 +397,7 @@
     initNavbar();
     initContactForm();
     initActiveNav();
+    initLocalTime();
 
     if (reducedMotion) {
       revealStatic();

@@ -3,3 +3,4 @@
 *.heic
 # Original / full-size source images (web copies are exported as .webp)
 assets/images/Gemini_Generated_Image_*.png
+assets/icons/Gemini_Generated_Image_*.png
