@@ -1,3 +1,5 @@
 # Original phone photos (converted copies live next to them as .webp)
 *.HEIC
 *.heic
+# Original / full-size source images (web copies are exported as .webp)
+assets/images/Gemini_Generated_Image_*.png
