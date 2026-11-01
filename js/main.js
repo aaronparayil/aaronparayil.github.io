@@ -298,6 +298,56 @@
   }
 
   /* ═══════════════════════════════════════════════════════════════
+     3b. PROJECT SHOWCASE — pin the section and scroll sideways
+     (desktop only; mobile keeps the stacked layout from the CSS)
+  ═══════════════════════════════════════════════════════════════ */
+  function initProjectShowcase() {
+    const section  = document.querySelector('.showcase');
+    const track    = section && section.querySelector('.showcase-track');
+    const progress = section && section.querySelector('.showcase-progress span');
+    if (!track) return;
+
+    ScrollTrigger.matchMedia({
+      '(min-width: 961px)': () => {
+        document.documentElement.classList.add('has-hscroll');
+        const distance = () => track.scrollWidth - window.innerWidth;
+        const panels = gsap.utils.toArray(track.children);
+
+        // Snap points: each panel lined up with the left edge (as a 0–1 progress)
+        const snapPoints = () => panels.map((p) => Math.min(1, p.offsetLeft / distance()));
+
+        const tween = gsap.to(track, {
+          x: () => -distance(),
+          ease: 'none',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top top',
+            end: () => `+=${distance()}`,
+            pin: true,
+            scrub: 0.8,
+            snap: {
+              snapTo: (value) => gsap.utils.snap(snapPoints(), value),
+              duration: { min: 0.25, max: 0.7 },
+              delay: 0.12,
+              ease: 'power2.inOut',
+            },
+            invalidateOnRefresh: true,
+            onUpdate: (self) => { if (progress) progress.style.transform = `scaleX(${self.progress})`; },
+          },
+        });
+
+        // Undo when the viewport drops below desktop width
+        return () => {
+          tween.scrollTrigger && tween.scrollTrigger.kill();
+          tween.kill();
+          gsap.set(track, { clearProps: 'transform' });
+          document.documentElement.classList.remove('has-hscroll');
+        };
+      },
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
      4. CONTACT FORM — opens the visitor's email app, pre-filled
   ═══════════════════════════════════════════════════════════════ */
   function initContactForm() {
@@ -408,6 +458,7 @@
       gsap.registerPlugin(ScrollTrigger);
 
       initHeroAnimation(pageRevealed);
+      initProjectShowcase();
       initCardTilt();
       initScrollAnimations();
 
