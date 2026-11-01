@@ -24,7 +24,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- ── Custom Styles ── -->
-  <link rel="stylesheet" href="css/style.css?v=16" />
+  <link rel="stylesheet" href="css/style.css?v=18" />
 
   <!-- Hero portrait loads early -->
   <link rel="preload" as="image" href="assets/images/aaron-portrait.webp?v=2" />
@@ -278,22 +278,33 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════════════
-       PROJECTS
+       PROJECTS — on desktop the section pins and the panels scroll
+       sideways (js: initProjectShowcase); otherwise they stack.
+       To use a real screenshot/video, swap the <img> in .project-media.
   ══════════════════════════════════════════════════════════ -->
-  <section id="projects" class="section-wrapper" aria-labelledby="projects-heading">
-    <div class="container-custom">
+  <section id="projects" class="showcase" aria-labelledby="projects-heading">
+    <div class="showcase-track">
 
-      <p class="section-label"><span class="label-no">03</span> Selected work</p>
-      <h2 class="section-title" id="projects-heading">Projects</h2>
+      <!-- Intro -->
+      <div class="showcase-panel showcase-intro">
+        <div>
+          <p class="section-label"><span class="label-no">03</span> Selected work</p>
+          <h2 class="section-title" id="projects-heading">Projects</h2>
+          <p class="showcase-lede">Two builds — one on the web, one in 3D.</p>
+          <p class="showcase-hint" aria-hidden="true">Keep scrolling <span>→</span></p>
+        </div>
+      </div>
 
-      <div class="projects-grid">
+      <!-- Project 1: Bramble -->
+      <article class="showcase-panel project-panel" aria-labelledby="project-bramble">
+        <figure class="project-media">
+          <img src="assets/images/bramble-art.svg" alt="Illustration of the Bramble climate dashboard: warming stripes and a temperature trend chart" width="800" height="520" loading="lazy" />
+        </figure>
 
-        <!-- Project 1: Bramble -->
-        <article class="project-card reveal" aria-labelledby="project-bramble">
-          <div>
-            <p class="project-year">Web app · ML &nbsp;/&nbsp; Aug 2024 — Nov 2024</p>
-            <h3 class="project-title" id="project-bramble">Bramble</h3>
-          </div>
+        <div class="project-body">
+          <p class="project-index">01 / 02</p>
+          <p class="project-year">Web app · ML &nbsp;/&nbsp; Aug 2024 — Nov 2024</p>
+          <h3 class="project-title" id="project-bramble">Bramble</h3>
 
           <p class="project-description">
             A centralized web application for visualizing, analyzing, and predicting climate trends on a global scale. Built with a full-stack architecture, Bramble transforms raw climate data into actionable insight through interactive maps and predictive ML models.
@@ -319,14 +330,19 @@
             <!-- TODO: add a link to the Bramble repo / demo, e.g.
             <a href="https://github.com/..." class="btn-ghost" target="_blank" rel="noopener">View Project</a> -->
           </div>
-        </article>
+        </div>
+      </article>
 
-        <!-- Project 2: PC Builder -->
-        <article class="project-card reveal" aria-labelledby="project-pcbuilder">
-          <div>
-            <p class="project-year">3D · Game &nbsp;/&nbsp; Jun 2025 — Oct 2025</p>
-            <h3 class="project-title" id="project-pcbuilder">PC Builder</h3>
-          </div>
+      <!-- Project 2: PC Builder -->
+      <article class="showcase-panel project-panel" aria-labelledby="project-pcbuilder">
+        <figure class="project-media">
+          <img src="assets/images/pcbuilder-art.svg" alt="Blueprint-style illustration of a motherboard with a graphics card being installed" width="800" height="520" loading="lazy" />
+        </figure>
+
+        <div class="project-body">
+          <p class="project-index">02 / 02</p>
+          <p class="project-year">3D · Game &nbsp;/&nbsp; Jun 2025 — Oct 2025</p>
+          <h3 class="project-title" id="project-pcbuilder">PC Builder</h3>
 
           <p class="project-description">
             A fully interactive 3D environment designed to teach users how to build a PC — from component selection to physical assembly. Players navigate the world with a movable character and interact with life-size 3D models of computer hardware.
@@ -352,10 +368,24 @@
             <!-- TODO: add a link to the PC Builder repo / demo, e.g.
             <a href="https://github.com/..." class="btn-ghost" target="_blank" rel="noopener">View Project</a> -->
           </div>
-        </article>
+        </div>
+      </article>
 
+      <!-- Outro -->
+      <div class="showcase-panel showcase-outro">
+        <div>
+          <p class="showcase-outro-title">Got something worth building?</p>
+          <a href="#contact" class="btn-primary">
+            Let's talk
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
       </div>
+
     </div>
+
+    <!-- Scroll progress through the showcase -->
+    <div class="showcase-progress" aria-hidden="true"><span></span></div>
   </section>
 
   <!-- ══════════════════════════════════════════════════════════
@@ -531,10 +561,10 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <!-- Skill tiles behind the portrait card -->
-  <script src="js/roster.js?v=16"></script>
+  <script src="js/roster.js?v=18"></script>
 
   <!-- Main animations + interactions -->
-  <script src="js/main.js?v=16"></script>
+  <script src="js/main.js?v=18"></script>
 
 </body>
 </html>
