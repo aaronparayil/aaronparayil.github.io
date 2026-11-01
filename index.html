@@ -24,7 +24,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- ── Custom Styles ── -->
-  <link rel="stylesheet" href="css/style.css?v=18" />
+  <link rel="stylesheet" href="css/style.css?v=19" />
 
   <!-- Hero portrait loads early -->
   <link rel="preload" as="image" href="assets/images/aaron-portrait.webp?v=2" />
@@ -58,6 +58,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#play">Play</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -83,8 +84,9 @@
     <a href="#about"><span class="label-no">01</span> About</a>
     <a href="#skills"><span class="label-no">02</span> Skills</a>
     <a href="#projects"><span class="label-no">03</span> Projects</a>
-    <a href="#experience"><span class="label-no">04</span> Experience</a>
-    <a href="#contact"><span class="label-no">05</span> Contact</a>
+    <a href="#play"><span class="label-no">04</span> Play</a>
+    <a href="#experience"><span class="label-no">05</span> Experience</a>
+    <a href="#contact"><span class="label-no">06</span> Contact</a>
   </nav>
 
   <main>
@@ -389,12 +391,50 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════════════
+       PLAY — "Uptime", a tiny load-balancing game (js/game.js).
+       Hidden until the script runs, so no-JS visitors never see it.
+  ══════════════════════════════════════════════════════════ -->
+  <section id="play" class="section-wrapper play" aria-labelledby="play-heading" hidden>
+    <div class="container-custom">
+
+      <p class="section-label"><span class="label-no">04</span> Take a break</p>
+      <h2 class="section-title" id="play-heading">Uptime</h2>
+
+      <div class="play-layout">
+        <div class="play-intro">
+          <p class="play-lede">A tiny game about the job I'm training for: keeping servers alive.</p>
+          <p class="play-text">You're the load balancer. Send each request to a server with room before it overloads, and stop the red packets — they're attacks. Traffic only gets heavier.</p>
+          <ul class="play-keys" aria-label="Controls">
+            <li class="keys-mouse"><kbd>Click</kbd> a server to route traffic</li>
+            <li class="keys-mouse"><kbd>1</kbd>–<kbd>4</kbd> or <kbd>↑</kbd><kbd>↓</kbd> switch servers</li>
+            <li class="keys-mouse"><kbd>Click</kbd> a red packet, or <kbd>Space</kbd> for a firewall sweep</li>
+            <li class="keys-touch"><kbd>Tap</kbd> a server to route traffic</li>
+            <li class="keys-touch"><kbd>Tap</kbd> a red packet to block it</li>
+          </ul>
+        </div>
+
+        <div class="game-shell">
+          <canvas id="uptime-game" tabindex="0" aria-label="Uptime: a load-balancing mini-game. Route requests to servers with spare capacity and block red attack packets."></canvas>
+          <div class="game-overlay">
+            <p class="game-kicker">Mini-game</p>
+            <p class="game-title">Uptime</p>
+            <p class="game-msg">Keep every server up for as long as you can.</p>
+            <button type="button" class="btn-primary game-start">Start</button>
+            <p class="game-best">Best: <span>0</span> served</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
        EXPERIENCE
   ══════════════════════════════════════════════════════════ -->
   <section id="experience" class="section-wrapper section-alt" aria-labelledby="experience-heading">
     <div class="container-custom">
 
-      <p class="section-label"><span class="label-no">04</span> Where I've worked</p>
+      <p class="section-label"><span class="label-no">05</span> Where I've worked</p>
       <h2 class="section-title" id="experience-heading">Experience</h2>
 
       <div class="timeline">
@@ -439,7 +479,7 @@
   <section id="contact" class="section-wrapper" aria-labelledby="contact-heading">
     <div class="container-custom">
 
-      <p class="section-label"><span class="label-no">05</span> Get in touch</p>
+      <p class="section-label"><span class="label-no">06</span> Get in touch</p>
       <h2 class="section-title contact-heading" id="contact-heading">Let's build something together</h2>
       <p class="contact-sub">
         Whether it's a collaboration, opportunity, or just a conversation — I'm always up for building something extraordinary.
@@ -561,10 +601,13 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <!-- Skill tiles behind the portrait card -->
-  <script src="js/roster.js?v=18"></script>
+  <script src="js/roster.js?v=19"></script>
+
+  <!-- Uptime mini-game -->
+  <script src="js/game.js?v=19"></script>
 
   <!-- Main animations + interactions -->
-  <script src="js/main.js?v=18"></script>
+  <script src="js/main.js?v=19"></script>
 
 </body>
 </html>
