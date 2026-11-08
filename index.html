@@ -24,7 +24,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- ── Custom Styles ── -->
-  <link rel="stylesheet" href="css/style.css?v=19" />
+  <link rel="stylesheet" href="css/style.css?v=20" />
 
   <!-- Hero portrait loads early -->
   <link rel="preload" as="image" href="assets/images/aaron-portrait.webp?v=2" />
@@ -81,12 +81,12 @@
 
   <!-- Mobile nav overlay -->
   <nav class="nav-mobile" id="mobile-nav" aria-label="Mobile navigation" inert>
-    <a href="#about"><span class="label-no">01</span> About</a>
-    <a href="#skills"><span class="label-no">02</span> Skills</a>
-    <a href="#projects"><span class="label-no">03</span> Projects</a>
-    <a href="#play"><span class="label-no">04</span> Play</a>
-    <a href="#experience"><span class="label-no">05</span> Experience</a>
-    <a href="#contact"><span class="label-no">06</span> Contact</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#play">Play</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
   </nav>
 
   <main>
@@ -151,12 +151,10 @@
   <section id="about" class="section-wrapper" aria-labelledby="about-heading">
     <div class="container-custom">
 
-      <p class="section-label"><span class="label-no">01</span> Who I am</p>
       <h2 class="section-title" id="about-heading">About</h2>
 
       <div class="about-card">
 
-        <!-- Left: text -->
         <div class="about-text reveal">
           <p>
             I'm a <strong>BCA Honours student at CHRIST (Deemed to be University)</strong>, Bengaluru, working toward a career in <strong>cloud engineering</strong> and <strong>game development</strong>.
@@ -173,22 +171,6 @@
           </div>
         </div>
 
-        <!-- Right: stats grid -->
-        <div class="stats-grid">
-          <div class="stat-card reveal">
-            <span class="stat-number">2</span>
-            <span class="stat-label">Internships</span>
-          </div>
-          <div class="stat-card reveal">
-            <span class="stat-number">2</span>
-            <span class="stat-label">Major projects</span>
-          </div>
-          <div class="stat-card reveal">
-            <span class="stat-number">3</span>
-            <span class="stat-label">Certifications</span>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
@@ -199,7 +181,6 @@
   <section id="skills" class="section-wrapper section-alt" aria-labelledby="skills-heading">
     <div class="container-custom">
 
-      <p class="section-label"><span class="label-no">02</span> What I work with</p>
       <h2 class="section-title" id="skills-heading">Skills</h2>
 
       <div class="skills-grid">
@@ -235,45 +216,14 @@
         </div>
 
         <div class="skill-card reveal">
-          <h3 class="skill-card-title">Soft skills</h3>
-          <div class="skill-tags">
-            <span class="skill-tag">Leadership</span>
-            <span class="skill-tag">Problem Solving</span>
-            <span class="skill-tag">Collaboration</span>
-            <span class="skill-tag">Critical Thinking</span>
-            <span class="skill-tag">Growth Mindset</span>
-          </div>
+          <h3 class="skill-card-title">Languages</h3>
+          <ul class="skill-tags skill-tags--single">
+            <li class="skill-tag">Malayalam <span>native</span></li>
+            <li class="skill-tag">English <span>fluent (C1)</span></li>
+            <li class="skill-tag">Hindi <span>conversational</span></li>
+          </ul>
         </div>
 
-      </div>
-
-      <!-- Language proficiency bars -->
-      <div class="languages-section reveal">
-        <p class="sub-label">Languages</p>
-
-        <div class="lang-item">
-          <span class="lang-name">English</span>
-          <div class="lang-bar-track">
-            <div class="lang-bar-fill" style="--w: 90%;"></div>
-          </div>
-          <span class="lang-level">C1 Proficient</span>
-        </div>
-
-        <div class="lang-item">
-          <span class="lang-name">Malayalam</span>
-          <div class="lang-bar-track">
-            <div class="lang-bar-fill" style="--w: 100%;"></div>
-          </div>
-          <span class="lang-level">Native</span>
-        </div>
-
-        <div class="lang-item">
-          <span class="lang-name">Hindi</span>
-          <div class="lang-bar-track">
-            <div class="lang-bar-fill" style="--w: 55%;"></div>
-          </div>
-          <span class="lang-level">Conversational</span>
-        </div>
       </div>
 
     </div>
@@ -290,7 +240,6 @@
       <!-- Intro -->
       <div class="showcase-panel showcase-intro">
         <div>
-          <p class="section-label"><span class="label-no">03</span> Selected work</p>
           <h2 class="section-title" id="projects-heading">Projects</h2>
           <p class="showcase-lede">Two builds — one on the web, one in 3D.</p>
           <p class="showcase-hint" aria-hidden="true">Keep scrolling <span>→</span></p>
@@ -300,7 +249,7 @@
       <!-- Project 1: Bramble -->
       <article class="showcase-panel project-panel" aria-labelledby="project-bramble">
         <figure class="project-media">
-          <img src="assets/images/bramble-art.svg" alt="Illustration of the Bramble climate dashboard: warming stripes and a temperature trend chart" width="800" height="520" loading="lazy" />
+          <img src="assets/images/bramble-art.svg?v=2" alt="Illustration of the Bramble climate dashboard: warming stripes and a temperature trend chart" width="800" height="520" loading="lazy" />
         </figure>
 
         <div class="project-body">
@@ -338,7 +287,7 @@
       <!-- Project 2: PC Builder -->
       <article class="showcase-panel project-panel" aria-labelledby="project-pcbuilder">
         <figure class="project-media">
-          <img src="assets/images/pcbuilder-art.svg" alt="Blueprint-style illustration of a motherboard with a graphics card being installed" width="800" height="520" loading="lazy" />
+          <img src="assets/images/pcbuilder-art.svg?v=2" alt="Blueprint-style illustration of a motherboard with a graphics card being installed" width="800" height="520" loading="lazy" />
         </figure>
 
         <div class="project-body">
@@ -397,7 +346,6 @@
   <section id="play" class="section-wrapper play" aria-labelledby="play-heading" hidden>
     <div class="container-custom">
 
-      <p class="section-label"><span class="label-no">04</span> Take a break</p>
       <h2 class="section-title" id="play-heading">Uptime</h2>
 
       <div class="play-layout">
@@ -416,7 +364,6 @@
         <div class="game-shell">
           <canvas id="uptime-game" tabindex="0" aria-label="Uptime: a load-balancing mini-game. Route requests to servers with spare capacity and block red attack packets."></canvas>
           <div class="game-overlay">
-            <p class="game-kicker">Mini-game</p>
             <p class="game-title">Uptime</p>
             <p class="game-msg">Keep every server up for as long as you can.</p>
             <button type="button" class="btn-primary game-start">Start</button>
@@ -434,7 +381,6 @@
   <section id="experience" class="section-wrapper section-alt" aria-labelledby="experience-heading">
     <div class="container-custom">
 
-      <p class="section-label"><span class="label-no">05</span> Where I've worked</p>
       <h2 class="section-title" id="experience-heading">Experience</h2>
 
       <div class="timeline">
@@ -479,7 +425,6 @@
   <section id="contact" class="section-wrapper" aria-labelledby="contact-heading">
     <div class="container-custom">
 
-      <p class="section-label"><span class="label-no">06</span> Get in touch</p>
       <h2 class="section-title contact-heading" id="contact-heading">Let's build something together</h2>
       <p class="contact-sub">
         Whether it's a collaboration, opportunity, or just a conversation — I'm always up for building something extraordinary.
@@ -574,7 +519,6 @@
 
       <!-- Live local time in Bengaluru (filled in by main.js; hidden without JS) -->
       <p class="footer-time" hidden>
-        <span class="status-dot" aria-hidden="true"></span>
         Bengaluru <time class="local-time" datetime="">--:--</time> IST
       </p>
 
@@ -601,13 +545,13 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <!-- Skill tiles behind the portrait card -->
-  <script src="js/roster.js?v=19"></script>
+  <script src="js/roster.js?v=20"></script>
 
   <!-- Uptime mini-game -->
-  <script src="js/game.js?v=19"></script>
+  <script src="js/game.js?v=20"></script>
 
   <!-- Main animations + interactions -->
-  <script src="js/main.js?v=19"></script>
+  <script src="js/main.js?v=20"></script>
 
 </body>
 </html>

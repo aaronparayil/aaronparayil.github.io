@@ -25,11 +25,6 @@
   /* ── Show everything without animation (no GSAP / reduced motion) ── */
   function revealStatic() {
     document.documentElement.classList.remove('js');
-    fillLangBars();
-  }
-
-  function fillLangBars() {
-    document.querySelectorAll('.lang-bar-fill').forEach((bar) => bar.classList.add('is-filled'));
   }
 
   /* ═══════════════════════════════════════════════════════════════
@@ -236,7 +231,7 @@
   /* ═══════════════════════════════════════════════════════════════
      2b. PORTRAIT CARD — "weighted" 3D tilt
      The part of the card under the cursor sinks away, as if the
-     cursor were pressing on it, with a sheen that follows the cursor.
+     cursor were pressing on it.
   ═══════════════════════════════════════════════════════════════ */
   function initCardTilt() {
     const card = document.querySelector('.player-card');
@@ -257,13 +252,9 @@
       tiltY((px - 0.5) * 2 * MAX_TILT);
       tiltX(-(py - 0.5) * 2 * MAX_TILT);
       press(0.985);
-      card.style.setProperty('--gx', `${px * 100}%`);
-      card.style.setProperty('--gy', `${py * 100}%`);
     });
 
-    card.addEventListener('pointerenter', () => card.classList.add('is-tilting'));
     card.addEventListener('pointerleave', () => {
-      card.classList.remove('is-tilting');
       tiltX(0);
       tiltY(0);
       press(1);
@@ -286,14 +277,6 @@
         ease: 'power3.out',
         overwrite: true,
       }),
-    });
-
-    // Language bars
-    ScrollTrigger.create({
-      trigger: '.languages-section',
-      start: 'top 85%',
-      onEnter: fillLangBars,
-      once: true,
     });
   }
 
@@ -439,7 +422,7 @@
     // A little something for whoever opens the console
     console.log(
       '%cA-A-ron!%c  You found the console. Try hovering my first name on the page.',
-      'font: 700 20px sans-serif; color: #FF6F91;',
+      'font: 700 20px sans-serif; color: #FF8F3F;',
       'font: 13px sans-serif; color: #8C95A8;'
     );
 

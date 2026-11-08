@@ -27,8 +27,8 @@
     panel: '#151A24', panel2: '#1B2130',
     ok: '#3DDC97', warn: '#FFB347', hot: '#FF6F91', bad: '#FF4D5E',
   };
-  // No pinks/reds here, so attack packets always stand out
-  const PACKET_COLORS = ['#FFB347', '#D257C9', '#8F5BFF'];
+  // No reds here, so attack packets always stand out
+  const PACKET_COLORS = ['#FF8F3F', '#C9D2E3', '#7FA8FF'];
   const FONT = '"Chakra Petch", "Segoe UI", sans-serif';
   const SERVER_RATES = [16, 20, 13, 18];   // load drained per second
   const AUTOSCALE_AT = 60;                 // requests served before srv-4 spins up
@@ -242,11 +242,9 @@
     ctx.closePath();
   }
 
-  function sunset(x0, y0, x1, y1) {
-    const g = ctx.createLinearGradient(x0, y0, x1, y1);
-    g.addColorStop(0, '#FFB347'); g.addColorStop(0.36, '#FF6F91');
-    g.addColorStop(0.66, '#D257C9'); g.addColorStop(1, '#8F5BFF');
-    return g;
+  // Site accent (was a gradient; callers still pass coordinates)
+  function sunset() {
+    return '#FF8F3F';
   }
 
   const font = (size, weight = 600) => `${weight} ${Math.round(size * u)}px ${FONT}`;
