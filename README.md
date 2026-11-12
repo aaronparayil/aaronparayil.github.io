@@ -1,10 +1,10 @@
 # Assets Directory
 
-Place your assets here:
+- `Aaron_Koshy_Parayil_Resume.pdf` — the resume, linked from the header and hero.
+- `images/aaron-portrait.webp` — hero player-card photo (4:5 crop, ~29 KB).
 
-- `images/` — Profile photo, project screenshots
-- `icons/` — Custom SVG icons
-- `Aaron_Koshy_Parayil_Resume.pdf` — the resume, kept at the root of `assets/`
+> Original iPhone photos (`.HEIC`) are git-ignored — browsers can't show them.
+> Convert to `.webp` before using a new photo on the site.
 
-> The `Download Resume` button in the hero currently points to `assets/Aaron_Koshy_Parayil_Resume.pdf`.
-> Drop your resume PDF here and it will be served automatically.
+When you change `css/style.css` or anything in `js/`, bump the `?v=` number on its
+`<link>` / `<script>` tag in `index.html` so browsers fetch the new file instead of a cached one.
