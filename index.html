@@ -24,7 +24,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- ── Custom Styles ── -->
-  <link rel="stylesheet" href="css/style.css?v=20" />
+  <link rel="stylesheet" href="css/style.css?v=21" />
 
   <!-- Hero portrait loads early -->
   <link rel="preload" as="image" href="assets/images/aaron-portrait.webp?v=2" />
@@ -163,7 +163,7 @@
             I've done two internships. At CHRIST I built a 3D avatar that copies a player's movements and a virtual court for training simulations. At SFO Technologies I mapped how an ERP system was used day to day and wrote up where its workflows could be simpler.
           </p>
           <p>
-            On my own time I built Bramble, a web app for exploring climate data, and PC Builder, a 3D world in Unity that teaches you how to put a computer together. There's also a small game further down this page.
+            My main project right now is <strong>RaptorSense</strong>, a free, open-source replacement for Acer's PredatorSense app that people can download and use. Before that I built Bramble, a web app for exploring climate data, and PC Builder, a 3D world in Unity that teaches you how to put a computer together. There's also a small game further down this page.
           </p>
           <div class="about-links">
             <a href="mailto:aaron12parayil@gmail.com" class="btn-ghost">aaron12parayil@gmail.com</a>
@@ -191,6 +191,7 @@
             <span class="skill-tag">Unity</span>
             <span class="skill-tag">Blender</span>
             <span class="skill-tag">Python</span>
+            <span class="skill-tag">C# / .NET</span>
             <span class="skill-tag">AWS</span>
             <span class="skill-tag">GCP</span>
             <span class="skill-tag">React.js</span>
@@ -240,19 +241,69 @@
       <div class="showcase-panel showcase-intro">
         <div>
           <h2 class="section-title" id="projects-heading">Projects</h2>
-          <p class="showcase-lede">Two builds: one on the web, one in 3D.</p>
+          <p class="showcase-lede">Three builds: a desktop app, a web app and a 3D world.</p>
           <p class="showcase-hint" aria-hidden="true">Keep scrolling <span>→</span></p>
         </div>
       </div>
 
-      <!-- Project 1: Bramble -->
+      <!-- Project 1: RaptorSense (stats refreshed from GitHub by js/live-stats.js;
+           the numbers below are the fallback if that request fails) -->
+      <article class="showcase-panel project-panel" aria-labelledby="project-raptorsense">
+        <figure class="project-media">
+          <img src="assets/images/raptorsense.webp" alt="RaptorSense's Lighting tab: a rainbow wave across a preview of the laptop keyboard, with colour, speed, profile and effect controls" width="1600" height="959" loading="lazy" />
+        </figure>
+
+        <div class="project-body">
+          <p class="project-index">01 / 03</p>
+          <p class="project-year">Desktop app · Windows &nbsp;/&nbsp; Nov 2026 – now</p>
+          <h3 class="project-title" id="project-raptorsense">RaptorSense</h3>
+
+          <p class="project-description">
+            A free, open-source replacement for Acer's PredatorSense app on Predator laptops. It drives the per-key RGB keyboard and controls fans and power, and runs from the tray in about 35 MB with no accounts or telemetry.
+          </p>
+
+          <ul class="project-features">
+            <li>20 lighting effects, plus ones that react to music and typing, on a live preview of the keyboard</li>
+            <li>A frame-by-frame editor for your own keyboard animations</li>
+            <li>Fan speeds, power profiles, temperatures and rules like "Turbo while this game is open"</li>
+          </ul>
+
+          <div class="project-live" data-repo="aaronparayil/RaptorSense">
+            <p class="live-label"><span class="live-dot" aria-hidden="true"></span><span class="live-text">On GitHub, 15 Nov 2026</span></p>
+            <dl class="live-stats">
+              <div><dt>Downloads</dt><dd><span data-stat="downloads">33</span></dd></div>
+              <div><dt>Latest version</dt><dd><span data-stat="version">v1.8.4</span></dd><dd class="live-sub" data-stat="released">15 Nov 2026</dd></div>
+              <div><dt>Releases</dt><dd><span data-stat="releases">12</span></dd><dd class="live-sub" data-stat="since">since 4 Nov 2026</dd></div>
+              <div><dt>Last update</dt><dd><span data-stat="updated">15 Nov</span></dd></div>
+            </dl>
+          </div>
+
+          <div class="project-tags">
+            <span class="project-tag">C#</span>
+            <span class="project-tag">.NET</span>
+            <span class="project-tag">Avalonia</span>
+            <span class="project-tag">PowerShell</span>
+            <span class="project-tag">GPL-3.0</span>
+          </div>
+
+          <div class="project-footer">
+            <span class="project-role">Solo project</span>
+            <span class="project-links">
+              <a href="https://github.com/aaronparayil/RaptorSense" class="btn-ghost" target="_blank" rel="noopener">Source ↗</a>
+              <a href="https://github.com/aaronparayil/RaptorSense/releases/latest" class="btn-ghost" target="_blank" rel="noopener">Download ↗</a>
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 2: Bramble -->
       <article class="showcase-panel project-panel" aria-labelledby="project-bramble">
         <figure class="project-media">
           <img src="assets/images/bramble-art.svg?v=2" alt="Illustration of the Bramble climate dashboard: warming stripes and a temperature trend chart" width="800" height="520" loading="lazy" />
         </figure>
 
         <div class="project-body">
-          <p class="project-index">01 / 02</p>
+          <p class="project-index">02 / 03</p>
           <p class="project-year">Web app · ML &nbsp;/&nbsp; Aug–Nov 2024</p>
           <h3 class="project-title" id="project-bramble">Bramble</h3>
 
@@ -283,14 +334,14 @@
         </div>
       </article>
 
-      <!-- Project 2: PC Builder -->
+      <!-- Project 3: PC Builder -->
       <article class="showcase-panel project-panel" aria-labelledby="project-pcbuilder">
         <figure class="project-media">
           <img src="assets/images/pcbuilder-art.svg?v=2" alt="Blueprint-style illustration of a motherboard with a graphics card being installed" width="800" height="520" loading="lazy" />
         </figure>
 
         <div class="project-body">
-          <p class="project-index">02 / 02</p>
+          <p class="project-index">03 / 03</p>
           <p class="project-year">3D · Game &nbsp;/&nbsp; Jun–Oct 2025</p>
           <h3 class="project-title" id="project-pcbuilder">PC Builder</h3>
 
@@ -322,7 +373,7 @@
       <!-- Outro -->
       <div class="showcase-panel showcase-outro">
         <div>
-          <p class="showcase-outro-title">Want to talk about either one?</p>
+          <p class="showcase-outro-title">Want to talk about any of these?</p>
           <a href="#contact" class="btn-primary">
             Get in touch
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -543,13 +594,16 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <!-- Skill tiles behind the portrait card -->
-  <script src="js/roster.js?v=20"></script>
+  <script src="js/roster.js?v=21"></script>
+
+  <!-- Live RaptorSense stats from the GitHub API -->
+  <script src="js/live-stats.js?v=21"></script>
 
   <!-- Uptime mini-game -->
-  <script src="js/game.js?v=20"></script>
+  <script src="js/game.js?v=21"></script>
 
   <!-- Main animations + interactions -->
-  <script src="js/main.js?v=20"></script>
+  <script src="js/main.js?v=21"></script>
 
 </body>
 </html>
