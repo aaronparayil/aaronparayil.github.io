@@ -1,7 +1,7 @@
 /**
  * main.js
  * Hero entrance, GSAP + ScrollTrigger reveals, navbar / mobile menu,
- * contact form, active nav link.
+ * active nav link.
  *
  * Aaron Koshy Parayil Portfolio — main.js
  */
@@ -331,40 +331,6 @@
   }
 
   /* ═══════════════════════════════════════════════════════════════
-     4. CONTACT FORM — opens the visitor's email app, pre-filled
-  ═══════════════════════════════════════════════════════════════ */
-  function initContactForm() {
-    const form = document.getElementById('contact-form');
-    if (!form) return;
-
-    const TO = 'aaron12parayil@gmail.com';
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (!form.reportValidity()) return;
-
-      const name    = form.elements.name.value.trim();
-      const email   = form.elements.email.value.trim();
-      const message = form.elements.message.value.trim();
-
-      const subject = `Portfolio enquiry from ${name}`;
-      const body    = `${message}\n\n— ${name}\n${email}`;
-      window.location.href =
-        `mailto:${TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-      const btn = form.querySelector('button[type="submit"]');
-      const original = btn.innerHTML;
-      btn.textContent = 'Opening your email app…';
-      btn.disabled = true;
-
-      setTimeout(() => {
-        btn.innerHTML = original;
-        btn.disabled = false;
-      }, 3500);
-    });
-  }
-
-  /* ═══════════════════════════════════════════════════════════════
      5. ACTIVE NAV LINK HIGHLIGHTING
   ═══════════════════════════════════════════════════════════════ */
   function initActiveNav() {
@@ -428,7 +394,6 @@
 
     // These don't depend on GSAP
     initNavbar();
-    initContactForm();
     initActiveNav();
     initLocalTime();
 

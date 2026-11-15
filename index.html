@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Aaron Koshy Parayil — aspiring Cloud Engineer & Game Developer. BCA Honours student at CHRIST University, Bengaluru." />
+  <meta name="description" content="Aaron Koshy Parayil: final-year BCA Honours student in Bengaluru, working toward cloud engineering. Developer of RaptorSense." />
   <meta name="author" content="Aaron Koshy Parayil" />
   <meta name="theme-color" content="#0C0F15" />
-  <meta property="og:title" content="Aaron Koshy Parayil — Cloud Engineer & Game Developer" />
-  <meta property="og:description" content="BCA Honours student working toward cloud engineering and game development." />
+  <meta property="og:title" content="Aaron Koshy Parayil — Cloud Engineer & Software Developer" />
+  <meta property="og:description" content="Final-year BCA Honours student working toward cloud engineering, and the developer of RaptorSense." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://aaronkp.tech/" />
   <meta property="og:image" content="https://aaronkp.tech/assets/images/aaron-portrait.webp" />
   <meta name="twitter:card" content="summary" />
   <link rel="canonical" href="https://aaronkp.tech/" />
-  <title>Aaron Koshy Parayil — Cloud Engineer &amp; Game Developer</title>
+  <title>Aaron Koshy Parayil — Cloud Engineer &amp; Software Developer</title>
 
   <!-- Lets CSS hide elements that JS will animate in (they stay visible if JS is off) -->
   <script>document.documentElement.classList.add('js');</script>
@@ -24,7 +24,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- ── Custom Styles ── -->
-  <link rel="stylesheet" href="css/style.css?v=21" />
+  <link rel="stylesheet" href="css/style.css?v=23" />
 
   <!-- Hero portrait loads early -->
   <link rel="preload" as="image" href="assets/images/aaron-portrait.webp?v=2" />
@@ -57,6 +57,7 @@
       <ul class="nav-links" role="list">
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
+        <li><a href="#certifications">Certifications</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#play">Play</a></li>
         <li><a href="#experience">Experience</a></li>
@@ -83,6 +84,7 @@
   <nav class="nav-mobile" id="mobile-nav" aria-label="Mobile navigation" inert>
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
+    <a href="#certifications">Certifications</a>
     <a href="#projects">Projects</a>
     <a href="#play">Play</a>
     <a href="#experience">Experience</a>
@@ -99,7 +101,7 @@
 
       <!-- Left: Text content -->
       <div class="hero-left">
-        <p class="eyebrow hero-label">Cloud Engineer · Game Developer</p>
+        <p class="eyebrow hero-label">Cloud Engineer · Software Developer</p>
 
         <h1 class="hero-name" aria-label="Aaron Koshy Parayil">
           <!-- Easter egg: "A-A-ron" (Key & Peele, Substitute Teacher) -->
@@ -109,7 +111,7 @@
         </h1>
 
         <p class="hero-tagline">
-          Final-year BCA Honours student at CHRIST University, Bengaluru. I make games and 3D environments, and I'm learning to run the cloud systems that keep software online.
+          Final-year BCA Honours student at CHRIST University, Bengaluru, working toward a career in cloud engineering. Along the way I build real software, like RaptorSense, an open-source Windows app with public releases.
         </p>
 
         <div class="hero-ctas">
@@ -133,10 +135,10 @@
           <div class="player-meta">
             <p class="player-name">Aaron K. Parayil</p>
             <dl class="player-stats">
-              <div><dt>Focus</dt><dd>Cloud &amp; game development</dd></div>
+              <div><dt>Focus</dt><dd>Cloud engineering</dd></div>
               <div><dt>Studying</dt><dd>BCA (Hons), final year</dd></div>
               <div><dt>Based in</dt><dd>Bengaluru, India</dd></div>
-              <div><dt>Toolkit</dt><dd>Unity · Blender · Python · AWS</dd></div>
+              <div><dt>Toolkit</dt><dd>AWS · GCP · Python · C#</dd></div>
             </dl>
           </div>
         </article>
@@ -157,7 +159,7 @@
 
         <div class="about-text reveal">
           <p>
-            I'm in the final year of a BCA (Honours) at CHRIST University in Bengaluru. I want to work in <strong>cloud engineering</strong> and <strong>game development</strong>.
+            I'm in the final year of a BCA (Honours) at CHRIST University in Bengaluru. I'm aiming for a career in <strong>cloud engineering</strong>.
           </p>
           <p>
             I've done two internships. At CHRIST I built a 3D avatar that copies a player's movements and a virtual court for training simulations. At SFO Technologies I mapped how an ERP system was used day to day and wrote up where its workflows could be simpler.
@@ -225,6 +227,99 @@
         </div>
 
       </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       CERTIFICATIONS — a hand-picked snapshot from Credly (Credly doesn't
+       allow other sites to load badges live). Badge images live in
+       assets/images/badges/; each links to its verification page.
+  ══════════════════════════════════════════════════════════ -->
+  <section id="certifications" class="section-wrapper" aria-labelledby="certifications-heading">
+    <div class="container-custom">
+
+      <h2 class="section-title" id="certifications-heading">Certifications</h2>
+      <p class="cert-lede">
+        I've earned 82 badges on Credly (as of November 2026): 77 from Google Cloud, 4 from IBM SkillsBuild and 1 from AWS Academy. These are the ones closest to cloud engineering work.
+      </p>
+
+      <ul class="badge-list reveal">
+          <li>
+            <a class="badge-item" href="https://www.credly.com/badges/d175672a-fed6-4a70-85b6-fb4e88a3b214" target="_blank" rel="noopener">
+              <img src="assets/images/badges/terraform.webp" alt="" width="240" height="240" loading="lazy" />
+              <span class="badge-text">
+                <span class="badge-name">Build Infrastructure with Terraform</span>
+                <span class="badge-meta">Google Cloud · Jul 2026</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="badge-item" href="https://www.credly.com/badges/afd68469-e201-40d3-91a0-bd1ab2ab09e4" target="_blank" rel="noopener">
+              <img src="assets/images/badges/kubernetes.webp" alt="" width="240" height="240" loading="lazy" />
+              <span class="badge-text">
+                <span class="badge-name">Deploy Kubernetes Applications</span>
+                <span class="badge-meta">Google Cloud · Nov 2026</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="badge-item" href="https://www.credly.com/badges/15880984-b780-4157-8176-2beb8a0b3990" target="_blank" rel="noopener">
+              <img src="assets/images/badges/cicd.webp" alt="" width="240" height="240" loading="lazy" />
+              <span class="badge-text">
+                <span class="badge-name">Implement CI/CD Pipelines</span>
+                <span class="badge-meta">Google Cloud · Aug 2026</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="badge-item" href="https://www.credly.com/badges/3bfbf735-4143-41b6-8fe1-08bcead1bc42" target="_blank" rel="noopener">
+              <img src="assets/images/badges/devops.webp" alt="" width="240" height="240" loading="lazy" />
+              <span class="badge-text">
+                <span class="badge-name">Implement DevOps Workflows</span>
+                <span class="badge-meta">Google Cloud · Nov 2026</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="badge-item" href="https://www.credly.com/badges/8ca6011c-0ece-44f3-a60e-34dbf5c1eec4" target="_blank" rel="noopener">
+              <img src="assets/images/badges/cloud-run.webp" alt="" width="240" height="240" loading="lazy" />
+              <span class="badge-text">
+                <span class="badge-name">Develop Serverless Applications on Cloud Run</span>
+                <span class="badge-meta">Google Cloud · Sep 2026</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="badge-item" href="https://www.credly.com/badges/8bbbe0b0-2af8-4ae8-8568-d176e97b4161" target="_blank" rel="noopener">
+              <img src="assets/images/badges/secure-network.webp" alt="" width="240" height="240" loading="lazy" />
+              <span class="badge-text">
+                <span class="badge-name">Build a Secure Google Cloud Network</span>
+                <span class="badge-meta">Google Cloud · Nov 2026</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="badge-item" href="https://www.credly.com/badges/7a9e1d27-eef4-4e87-ad0e-90992aad9beb" target="_blank" rel="noopener">
+              <img src="assets/images/badges/monitoring.webp" alt="" width="240" height="240" loading="lazy" />
+              <span class="badge-text">
+                <span class="badge-name">Monitor and Log with Google Cloud Operations Suite</span>
+                <span class="badge-meta">Google Cloud · Jun 2026</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="badge-item" href="https://www.credly.com/badges/c1983858-cfc6-436a-9cda-864be3e31f12" target="_blank" rel="noopener">
+              <img src="assets/images/badges/aws-cloud-foundations.webp" alt="" width="240" height="240" loading="lazy" />
+              <span class="badge-text">
+                <span class="badge-name">Cloud Foundations</span>
+                <span class="badge-meta">AWS Academy · Sep 2025</span>
+              </span>
+            </a>
+          </li>
+      </ul>
+
+      <a href="https://www.credly.com/users/aaronkp" class="btn-ghost cert-all" target="_blank" rel="noopener">See all 82 on Credly ↗</a>
 
     </div>
   </section>
@@ -328,8 +423,9 @@
 
           <div class="project-footer">
             <span class="project-role">My role: full-stack development and ML integration</span>
-            <!-- TODO: add a link to the Bramble repo / demo, e.g.
-            <a href="https://github.com/..." class="btn-ghost" target="_blank" rel="noopener">View Project</a> -->
+            <span class="project-links">
+              <a href="https://github.com/aaronparayil/bramble" class="btn-ghost" target="_blank" rel="noopener">Source ↗</a>
+            </span>
           </div>
         </div>
       </article>
@@ -364,8 +460,9 @@
 
           <div class="project-footer">
             <span class="project-role">My role: 3D development and environment design</span>
-            <!-- TODO: add a link to the PC Builder repo / demo, e.g.
-            <a href="https://github.com/..." class="btn-ghost" target="_blank" rel="noopener">View Project</a> -->
+            <span class="project-links">
+              <a href="https://github.com/aaronparayil/pc_builder_simulator" class="btn-ghost" target="_blank" rel="noopener">Source ↗</a>
+            </span>
           </div>
         </div>
       </article>
@@ -478,79 +575,33 @@
         For opportunities, collaborations or questions, email is the quickest way to reach me.
       </p>
 
-      <div class="contact-layout">
+      <div class="contact-info-list">
 
-        <!-- Contact info -->
-        <div class="contact-info-list">
-
-          <div class="contact-info-item reveal">
-            <span class="contact-info-label">Email</span>
-            <span class="contact-info-value">
-              <a href="mailto:aaron12parayil@gmail.com">aaron12parayil@gmail.com</a>
-            </span>
-          </div>
-
-          <div class="contact-info-item reveal">
-            <span class="contact-info-label">LinkedIn</span>
-            <span class="contact-info-value">
-              <a href="https://linkedin.com/in/aaronparayil" target="_blank" rel="noopener">linkedin.com/in/aaronparayil</a>
-            </span>
-          </div>
-
-          <div class="contact-info-item reveal">
-            <span class="contact-info-label">Location</span>
-            <span class="contact-info-value">Bengaluru, Karnataka, India</span>
-          </div>
-
+        <div class="contact-info-item reveal">
+          <span class="contact-info-label">Email</span>
+          <span class="contact-info-value">
+            <a href="mailto:aaron12parayil@gmail.com">aaron12parayil@gmail.com</a>
+          </span>
         </div>
 
-        <!-- Contact form -->
-        <form class="contact-form reveal" id="contact-form" novalidate>
+        <div class="contact-info-item reveal">
+          <span class="contact-info-label">LinkedIn</span>
+          <span class="contact-info-value">
+            <a href="https://linkedin.com/in/aaronparayil" target="_blank" rel="noopener">linkedin.com/in/aaronparayil</a>
+          </span>
+        </div>
 
-          <div class="form-group">
-            <label class="form-label" for="form-name">Name</label>
-            <input
-              class="form-control-custom"
-              type="text"
-              id="form-name"
-              name="name"
-              placeholder="Your full name"
-              required
-              autocomplete="name"
-            />
-          </div>
+        <div class="contact-info-item reveal">
+          <span class="contact-info-label">Credly</span>
+          <span class="contact-info-value">
+            <a href="https://www.credly.com/users/aaronkp" target="_blank" rel="noopener">credly.com/users/aaronkp</a>
+          </span>
+        </div>
 
-          <div class="form-group">
-            <label class="form-label" for="form-email">Email</label>
-            <input
-              class="form-control-custom"
-              type="email"
-              id="form-email"
-              name="email"
-              placeholder="your@email.com"
-              required
-              autocomplete="email"
-            />
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="form-message">Message</label>
-            <textarea
-              class="form-control-custom"
-              id="form-message"
-              name="message"
-              placeholder="What would you like to talk about?"
-              rows="5"
-              required
-            ></textarea>
-          </div>
-
-          <button type="submit" class="btn-primary">
-            Send message
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-          </button>
-
-        </form>
+        <div class="contact-info-item reveal">
+          <span class="contact-info-label">Location</span>
+          <span class="contact-info-value">Bengaluru, Karnataka, India</span>
+        </div>
 
       </div>
     </div>
@@ -573,6 +624,7 @@
       <div class="footer-socials">
         <a href="https://github.com/aaronparayil" target="_blank" rel="noopener">GitHub</a>
         <a href="https://linkedin.com/in/aaronparayil" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.credly.com/users/aaronkp" target="_blank" rel="noopener">Credly</a>
         <a href="mailto:aaron12parayil@gmail.com">Email</a>
         <a href="#hero">Back to top ↑</a>
       </div>
@@ -594,16 +646,16 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <!-- Skill tiles behind the portrait card -->
-  <script src="js/roster.js?v=21"></script>
+  <script src="js/roster.js?v=23"></script>
 
   <!-- Live RaptorSense stats from the GitHub API -->
-  <script src="js/live-stats.js?v=21"></script>
+  <script src="js/live-stats.js?v=23"></script>
 
   <!-- Uptime mini-game -->
-  <script src="js/game.js?v=21"></script>
+  <script src="js/game.js?v=23"></script>
 
   <!-- Main animations + interactions -->
-  <script src="js/main.js?v=21"></script>
+  <script src="js/main.js?v=23"></script>
 
 </body>
 </html>

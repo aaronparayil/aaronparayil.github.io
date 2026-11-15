@@ -831,6 +831,65 @@ button:focus-visible {
   }
 }
 
+/* ── 8b. CERTIFICATIONS ─────────────────────────────────────── */
+.cert-lede {
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 62ch;
+  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.badge-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(1.5rem, 4vw, 3rem);
+  margin-bottom: 2rem;
+}
+
+.badge-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  border-top: 1px solid var(--line-2);
+}
+
+.badge-item img {
+  flex: 0 0 auto;
+  width: 64px;
+  height: 64px;
+  border-radius: 6px;
+  object-fit: contain;
+}
+
+.badge-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.badge-name {
+  font-weight: 600;
+  line-height: 1.35;
+  transition: color var(--transition-fast);
+}
+
+.badge-meta {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.badge-item:hover .badge-name {
+  color: var(--accent);
+}
+
+@media (max-width: 760px) {
+  .badge-list {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ── 9. PROJECTS — showcase ───────────────────────────── */
 /* Default (mobile / no JS): panels stack vertically */
 .showcase {
@@ -1342,34 +1401,29 @@ button:focus-visible {
   margin-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
-.contact-layout {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: clamp(2.5rem, 6vw, 5rem);
-  align-items: start;
-}
-
 .contact-info-list {
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(1.5rem, 4vw, 3rem);
+  max-width: 920px;
 }
 
 .contact-info-item {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
-  padding: 1rem 0;
+  gap: 0.3rem;
+  padding: 1.1rem 0;
   border-top: 1px solid var(--line-2);
 }
 
-.contact-info-label,
-.form-label {
+.contact-info-label {
   font-size: 0.88rem;
   color: var(--muted);
 }
 
 .contact-info-value {
   font-weight: 600;
-  font-size: 1.05rem;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
   word-break: break-word;
 }
 
@@ -1381,53 +1435,8 @@ button:focus-visible {
   color: var(--accent);
 }
 
-/* Contact form */
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-}
-
-.form-control-custom {
-  width: 100%;
-  padding: 0.85rem 1rem;
-  background: var(--panel);
-  border: 1px solid var(--line-2);
-  border-radius: 6px;
-  color: var(--text);
-  font-size: 1rem;
-  outline: none;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.form-control-custom:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(255, 143, 63, 0.2);
-}
-
-.form-control-custom::placeholder {
-  color: var(--muted);
-  opacity: 0.6;
-}
-
-textarea.form-control-custom {
-  resize: vertical;
-  min-height: 130px;
-}
-
-.contact-form .btn-primary {
-  align-self: flex-start;
-  margin-top: 0.25rem;
-}
-
 @media (max-width: 900px) {
-  .contact-layout {
+  .contact-info-list {
     grid-template-columns: 1fr;
   }
 }
