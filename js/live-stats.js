@@ -1,7 +1,7 @@
 /**
  * live-stats.js
  * Fills the RaptorSense stats row from the public GitHub API:
- * total downloads, latest version, release count and last update.
+ * total downloads, stars, latest version and release count.
  *
  * - Two unauthenticated requests per visit (GitHub allows 60/hour per IP),
  *   cached in sessionStorage for 5 minutes and refreshed while the tab is open.
@@ -17,7 +17,7 @@
 
   const REPO = box.dataset.repo;
   const API = `https://api.github.com/repos/${REPO}`;
-  const CACHE_KEY = `live-stats:${REPO}`;
+  const CACHE_KEY = `live-stats:v2:${REPO}`;
   const CACHE_MS = 5 * 60 * 1000;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -28,15 +28,6 @@
   const rtf = window.Intl && Intl.RelativeTimeFormat
     ? new Intl.RelativeTimeFormat('en', { numeric: 'auto' })
     : null;
-
-  // Short enough to sit on one line: "just now", "13 min ago", "2 hr ago", "yesterday"
-  function ago(iso) {
-    const secs = Math.max(0, (Date.now() - new Date(iso)) / 1000);
-    if (secs < 60) return 'just now';
-    if (secs < 3600) return `${Math.round(secs / 60)} min ago`;
-    if (secs < 86400) return `${Math.round(secs / 3600)} hr ago`;
-    return daysAgo(iso);
-  }
 
   // Calendar-day wording for release dates ("today", "2 days ago")
   function daysAgo(iso) {
@@ -82,7 +73,7 @@
       released: releases[0].published_at,
       releases: releases.length,
       first: releases[releases.length - 1].published_at,
-      updated: repo.pushed_at,
+      stars: repo.stargazers_count,
     };
     writeCache(data);
     return data;
@@ -125,7 +116,7 @@
     el('released').textContent = `released ${daysAgo(d.released)}`;
     el('releases').textContent = d.releases;
     el('since').textContent = `since ${dateFmt.format(new Date(d.first))}`;
-    el('updated').textContent = ago(d.updated);
+    el('stars').textContent = d.stars;
     label.textContent = 'Live from GitHub';
     box.classList.add('is-live');
   }

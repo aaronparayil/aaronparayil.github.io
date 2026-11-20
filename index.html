@@ -24,7 +24,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- ── Custom Styles ── -->
-  <link rel="stylesheet" href="css/style.css?v=23" />
+  <link rel="stylesheet" href="css/style.css?v=25" />
 
   <!-- Hero portrait loads early -->
   <link rel="preload" as="image" href="assets/images/aaron-portrait.webp?v=2" />
@@ -165,7 +165,7 @@
             I've done two internships. At CHRIST I built a 3D avatar that copies a player's movements and a virtual court for training simulations. At SFO Technologies I mapped how an ERP system was used day to day and wrote up where its workflows could be simpler.
           </p>
           <p>
-            My main project right now is <strong>RaptorSense</strong>, a free, open-source replacement for Acer's PredatorSense app that people can download and use. Before that I built Bramble, a web app for exploring climate data, and PC Builder, a 3D world in Unity that teaches you how to put a computer together. There's also a small game further down this page.
+            My main project right now is <strong>RaptorSense</strong>, a free, open-source replacement for Acer's PredatorSense and NitroSense apps that people download and use. I also rebuilt <strong>Rig Builder</strong>, a 3D PC-building game that runs in the browser and in VR, and worked in a team of three on <strong>HavaMana</strong>, a climate forecasting dashboard for Karnataka. There's also a small game further down this page.
           </p>
           <div class="about-links">
             <a href="mailto:aaron12parayil@gmail.com" class="btn-ghost">aaron12parayil@gmail.com</a>
@@ -336,7 +336,7 @@
       <div class="showcase-panel showcase-intro">
         <div>
           <h2 class="section-title" id="projects-heading">Projects</h2>
-          <p class="showcase-lede">Three builds: a desktop app, a web app and a 3D world.</p>
+          <p class="showcase-lede">Three builds: a desktop app, a browser game and a climate dashboard.</p>
           <p class="showcase-hint" aria-hidden="true">Keep scrolling <span>→</span></p>
         </div>
       </div>
@@ -345,7 +345,7 @@
            the numbers below are the fallback if that request fails) -->
       <article class="showcase-panel project-panel" aria-labelledby="project-raptorsense">
         <figure class="project-media">
-          <img src="assets/images/raptorsense.webp" alt="RaptorSense's Lighting tab: a rainbow wave across a preview of the laptop keyboard, with colour, speed, profile and effect controls" width="1600" height="959" loading="lazy" />
+          <img src="assets/images/raptorsense.webp?v=2" alt="RaptorSense's Lighting tab: a rainbow wave across a preview of the laptop keyboard, with colour, speed, profile and effect controls" width="1600" height="959" loading="lazy" />
         </figure>
 
         <div class="project-body">
@@ -354,22 +354,22 @@
           <h3 class="project-title" id="project-raptorsense">RaptorSense</h3>
 
           <p class="project-description">
-            A free, open-source replacement for Acer's PredatorSense app on Predator laptops. It drives the per-key RGB keyboard and controls fans and power, and runs from the tray in about 35 MB with no accounts or telemetry.
+            A free, open-source replacement for Acer's PredatorSense and NitroSense apps on Predator and Nitro laptops. It drives the keyboard lighting and controls fans and power, with no account and no telemetry. Tested on a Predator Helios 16 and a Nitro 5.
           </p>
 
           <ul class="project-features">
-            <li>20 lighting effects, plus ones that react to music and typing, on a live preview of the keyboard</li>
-            <li>A frame-by-frame editor for your own keyboard animations</li>
-            <li>Fan speeds, power profiles, temperatures and rules like "Turbo while this game is open"</li>
+            <li>Up to 147 lighting effects, including ones that follow your music and your typing</li>
+            <li>A frame-by-frame editor for your own keyboard animations, shareable as files</li>
+            <li>Fan speeds, power profiles, temperatures and automations like "Turbo while this game is open"</li>
           </ul>
 
           <div class="project-live" data-repo="aaronparayil/RaptorSense">
-            <p class="live-label"><span class="live-dot" aria-hidden="true"></span><span class="live-text">On GitHub, 15 Nov 2026</span></p>
+            <p class="live-label"><span class="live-dot" aria-hidden="true"></span><span class="live-text">On GitHub, 20 Nov 2026</span></p>
             <dl class="live-stats">
-              <div><dt>Downloads</dt><dd><span data-stat="downloads">33</span></dd></div>
-              <div><dt>Latest version</dt><dd><span data-stat="version">v1.8.4</span></dd><dd class="live-sub" data-stat="released">15 Nov 2026</dd></div>
-              <div><dt>Releases</dt><dd><span data-stat="releases">12</span></dd><dd class="live-sub" data-stat="since">since 4 Nov 2026</dd></div>
-              <div><dt>Last update</dt><dd><span data-stat="updated">15 Nov</span></dd></div>
+              <div><dt>Downloads</dt><dd><span data-stat="downloads">98</span></dd></div>
+              <div><dt>GitHub stars</dt><dd><span data-stat="stars">14</span></dd></div>
+              <div><dt>Latest version</dt><dd><span data-stat="version">v1.8.9</span></dd><dd class="live-sub" data-stat="released">20 Nov 2026</dd></div>
+              <div><dt>Releases</dt><dd><span data-stat="releases">19</span></dd><dd class="live-sub" data-stat="since">since 4 Nov 2026</dd></div>
             </dl>
           </div>
 
@@ -382,8 +382,9 @@
           </div>
 
           <div class="project-footer">
-            <span class="project-role">Solo project</span>
+            <span class="project-role">Created and maintained by me; Nitro 5 support from a contributor</span>
             <span class="project-links">
+              <a href="https://aaronkp.tech/RaptorSense/" class="btn-ghost" target="_blank" rel="noopener">Website ↗</a>
               <a href="https://github.com/aaronparayil/RaptorSense" class="btn-ghost" target="_blank" rel="noopener">Source ↗</a>
               <a href="https://github.com/aaronparayil/RaptorSense/releases/latest" class="btn-ghost" target="_blank" rel="noopener">Download ↗</a>
             </span>
@@ -391,77 +392,78 @@
         </div>
       </article>
 
-      <!-- Project 2: Bramble -->
-      <article class="showcase-panel project-panel" aria-labelledby="project-bramble">
+      <!-- Project 2: Rig Builder -->
+      <article class="showcase-panel project-panel" aria-labelledby="project-rigbuilder">
         <figure class="project-media">
-          <img src="assets/images/bramble-art.svg?v=2" alt="Illustration of the Bramble climate dashboard: warming stripes and a temperature trend chart" width="800" height="520" loading="lazy" />
+          <img src="assets/images/rig-builder.webp" alt="Rig Builder's workbench: a finished PC with an RTX 4090 and liquid cooler, next to a monitor showing the benchmark at 1080p, 1440p and 4K" width="1600" height="900" loading="lazy" />
         </figure>
 
         <div class="project-body">
           <p class="project-index">02 / 03</p>
-          <p class="project-year">Web app · ML &nbsp;/&nbsp; Aug–Nov 2024</p>
-          <h3 class="project-title" id="project-bramble">Bramble</h3>
+          <p class="project-year">Browser game · 3D &nbsp;/&nbsp; Aug 2025 – now</p>
+          <h3 class="project-title" id="project-rigbuilder">Rig Builder</h3>
 
           <p class="project-description">
-            A web app for exploring historical climate data. You can look at how temperatures have changed across the world on a map, compare trends over the years, and run an ML model that projects where they're heading.
+            A 3D PC-building game that runs in the browser. You walk around a showroom of real parts, take them to the workbench and build a PC step by step, then power it on and benchmark it. The whole game is under 1 MB.
           </p>
 
           <ul class="project-features">
-            <li>World map with climate data layered on top</li>
-            <li>Dashboard for comparing trends across years</li>
-            <li>Interface for running the ML prediction model</li>
-            <li>A chatbot that shows new users around</li>
+            <li>Real compatibility rules: CPU sockets, DDR4 vs DDR5, cooler brackets, power budgets</li>
+            <li>A POST check on power-on, then frame-rate estimates at 1080p, 1440p and 4K</li>
+            <li>Six budget challenges, side-by-side part comparisons, and full VR on WebXR headsets</li>
           </ul>
 
           <div class="project-tags">
-            <span class="project-tag">Python</span>
-            <span class="project-tag">SQLAlchemy</span>
-            <span class="project-tag">React JS</span>
-            <span class="project-tag">Machine Learning</span>
-            <span class="project-tag">Data Viz</span>
+            <span class="project-tag">three.js</span>
+            <span class="project-tag">JavaScript</span>
+            <span class="project-tag">Vite</span>
+            <span class="project-tag">WebXR</span>
+            <span class="project-tag">Web Audio</span>
           </div>
 
           <div class="project-footer">
-            <span class="project-role">My role: full-stack development and ML integration</span>
+            <span class="project-role">Started as a 2025 team workshop project; I rebuilt it in 2026</span>
             <span class="project-links">
-              <a href="https://github.com/aaronparayil/bramble" class="btn-ghost" target="_blank" rel="noopener">Source ↗</a>
+              <a href="https://aaronkp.tech/pc_builder_simulator/" class="btn-ghost" target="_blank" rel="noopener">Play it ↗</a>
+              <a href="https://github.com/aaronparayil/pc_builder_simulator" class="btn-ghost" target="_blank" rel="noopener">Source ↗</a>
             </span>
           </div>
         </div>
       </article>
 
-      <!-- Project 3: PC Builder -->
-      <article class="showcase-panel project-panel" aria-labelledby="project-pcbuilder">
+      <!-- Project 3: HavaMana (illustration until there's a real screenshot) -->
+      <article class="showcase-panel project-panel" aria-labelledby="project-havamana">
         <figure class="project-media">
-          <img src="assets/images/pcbuilder-art.svg?v=2" alt="Blueprint-style illustration of a motherboard with a graphics card being installed" width="800" height="520" loading="lazy" />
+          <img src="assets/images/climate-art.svg" alt="Illustration of a climate dashboard: warming stripes above a temperature trend with a forecast" width="800" height="520" loading="lazy" />
         </figure>
 
         <div class="project-body">
           <p class="project-index">03 / 03</p>
-          <p class="project-year">3D · Game &nbsp;/&nbsp; Jun–Oct 2025</p>
-          <h3 class="project-title" id="project-pcbuilder">PC Builder</h3>
+          <p class="project-year">Web app · ML &nbsp;/&nbsp; Aug–Sep 2026</p>
+          <h3 class="project-title" id="project-havamana">HavaMana</h3>
 
           <p class="project-description">
-            A 3D world that teaches you how to build a PC, from choosing the parts to putting them together. You walk around as a character and handle life-size models of the hardware.
+            A climate digital twin for Karnataka, with Bengaluru as the pilot. A React dashboard shows rainfall and temperature forecasts from a ConvLSTM model, alongside simpler baselines to compare against.
           </p>
 
           <ul class="project-features">
-            <li>Walkable character in an environment I designed</li>
-            <li>Detailed models of the CPU, GPU, RAM, motherboard and more, made in Blender</li>
-            <li>Step-by-step instructions that guide you through the build</li>
+            <li>Interactive dashboard of the region's climate</li>
+            <li>Forecasts of rainfall and daily maximum and minimum temperature</li>
+            <li>Model comparisons and evaluation metrics, served by a Flask API</li>
           </ul>
 
           <div class="project-tags">
-            <span class="project-tag">Unity</span>
-            <span class="project-tag">Blender</span>
-            <span class="project-tag">3D Modelling</span>
-            <span class="project-tag">Game Design</span>
+            <span class="project-tag">React</span>
+            <span class="project-tag">Vite</span>
+            <span class="project-tag">Flask</span>
+            <span class="project-tag">TensorFlow</span>
+            <span class="project-tag">ConvLSTM</span>
           </div>
 
           <div class="project-footer">
-            <span class="project-role">My role: 3D development and environment design</span>
+            <span class="project-role">Team of three; I built the dashboard and set up the dataset</span>
             <span class="project-links">
-              <a href="https://github.com/aaronparayil/pc_builder_simulator" class="btn-ghost" target="_blank" rel="noopener">Source ↗</a>
+              <a href="https://github.com/aaronparayil/havamana-digitaltwin" class="btn-ghost" target="_blank" rel="noopener">Source ↗</a>
             </span>
           </div>
         </div>
@@ -625,6 +627,7 @@
         <a href="https://github.com/aaronparayil" target="_blank" rel="noopener">GitHub</a>
         <a href="https://linkedin.com/in/aaronparayil" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://www.credly.com/users/aaronkp" target="_blank" rel="noopener">Credly</a>
+        <a href="https://www.youtube.com/@aaronxstone" target="_blank" rel="noopener">YouTube</a>
         <a href="mailto:aaron12parayil@gmail.com">Email</a>
         <a href="#hero">Back to top ↑</a>
       </div>
@@ -646,16 +649,16 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <!-- Skill tiles behind the portrait card -->
-  <script src="js/roster.js?v=23"></script>
+  <script src="js/roster.js?v=25"></script>
 
   <!-- Live RaptorSense stats from the GitHub API -->
-  <script src="js/live-stats.js?v=23"></script>
+  <script src="js/live-stats.js?v=25"></script>
 
   <!-- Uptime mini-game -->
-  <script src="js/game.js?v=23"></script>
+  <script src="js/game.js?v=25"></script>
 
   <!-- Main animations + interactions -->
-  <script src="js/main.js?v=23"></script>
+  <script src="js/main.js?v=25"></script>
 
 </body>
 </html>
