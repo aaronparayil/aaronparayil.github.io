@@ -281,8 +281,10 @@
   }
 
   /* ═══════════════════════════════════════════════════════════════
-     3b. PROJECT SHOWCASE — pin the section and scroll sideways
-     (desktop only; mobile keeps the stacked layout from the CSS)
+     3b. PROJECT SHOWCASE — pin the section and scroll sideways.
+     Only when the window is wide enough AND tall enough for every
+     project to fit; otherwise the panels stack and scroll normally,
+     so nothing is ever cut off.
   ═══════════════════════════════════════════════════════════════ */
   function initProjectShowcase() {
     const section  = document.querySelector('.showcase');
@@ -290,43 +292,74 @@
     const progress = section && section.querySelector('.showcase-progress span');
     if (!track) return;
 
-    ScrollTrigger.matchMedia({
-      '(min-width: 961px)': () => {
-        document.documentElement.classList.add('has-hscroll');
-        const distance = () => track.scrollWidth - window.innerWidth;
-        const panels = gsap.utils.toArray(track.children);
+    const root = document.documentElement;
+    let tween = null;
 
-        // Snap points: each panel lined up with the left edge (as a 0–1 progress)
-        const snapPoints = () => panels.map((p) => Math.min(1, p.offsetLeft / distance()));
+    // Does each project's text fit between the header and the progress bar?
+    // (has-hscroll must be on while measuring)
+    const everyPanelFits = () =>
+      gsap.utils.toArray('.project-panel', track).every((panel) => {
+        const cs = getComputedStyle(panel);
+        const room = window.innerHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+        return panel.querySelector('.project-body').offsetHeight <= room;
+      });
 
-        const tween = gsap.to(track, {
-          x: () => -distance(),
-          ease: 'none',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top top',
-            end: () => `+=${distance()}`,
-            pin: true,
-            scrub: 0.8,
-            snap: {
-              snapTo: (value) => gsap.utils.snap(snapPoints(), value),
-              duration: { min: 0.25, max: 0.7 },
-              delay: 0.12,
-              ease: 'power2.inOut',
-            },
-            invalidateOnRefresh: true,
-            onUpdate: (self) => { if (progress) progress.style.transform = `scaleX(${self.progress})`; },
+    function build() {
+      const distance = () => track.scrollWidth - window.innerWidth;
+      const panels = gsap.utils.toArray(track.children);
+
+      // Snap points: each panel lined up with the left edge (as a 0–1 progress)
+      const snapPoints = () => panels.map((p) => Math.min(1, p.offsetLeft / distance()));
+
+      tween = gsap.to(track, {
+        x: () => -distance(),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: () => `+=${distance()}`,
+          pin: true,
+          scrub: 0.8,
+          refreshPriority: 1, // may be built after the triggers further down the page
+          snap: {
+            snapTo: (value) => gsap.utils.snap(snapPoints(), value),
+            duration: { min: 0.25, max: 0.7 },
+            delay: 0.12,
+            ease: 'power2.inOut',
           },
-        });
+          invalidateOnRefresh: true,
+          onUpdate: (self) => { if (progress) progress.style.transform = `scaleX(${self.progress})`; },
+        },
+      });
+    }
 
-        // Undo when the viewport drops below desktop width
-        return () => {
-          tween.scrollTrigger && tween.scrollTrigger.kill();
-          tween.kill();
-          gsap.set(track, { clearProps: 'transform' });
-          document.documentElement.classList.remove('has-hscroll');
-        };
-      },
+    function teardown() {
+      tween.scrollTrigger && tween.scrollTrigger.kill(true);
+      tween.kill();
+      tween = null;
+      gsap.set(track, { clearProps: 'transform' });
+    }
+
+    function sync() {
+      const wide = window.matchMedia('(min-width: 961px)').matches;
+      root.classList.toggle('has-hscroll', wide);
+      const pin = wide && everyPanelFits();
+      root.classList.toggle('has-hscroll', pin);
+
+      if (pin === Boolean(tween)) return;
+      if (pin) build(); else teardown();
+      ScrollTrigger.sort();
+      ScrollTrigger.refresh();
+    }
+
+    sync();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(sync);
+    window.addEventListener('load', sync);
+
+    let timer;
+    window.addEventListener('resize', () => {
+      clearTimeout(timer);
+      timer = setTimeout(sync, 200);
     });
   }
 

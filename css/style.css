@@ -831,7 +831,7 @@ button:focus-visible {
   }
 }
 
-/* ── 8b. CERTIFICATIONS ─────────────────────────────────────── */
+/* ── 8b. SKILL BADGES ─────────────────────────────────────── */
 .cert-lede {
   font-size: 1.05rem;
   color: var(--muted);
@@ -940,11 +940,24 @@ button:focus-visible {
 }
 
 .project-media {
+  position: relative;
   margin: 0;
   border-radius: var(--radius);
   overflow: hidden;
   border: 1px solid var(--line);
   background: var(--panel);
+}
+
+/* Says so when the picture isn't a real screenshot */
+.project-media figcaption {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.8rem;
 }
 
 .project-media img,
@@ -984,6 +997,19 @@ button:focus-visible {
 
 .showcase-progress {
   display: none;
+}
+
+/* Wide windows that are too short to pin: stacked, image beside text */
+@media (min-width: 961px) {
+  html:not(.has-hscroll) .showcase-track {
+    gap: 4.5rem;
+  }
+
+  html:not(.has-hscroll) .project-panel {
+    grid-template-columns: 1.15fr 1fr;
+    gap: clamp(2rem, 4vw, 4.5rem);
+    align-items: center;
+  }
 }
 
 /* Desktop with JS: the section pins and the track scrolls sideways */
@@ -1047,6 +1073,46 @@ button:focus-visible {
   background: var(--accent);
   transform: scaleX(0);
   transform-origin: left center;
+}
+
+/* Shorter laptop windows: tighten the pinned panels */
+@media (max-height: 880px) {
+  .has-hscroll .showcase-panel {
+    padding-top: calc(var(--nav-h) + 1rem);
+    padding-bottom: 3.25rem;
+  }
+
+  .has-hscroll .showcase-progress {
+    bottom: 1.5rem;
+  }
+
+  .has-hscroll .project-body {
+    gap: 0.7rem;
+  }
+
+  .has-hscroll .project-index {
+    display: none;
+  }
+
+  .has-hscroll .project-title {
+    font-size: 2rem;
+  }
+
+  .has-hscroll .project-description {
+    line-height: 1.55;
+  }
+
+  .has-hscroll .project-live {
+    padding: 0.6rem 0;
+  }
+
+  .has-hscroll .live-label {
+    margin-bottom: 0.4rem;
+  }
+
+  .has-hscroll .project-footer {
+    padding-top: 0.7rem;
+  }
 }
 
 /* Keep the text column tight enough to fit a laptop screen */
