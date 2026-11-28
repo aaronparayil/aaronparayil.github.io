@@ -2,6 +2,7 @@
  * live-stats.js
  * Fills the RaptorSense stats row from the public GitHub API:
  * total downloads, stars, latest version and release count.
+ * Previews (marked as pre-releases on GitHub) only count towards downloads.
  *
  * - Two unauthenticated requests per visit (GitHub allows 60/hour per IP),
  *   cached in sessionStorage for 5 minutes and refreshed while the tab is open.
@@ -17,7 +18,7 @@
 
   const REPO = box.dataset.repo;
   const API = `https://api.github.com/repos/${REPO}`;
-  const CACHE_KEY = `live-stats:v2:${REPO}`;
+  const CACHE_KEY = `live-stats:v3:${REPO}`;
   const CACHE_MS = 5 * 60 * 1000;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -63,11 +64,16 @@
     if (!repoRes.ok || !relRes.ok) throw new Error('GitHub API unavailable');
 
     const repo = await repoRes.json();
-    const releases = (await relRes.json()).filter((r) => !r.draft);
+    const published = (await relRes.json()).filter((r) => !r.draft);
+    // Previews (e.g. the Linux test builds) count towards downloads,
+    // but not as releases or as the latest version
+    const releases = published
+      .filter((r) => !r.prerelease)
+      .sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
     if (!releases.length) throw new Error('No releases');
 
     const data = {
-      downloads: releases.reduce(
+      downloads: published.reduce(
         (sum, r) => sum + r.assets.reduce((s, a) => s + a.download_count, 0), 0),
       version: releases[0].tag_name,
       released: releases[0].published_at,
