@@ -209,6 +209,7 @@
   function initHeroAnimation(pageRevealed) {
     gsap.set(['.hero-label', '.hero-tagline', '.hero-ctas'], { opacity: 0, y: 30 });
     gsap.set('.player-card', { opacity: 0, y: 40 });
+    gsap.set('.hero-keys', { opacity: 0, y: 30 });
     gsap.set('.hero-name', { opacity: 1 }); // parent visible
     gsap.set('.hero-name .name-line span', { yPercent: 110 });
 
@@ -225,7 +226,8 @@
       }, '-=0.5')
       .to('.hero-tagline', { opacity: 1, y: 0, duration: 0.8 }, '-=0.6')
       .to('.hero-ctas',    { opacity: 1, y: 0, duration: 0.7 }, '-=0.5')
-      .to('.player-card', { opacity: 1, y: 0, duration: 1, ease: 'expo.out' }, 0.5);
+      .to('.player-card', { opacity: 1, y: 0, duration: 1, ease: 'expo.out' }, 0.5)
+      .to('.hero-keys', { opacity: 1, y: 0, duration: 1, ease: 'expo.out' }, 0.75);
   }
 
   /* ═══════════════════════════════════════════════════════════════

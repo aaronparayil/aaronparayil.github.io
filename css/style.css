@@ -583,89 +583,49 @@ button:focus-visible {
   flex-wrap: wrap;
 }
 
-/* Right column: skill tiles + portrait card */
+/* Right: portrait card above the keyboard */
 .hero-right {
   position: relative;
-  align-self: stretch;
-  min-height: 600px;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
 }
 
-.roster {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-
-.roster.is-ready {
-  opacity: 1;
-}
-
-.roster-tile {
-  position: absolute;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  border-radius: 12px;
+.hero-keys {
+  width: min(500px, 100%);
+  padding: 12px 12px 10px;
+  border-radius: 14px;
   border: 1px solid var(--line);
-  background:
-    linear-gradient(160deg, color-mix(in srgb, var(--tint) 22%, transparent), transparent 70%),
-    var(--panel);
-  transform-origin: 0 0;
-  transition: transform 0.9s var(--ease-out), border-color 0.4s ease;
-  will-change: transform;
+  background: linear-gradient(180deg, var(--panel), var(--bg-alt));
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
 }
 
-.roster-tile::after {
-  /* dim so the player card stays the hero */
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(12, 15, 21, 0.1), rgba(12, 15, 21, 0.55));
-  pointer-events: none;
+.hero-keys canvas {
+  display: block;
+  width: 100%;
+  touch-action: manipulation;
 }
 
-/* Skill logo: an SVG used as a mask, filled with the tile's tint,
-   oversized and offset so it's cropped by the tile edge */
-.roster-logo {
-  position: absolute;
-  left: 50%;
-  bottom: calc(var(--crop-y, 10%) * -1);
-  width: 92%;
-  aspect-ratio: 1;
-  transform: translateX(calc(-50% + var(--crop-x, 0%)));
-  background: var(--tint);
-  -webkit-mask: var(--icon) center / contain no-repeat;
-  mask: var(--icon) center / contain no-repeat;
-  opacity: 0.9;
-}
-
-.roster-name {
-  position: absolute;
-  left: 10px;
-  top: 10px;
-  z-index: 1;
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: 0.8rem;
+.keys-hint {
+  margin-top: 0.55rem;
+  font-size: 0.78rem;
   color: var(--muted);
+  text-align: center;
 }
 
-.roster-tile.is-selected {
-  border-color: var(--accent);
-}
+.keys-hint-touch { display: none; }
 
-.roster-tile.is-selected .roster-name {
-  color: var(--text);
+@media (pointer: coarse) {
+  .keys-hint-mouse { display: none; }
+  .keys-hint-touch { display: inline; }
 }
 
 /* Portrait card */
 .player-card {
   position: relative;
   z-index: 10;
-  width: min(330px, 86%);
+  width: min(280px, 80%);
   padding: 12px;
   border-color: var(--line-2);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
@@ -750,7 +710,8 @@ button:focus-visible {
 .js .hero-name,
 .js .hero-tagline,
 .js .hero-ctas,
-.js .player-card {
+.js .player-card,
+.js .hero-keys {
   opacity: 0;
 }
 
@@ -762,14 +723,39 @@ button:focus-visible {
     padding-bottom: 4rem;
   }
   .hero-right {
-    min-height: 560px;
-    margin-top: 3rem; /* the top tile slot sits above the box; keep it off the buttons */
+    margin-top: 1.5rem;
   }
 }
 
 /* ── 7. ABOUT ───────────────────────────────────────────────── */
 .about-card {
-  max-width: 64ch;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: start;
+}
+
+.about-motto {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: clamp(2rem, 4.2vw, 3.4rem);
+  line-height: 1.05;
+  max-width: 12ch;
+}
+
+.about-motto::after {
+  content: '';
+  display: block;
+  width: 3rem;
+  height: 3px;
+  margin-top: 1.25rem;
+  background: var(--accent);
+}
+
+@media (max-width: 900px) {
+  .about-card {
+    grid-template-columns: 1fr;
+  }
 }
 
 .about-text p {
@@ -831,7 +817,7 @@ button:focus-visible {
   }
 }
 
-/* ── 8b. SKILL BADGES ─────────────────────────────────────── */
+/* ── 8b. SKILLS — cloud skills backed by badges ─────────────────────────────────────── */
 .cert-lede {
   font-size: 1.05rem;
   color: var(--muted);
@@ -869,10 +855,17 @@ button:focus-visible {
   min-width: 0;
 }
 
-.badge-name {
+.badge-skill {
   font-weight: 600;
-  line-height: 1.35;
+  line-height: 1.3;
   transition: color var(--transition-fast);
+}
+
+.badge-name {
+  font-size: 0.88rem;
+  line-height: 1.35;
+  color: var(--text);
+  opacity: 0.8;
 }
 
 .badge-meta {
@@ -880,8 +873,15 @@ button:focus-visible {
   color: var(--muted);
 }
 
-.badge-item:hover .badge-name {
+.badge-item:hover .badge-skill {
   color: var(--accent);
+}
+
+.skills-sub {
+  margin: clamp(3rem, 6vw, 4.5rem) 0 1.5rem;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.4rem;
 }
 
 @media (max-width: 760px) {
@@ -1523,6 +1523,78 @@ footer {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
+}
+
+.status-strip {
+  max-width: 1240px;
+  margin: 0 auto 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.5rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: left;
+}
+
+.status-strip[hidden] {
+  display: none;
+}
+
+.status-summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+
+.status-strip.is-up .status-dot { background: var(--ok); }
+.status-strip.is-down .status-dot { background: #FF4D5E; }
+
+.status-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.1rem;
+}
+
+.status-ms {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.status-checks .is-down .status-ms {
+  color: #FF4D5E;
+}
+
+.status-deploy a {
+  color: var(--text);
+  border-bottom: 1px solid var(--line-2);
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.status-deploy a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.status-note {
+  margin-left: auto;
+  font-size: 0.78rem;
+  opacity: 0.8;
+}
+
+@media (max-width: 700px) {
+  .status-note { margin-left: 0; }
 }
 
 .footer-time {

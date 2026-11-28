@@ -24,7 +24,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- ── Custom Styles ── -->
-  <link rel="stylesheet" href="css/style.css?v=26" />
+  <link rel="stylesheet" href="css/style.css?v=27" />
 
   <!-- Hero portrait loads early -->
   <link rel="preload" as="image" href="assets/images/aaron-portrait.webp?v=2" />
@@ -55,12 +55,11 @@
     <!-- Desktop links -->
     <nav aria-label="Main navigation">
       <ul class="nav-links" role="list">
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#badges">Skill badges</a></li>
         <li><a href="#projects">Projects</a></li>
-        <li><a href="#play">Play</a></li>
         <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#play">Play</a></li>
+        <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -82,12 +81,11 @@
 
   <!-- Mobile nav overlay -->
   <nav class="nav-mobile" id="mobile-nav" aria-label="Mobile navigation" inert>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#badges">Skill badges</a>
     <a href="#projects">Projects</a>
-    <a href="#play">Play</a>
     <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#play">Play</a>
+    <a href="#about">About</a>
     <a href="#contact">Contact</a>
   </nav>
 
@@ -123,10 +121,8 @@
         </div>
       </div>
 
-      <!-- Right: portrait card + skill tiles -->
+      <!-- Right: portrait card + a keyboard that lights up as you type (js/keyboard.js) -->
       <div class="hero-right">
-        <!-- Shuffling skill-logo tiles (built by js/roster.js) -->
-        <div class="roster" aria-hidden="true"></div>
 
         <article class="player-card" aria-label="Profile card">
           <div class="player-photo">
@@ -142,184 +138,15 @@
             </dl>
           </div>
         </article>
-      </div>
 
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════════════════════
-       ABOUT
-  ══════════════════════════════════════════════════════════ -->
-  <section id="about" class="section-wrapper" aria-labelledby="about-heading">
-    <div class="container-custom">
-
-      <h2 class="section-title" id="about-heading">About</h2>
-
-      <div class="about-card">
-
-        <div class="about-text reveal">
-          <p>
-            I'm in the final year of a BCA (Honours) at CHRIST University in Bengaluru. I'm aiming for a career in <strong>cloud engineering</strong>.
+        <div class="hero-keys" aria-hidden="true">
+          <canvas></canvas>
+          <p class="keys-hint">
+            <span class="keys-hint-mouse">Type anything to light it up, the way RaptorSense lights a real keyboard</span>
+            <span class="keys-hint-touch">Tap the keys</span>
           </p>
-          <p>
-            I've done two internships. At CHRIST I built a 3D avatar that copies a player's movements and a virtual court for training simulations. At SFO Technologies I analysed ERP workflows, helped document them and suggested improvements.
-          </p>
-          <p>
-            My main project right now is <strong>RaptorSense</strong>, a free, open-source replacement for Acer's PredatorSense and NitroSense apps that anyone can download. I also rebuilt <strong>Rig Builder</strong>, a 3D PC-building game that runs in the browser and in VR, and worked in a team of three on <strong>HavaMana</strong>, a climate forecasting dashboard for Karnataka. There's also a small game further down this page.
-          </p>
-          <div class="about-links">
-            <a href="mailto:aaron12parayil@gmail.com" class="btn-ghost">aaron12parayil@gmail.com</a>
-            <a href="https://linkedin.com/in/aaronparayil" target="_blank" rel="noopener" class="btn-ghost">LinkedIn ↗</a>
-          </div>
         </div>
-
       </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════════════════════
-       SKILLS
-  ══════════════════════════════════════════════════════════ -->
-  <section id="skills" class="section-wrapper section-alt" aria-labelledby="skills-heading">
-    <div class="container-custom">
-
-      <h2 class="section-title" id="skills-heading">Skills</h2>
-
-      <div class="skills-grid">
-
-        <div class="skill-card reveal">
-          <h3 class="skill-card-title">Technical</h3>
-          <div class="skill-tags">
-            <span class="skill-tag">Unity</span>
-            <span class="skill-tag">Blender</span>
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">C# / .NET</span>
-            <span class="skill-tag">AWS</span>
-            <span class="skill-tag">GCP</span>
-            <span class="skill-tag">React.js</span>
-            <span class="skill-tag">HTML</span>
-            <span class="skill-tag">CSS</span>
-            <span class="skill-tag">SQL</span>
-            <span class="skill-tag">SQLAlchemy</span>
-            <span class="skill-tag">MS Excel</span>
-          </div>
-        </div>
-
-        <div class="skill-card reveal">
-          <h3 class="skill-card-title">Domain</h3>
-          <div class="skill-tags">
-            <span class="skill-tag">Cloud Computing</span>
-            <span class="skill-tag">Cyber Security</span>
-            <span class="skill-tag">Documentation</span>
-            <span class="skill-tag">ERP Analysis</span>
-            <span class="skill-tag">Workflow Design</span>
-            <span class="skill-tag">System Admin</span>
-          </div>
-        </div>
-
-        <div class="skill-card reveal">
-          <h3 class="skill-card-title">Languages</h3>
-          <ul class="skill-tags skill-tags--single">
-            <li class="skill-tag">Malayalam <span>native</span></li>
-            <li class="skill-tag">English <span>fluent (C1)</span></li>
-            <li class="skill-tag">Hindi <span>conversational</span></li>
-          </ul>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════════════════════
-       SKILL BADGES — a hand-picked snapshot from Credly (Credly doesn't
-       allow other sites to load badges live). Badge images live in
-       assets/images/badges/; each links to its verification page.
-  ══════════════════════════════════════════════════════════ -->
-  <section id="badges" class="section-wrapper" aria-labelledby="badges-heading">
-    <div class="container-custom">
-
-      <h2 class="section-title" id="badges-heading">Skill badges</h2>
-      <p class="cert-lede">
-        I've earned 82 badges on Credly (as of November 2026): 77 from Google Cloud, 4 from IBM SkillsBuild and 1 from AWS Academy. These are the ones closest to cloud engineering work.
-      </p>
-
-      <ul class="badge-list reveal">
-          <li>
-            <a class="badge-item" href="https://www.credly.com/badges/d175672a-fed6-4a70-85b6-fb4e88a3b214" target="_blank" rel="noopener">
-              <img src="assets/images/badges/terraform.webp" alt="" width="240" height="240" loading="lazy" />
-              <span class="badge-text">
-                <span class="badge-name">Build Infrastructure with Terraform on Google Cloud</span>
-                <span class="badge-meta">Google Cloud skill badge · Jul 2026</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a class="badge-item" href="https://www.credly.com/badges/afd68469-e201-40d3-91a0-bd1ab2ab09e4" target="_blank" rel="noopener">
-              <img src="assets/images/badges/kubernetes.webp" alt="" width="240" height="240" loading="lazy" />
-              <span class="badge-text">
-                <span class="badge-name">Deploy Kubernetes Applications on Google Cloud</span>
-                <span class="badge-meta">Google Cloud skill badge · Nov 2026</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a class="badge-item" href="https://www.credly.com/badges/15880984-b780-4157-8176-2beb8a0b3990" target="_blank" rel="noopener">
-              <img src="assets/images/badges/cicd.webp" alt="" width="240" height="240" loading="lazy" />
-              <span class="badge-text">
-                <span class="badge-name">Implement CI/CD Pipelines on Google Cloud</span>
-                <span class="badge-meta">Google Cloud skill badge · Aug 2026</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a class="badge-item" href="https://www.credly.com/badges/3bfbf735-4143-41b6-8fe1-08bcead1bc42" target="_blank" rel="noopener">
-              <img src="assets/images/badges/devops.webp" alt="" width="240" height="240" loading="lazy" />
-              <span class="badge-text">
-                <span class="badge-name">Implement DevOps Workflows in Google Cloud</span>
-                <span class="badge-meta">Google Cloud skill badge · Nov 2026</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a class="badge-item" href="https://www.credly.com/badges/8ca6011c-0ece-44f3-a60e-34dbf5c1eec4" target="_blank" rel="noopener">
-              <img src="assets/images/badges/cloud-run.webp" alt="" width="240" height="240" loading="lazy" />
-              <span class="badge-text">
-                <span class="badge-name">Develop Serverless Applications on Cloud Run</span>
-                <span class="badge-meta">Google Cloud skill badge · Sep 2026</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a class="badge-item" href="https://www.credly.com/badges/8bbbe0b0-2af8-4ae8-8568-d176e97b4161" target="_blank" rel="noopener">
-              <img src="assets/images/badges/secure-network.webp" alt="" width="240" height="240" loading="lazy" />
-              <span class="badge-text">
-                <span class="badge-name">Build a Secure Google Cloud Network</span>
-                <span class="badge-meta">Google Cloud skill badge · Nov 2026</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a class="badge-item" href="https://www.credly.com/badges/7a9e1d27-eef4-4e87-ad0e-90992aad9beb" target="_blank" rel="noopener">
-              <img src="assets/images/badges/monitoring.webp" alt="" width="240" height="240" loading="lazy" />
-              <span class="badge-text">
-                <span class="badge-name">Monitor and Log with Google Cloud Operations Suite</span>
-                <span class="badge-meta">Google Cloud skill badge · Jun 2026</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a class="badge-item" href="https://www.credly.com/badges/c1983858-cfc6-436a-9cda-864be3e31f12" target="_blank" rel="noopener">
-              <img src="assets/images/badges/aws-cloud-foundations.webp" alt="" width="240" height="240" loading="lazy" />
-              <span class="badge-text">
-                <span class="badge-name">AWS Academy Graduate - Cloud Foundations</span>
-                <span class="badge-meta">AWS Academy training badge · Sep 2025</span>
-              </span>
-            </a>
-          </li>
-      </ul>
-
-      <a href="https://www.credly.com/users/aaronkp" class="btn-ghost cert-all" target="_blank" rel="noopener">See all 82 on Credly ↗</a>
 
     </div>
   </section>
@@ -488,45 +315,9 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════════════
-       PLAY — "Uptime", a tiny load-balancing game (js/game.js).
-       Hidden until the script runs, so no-JS visitors never see it.
-  ══════════════════════════════════════════════════════════ -->
-  <section id="play" class="section-wrapper play" aria-labelledby="play-heading" hidden>
-    <div class="container-custom">
-
-      <h2 class="section-title" id="play-heading">Uptime</h2>
-
-      <div class="play-layout">
-        <div class="play-intro">
-          <p class="play-lede">A tiny game about the job I'm training for: keeping servers alive.</p>
-          <p class="play-text">You're the load balancer. Send each request to a server with room before it overloads. Red packets are attacks, so block them. Traffic only gets heavier.</p>
-          <ul class="play-keys" aria-label="Controls">
-            <li class="keys-mouse"><kbd>Click</kbd> a server to route traffic</li>
-            <li class="keys-mouse"><kbd>1</kbd>–<kbd>4</kbd> or <kbd>↑</kbd><kbd>↓</kbd> switch servers</li>
-            <li class="keys-mouse"><kbd>Click</kbd> a red packet, or <kbd>Space</kbd> for a firewall sweep</li>
-            <li class="keys-touch"><kbd>Tap</kbd> a server to route traffic</li>
-            <li class="keys-touch"><kbd>Tap</kbd> a red packet to block it</li>
-          </ul>
-        </div>
-
-        <div class="game-shell">
-          <canvas id="uptime-game" tabindex="0" aria-label="Uptime: a load-balancing mini-game. Route requests to servers with spare capacity and block red attack packets."></canvas>
-          <div class="game-overlay">
-            <p class="game-title">Uptime</p>
-            <p class="game-msg">Keep every server up for as long as you can.</p>
-            <button type="button" class="btn-primary game-start">Start</button>
-            <p class="game-best">Best: <span>0</span> served</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════════════════════
        EXPERIENCE
   ══════════════════════════════════════════════════════════ -->
-  <section id="experience" class="section-wrapper section-alt" aria-labelledby="experience-heading">
+  <section id="experience" class="section-wrapper" aria-labelledby="experience-heading">
     <div class="container-custom">
 
       <h2 class="section-title" id="experience-heading">Experience</h2>
@@ -564,6 +355,215 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SKILLS — cloud skills first, each linked to the Credly badge that
+       backs it (a hand-picked snapshot: Credly doesn't let other sites
+       load badges live), then everything else.
+  ══════════════════════════════════════════════════════════ -->
+  <section id="skills" class="section-wrapper" aria-labelledby="skills-heading">
+    <div class="container-custom">
+
+      <h2 class="section-title" id="skills-heading">Skills</h2>
+      <p class="cert-lede">
+        Cloud is where I'm heading. Each skill below links to the Google Cloud or AWS badge behind it. Altogether I've earned 82 badges on Credly (as of November 2026): 77 from Google Cloud, 4 from IBM SkillsBuild and 1 from AWS Academy.
+      </p>
+
+      <ul class="badge-list reveal">
+          <li>
+            <a class="badge-item" href="https://www.credly.com/badges/d175672a-fed6-4a70-85b6-fb4e88a3b214" target="_blank" rel="noopener">
+              <img src="assets/images/badges/terraform.webp" alt="" width="240" height="240" loading="lazy" />
+              <span class="badge-text">
+                <span class="badge-skill">Infrastructure as code (Terraform)</span>
+                <span class="badge-name">Build Infrastructure with Terraform on Google Cloud</span>
+                <span class="badge-meta">Google Cloud skill badge · Jul 2026</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="badge-item" href="https://www.credly.com/badges/afd68469-e201-40d3-91a0-bd1ab2ab09e4" target="_blank" rel="noopener">
+              <img src="assets/images/badges/kubernetes.webp" alt="" width="240" height="240" loading="lazy" />
+              <span class="badge-text">
+                <span class="badge-skill">Kubernetes</span>
+                <span class="badge-name">Deploy Kubernetes Applications on Google Cloud</span>
+                <span class="badge-meta">Google Cloud skill badge · Nov 2026</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="badge-item" href="https://www.credly.com/badges/15880984-b780-4157-8176-2beb8a0b3990" target="_blank" rel="noopener">
+              <img src="assets/images/badges/cicd.webp" alt="" width="240" height="240" loading="lazy" />
+              <span class="badge-text">
+                <span class="badge-skill">CI/CD pipelines</span>
+                <span class="badge-name">Implement CI/CD Pipelines on Google Cloud</span>
+                <span class="badge-meta">Google Cloud skill badge · Aug 2026</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="badge-item" href="https://www.credly.com/badges/3bfbf735-4143-41b6-8fe1-08bcead1bc42" target="_blank" rel="noopener">
+              <img src="assets/images/badges/devops.webp" alt="" width="240" height="240" loading="lazy" />
+              <span class="badge-text">
+                <span class="badge-skill">DevOps workflows</span>
+                <span class="badge-name">Implement DevOps Workflows in Google Cloud</span>
+                <span class="badge-meta">Google Cloud skill badge · Nov 2026</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="badge-item" href="https://www.credly.com/badges/8ca6011c-0ece-44f3-a60e-34dbf5c1eec4" target="_blank" rel="noopener">
+              <img src="assets/images/badges/cloud-run.webp" alt="" width="240" height="240" loading="lazy" />
+              <span class="badge-text">
+                <span class="badge-skill">Serverless (Cloud Run)</span>
+                <span class="badge-name">Develop Serverless Applications on Cloud Run</span>
+                <span class="badge-meta">Google Cloud skill badge · Sep 2026</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="badge-item" href="https://www.credly.com/badges/8bbbe0b0-2af8-4ae8-8568-d176e97b4161" target="_blank" rel="noopener">
+              <img src="assets/images/badges/secure-network.webp" alt="" width="240" height="240" loading="lazy" />
+              <span class="badge-text">
+                <span class="badge-skill">Cloud networking and security</span>
+                <span class="badge-name">Build a Secure Google Cloud Network</span>
+                <span class="badge-meta">Google Cloud skill badge · Nov 2026</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="badge-item" href="https://www.credly.com/badges/7a9e1d27-eef4-4e87-ad0e-90992aad9beb" target="_blank" rel="noopener">
+              <img src="assets/images/badges/monitoring.webp" alt="" width="240" height="240" loading="lazy" />
+              <span class="badge-text">
+                <span class="badge-skill">Monitoring and logging</span>
+                <span class="badge-name">Monitor and Log with Google Cloud Operations Suite</span>
+                <span class="badge-meta">Google Cloud skill badge · Jun 2026</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="badge-item" href="https://www.credly.com/badges/c1983858-cfc6-436a-9cda-864be3e31f12" target="_blank" rel="noopener">
+              <img src="assets/images/badges/aws-cloud-foundations.webp" alt="" width="240" height="240" loading="lazy" />
+              <span class="badge-text">
+                <span class="badge-skill">AWS fundamentals</span>
+                <span class="badge-name">AWS Academy Graduate - Cloud Foundations</span>
+                <span class="badge-meta">AWS Academy training badge · Sep 2025</span>
+              </span>
+            </a>
+          </li>
+      </ul>
+
+      <a href="https://www.credly.com/users/aaronkp" class="btn-ghost cert-all" target="_blank" rel="noopener">See all 82 badges on Credly ↗</a>
+
+      <h3 class="skills-sub">Also</h3>
+      <div class="skills-grid">
+
+        <div class="skill-card reveal">
+          <h3 class="skill-card-title">Technical</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Unity</span>
+            <span class="skill-tag">Blender</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">C# / .NET</span>
+            <span class="skill-tag">AWS</span>
+            <span class="skill-tag">GCP</span>
+            <span class="skill-tag">React.js</span>
+            <span class="skill-tag">HTML</span>
+            <span class="skill-tag">CSS</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">SQLAlchemy</span>
+            <span class="skill-tag">MS Excel</span>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <h3 class="skill-card-title">Domain</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Cloud Computing</span>
+            <span class="skill-tag">Cyber Security</span>
+            <span class="skill-tag">Documentation</span>
+            <span class="skill-tag">ERP Analysis</span>
+            <span class="skill-tag">Workflow Design</span>
+            <span class="skill-tag">System Admin</span>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <h3 class="skill-card-title">Languages</h3>
+          <ul class="skill-tags skill-tags--single">
+            <li class="skill-tag">Malayalam <span>native</span></li>
+            <li class="skill-tag">English <span>fluent (C1)</span></li>
+            <li class="skill-tag">Hindi <span>conversational</span></li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       PLAY — "Uptime", a tiny load-balancing game (js/game.js).
+       Hidden until the script runs, so no-JS visitors never see it.
+  ══════════════════════════════════════════════════════════ -->
+  <section id="play" class="section-wrapper play" aria-labelledby="play-heading" hidden>
+    <div class="container-custom">
+
+      <h2 class="section-title" id="play-heading">Uptime</h2>
+
+      <div class="play-layout">
+        <div class="play-intro">
+          <p class="play-lede">A tiny game about the job I'm training for: keeping servers alive.</p>
+          <p class="play-text">You're the load balancer. Send each request to a server with room before it overloads. Red packets are attacks, so block them. Traffic only gets heavier.</p>
+          <ul class="play-keys" aria-label="Controls">
+            <li class="keys-mouse"><kbd>Click</kbd> a server to route traffic</li>
+            <li class="keys-mouse"><kbd>1</kbd>–<kbd>4</kbd> or <kbd>↑</kbd><kbd>↓</kbd> switch servers</li>
+            <li class="keys-mouse"><kbd>Click</kbd> a red packet, or <kbd>Space</kbd> for a firewall sweep</li>
+            <li class="keys-touch"><kbd>Tap</kbd> a server to route traffic</li>
+            <li class="keys-touch"><kbd>Tap</kbd> a red packet to block it</li>
+          </ul>
+        </div>
+
+        <div class="game-shell">
+          <canvas id="uptime-game" tabindex="0" aria-label="Uptime: a load-balancing mini-game. Route requests to servers with spare capacity and block red attack packets."></canvas>
+          <div class="game-overlay">
+            <p class="game-title">Uptime</p>
+            <p class="game-msg">Keep every server up for as long as you can.</p>
+            <button type="button" class="btn-primary game-start">Start</button>
+            <p class="game-best">Best: <span>0</span> served</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       ABOUT — the motto is from Aaron's GitHub profile
+  ══════════════════════════════════════════════════════════ -->
+  <section id="about" class="section-wrapper" aria-labelledby="about-heading">
+    <div class="container-custom">
+
+      <h2 class="section-title" id="about-heading">About</h2>
+
+      <div class="about-card">
+        <p class="about-motto reveal">I learn by building things.</p>
+
+        <div class="about-text reveal">
+          <p>
+            I'm in the final year of a BCA (Honours) at CHRIST University in Bengaluru, aiming for a career in <strong>cloud engineering</strong>. Outside cloud, I'm into game development and security.
+          </p>
+          <p>
+            I'm open to roles in cloud, software, game development and security. If you're hiring, I'd like to hear from you.
+          </p>
+          <div class="about-links">
+            <a href="mailto:aaron12parayil@gmail.com" class="btn-ghost">aaron12parayil@gmail.com</a>
+            <a href="https://linkedin.com/in/aaronparayil" target="_blank" rel="noopener" class="btn-ghost">LinkedIn ↗</a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -616,6 +616,14 @@
        FOOTER
   ══════════════════════════════════════════════════════════ -->
   <footer>
+    <!-- Live checks of my sites + last update (js/status.js; hidden without JS) -->
+    <div class="status-strip" aria-live="polite" hidden>
+      <p class="status-summary"><span class="status-dot" aria-hidden="true"></span><span class="status-text">Checking my sites…</span></p>
+      <ul class="status-checks"></ul>
+      <p class="status-deploy"></p>
+      <p class="status-note">Checked from your browser</p>
+    </div>
+
     <div class="footer-bar">
       <p class="footer-copy">© 2026 Aaron Koshy Parayil · Bengaluru, India</p>
 
@@ -649,17 +657,20 @@
           integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
           crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <!-- Skill tiles behind the portrait card -->
-  <script src="js/roster.js?v=26"></script>
+  <!-- Hero keyboard -->
+  <script src="js/keyboard.js?v=27"></script>
+
+  <!-- Footer status strip -->
+  <script src="js/status.js?v=27"></script>
 
   <!-- Live RaptorSense stats from the GitHub API -->
-  <script src="js/live-stats.js?v=26"></script>
+  <script src="js/live-stats.js?v=27"></script>
 
   <!-- Uptime mini-game -->
-  <script src="js/game.js?v=26"></script>
+  <script src="js/game.js?v=27"></script>
 
   <!-- Main animations + interactions -->
-  <script src="js/main.js?v=26"></script>
+  <script src="js/main.js?v=27"></script>
 
 </body>
 </html>
